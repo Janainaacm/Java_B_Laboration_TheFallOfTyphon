@@ -16,6 +16,9 @@ public class LevelMenu {
         LevelSix LevelSix = new LevelSix();
 
 
+        boolean isChoosingLevel = true;
+        while (isChoosingLevel) {
+
         println(BLACK_BACKGROUND + "          " + CYAN_BOLD_BRIGHT + CYAN_UNDERLINED + "Available levels:" + RESET + BLACK_BACKGROUND + "          " + RESET);
 
         printCyan("1. Level one");
@@ -52,8 +55,8 @@ public class LevelMenu {
 
         printCyan("0.Go back");
 
-        boolean isChoosingLevel = true;
-        do {
+
+
             switch (scannerNumber()) {
                 case 1 -> LevelOne.playLevelOne(player);
                 case 2 -> {
@@ -94,7 +97,7 @@ public class LevelMenu {
                 case 0 -> isChoosingLevel = false;
                 default -> printRed("Invalid input, please chose from the presented options");
             }
-        }while (isChoosingLevel);
+        }
 
 
 

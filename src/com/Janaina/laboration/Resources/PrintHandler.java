@@ -44,7 +44,7 @@ public class PrintHandler {
                 e.printStackTrace();
             }
         }
-        System.out.println("\n");
+
 
     }
 

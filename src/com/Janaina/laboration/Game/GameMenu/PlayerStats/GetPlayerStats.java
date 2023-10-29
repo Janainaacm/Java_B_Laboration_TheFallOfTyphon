@@ -15,17 +15,17 @@ public class GetPlayerStats {
 
         while (true) {
             println(BLUE_UNDERLINED + BLUE_BOLD_BRIGHT + "Welcome " + player.getName() + RESET + CYAN + "\nCurrent stats:" + RESET);
-            println(BLUE + "Strength: " + RESET + RED + player.getStrength() + RESET + BLUE +
-                    "\nDamage: " + RESET + RED + player.getBaseDamage() + RESET + BLUE +
-                    "\nAgility: " + RESET + RED + player.getAgility() + RESET + BLUE +
-                    "\nIntelligence: " + RESET + RED + player.getIntelligence() + RESET + BLUE +
-                    "\n Gold: " + RESET + RED + player.getGold() + RESET + BLUE +
-                    "\n Experience Points: " + RESET + RED + player.getExperience() + " / 100" + RESET + BLUE +
-                    "\n Special Attacks: ");
+            println(BLUE + "Strength: " + RESET + GREEN + player.getStrength() + RESET + BLUE +
+                    "\nDamage: " + RESET + GREEN + player.getBaseDamage() + RESET + BLUE +
+                    "\nAgility: " + RESET + GREEN + player.getAgility() + RESET + BLUE +
+                    "\nIntelligence: " + RESET + GREEN + player.getIntelligence() + RESET + BLUE +
+                    "\nGold: " + RESET + GREEN + player.getGold() + RESET + BLUE +
+                    "\nExperience Points: " + RESET + GREEN + player.getExperience() + " / 100" + RESET + BLUE +
+                    "\nSpecial Attacks: ");
 
 
-            suspensefulDots();
             printPurple("0 to go back");
+            suspensefulDots();
             if (scannerNumber() == 0){
                 break;
             }

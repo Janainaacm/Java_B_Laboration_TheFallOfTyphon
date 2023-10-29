@@ -46,7 +46,7 @@ public class Introduction {
         }
 
         PythiaSpeaking("Would you like a little tour to get you comfortable?");
-        println("yes or no");
+        System.out.println("yes or no");
 
         if (Objects.equals(scannerYesOrNo(), "yes")) {
 
@@ -57,7 +57,7 @@ public class Introduction {
             PythiaSpeaking("In case you change your mind, there is an option to view the tour in the main menu.");
         }
 
-        PythiaSpeaking("Here are 50 gold coins for you to start with");
+        sleepThread("Here are 50 gold coins for you to start with");
         player.setGold(player.getGold() + 50);
         printBlack("50 Gold coins have been added to your inventory");
         sleepThread(PURPLE + "Best of luck to you " + player.getName() + ", may we meet again");

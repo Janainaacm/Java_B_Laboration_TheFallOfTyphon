@@ -21,7 +21,7 @@ public class Storyline {
         StoreFront StoreFront = new StoreFront();
         Player player = new Player();
         LevelMenu mn = new LevelMenu();
-        mn.levelMenu(player);
+        //mn.levelMenu(player);
 
         intro.createPlayer(player);
 

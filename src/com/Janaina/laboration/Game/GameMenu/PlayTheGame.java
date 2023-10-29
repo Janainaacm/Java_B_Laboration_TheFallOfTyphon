@@ -19,12 +19,14 @@ public class PlayTheGame {
         GetPlayerAchievements GetPlayerAchievements = new GetPlayerAchievements();
         PlayerEquipment PlayerEquipment = new PlayerEquipment();
 
-        println(BLACK_BACKGROUND + "          " + CYAN_BOLD + "Game Menu" + RESET + BLACK_BACKGROUND + "          " + RESET
-                + "\n" + CYAN_BOLD +
-                "1. Levels\n2. Player stats\n3. Achievements\n4. Equipment\n0. Back" + RESET);
 
         boolean isChoosingFromGameMenu = true;
         do {
+
+            println(BLACK_BACKGROUND + "          " + CYAN_BOLD + "Game Menu" + RESET + BLACK_BACKGROUND + "          " + RESET
+                    + "\n" + CYAN_BOLD +
+                    "1. Levels\n2. Player stats\n3. Achievements\n4. Equipment\n0. Back" + RESET);
+
             switch (scannerNumber()) {
                 case 1 -> LevelMenu.levelMenu(player);
                 case 2 -> PlayerStats.currentStats(player);
@@ -33,6 +35,7 @@ public class PlayTheGame {
                 case 0 -> isChoosingFromGameMenu = false;
                 default -> printRed("Invalid input, please chose from the presented options");
             }
+
         }while (isChoosingFromGameMenu);
 
     }
