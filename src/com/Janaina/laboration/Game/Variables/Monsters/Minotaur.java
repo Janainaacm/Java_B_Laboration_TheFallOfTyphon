@@ -6,8 +6,8 @@ import com.Janaina.laboration.Game.Variables.Characters;
 import java.util.List;
 
 public class Minotaur extends Characters {
-    public Minotaur(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level, List<Attacks> specialAttackList) {
-        super(name, strength, health, baseDamage, agility, intelligence, gold, experience, level);
+    public Minotaur() {
+        super("Minotaur", 25, 100, 15, 20, 20, 150, 70, 0);
     }
     //Level 4
 

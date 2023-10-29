@@ -43,7 +43,8 @@ public class Storyteller {
                 the chasm in the temple floor. These intoxicating vapors helped her enter a state of trance, where she could channel the wisdom of the gods and provide guidance to \s
                 all who sought her counsel.\s
                 """);
-
+        yellowSuspensefulDots();
+        pressEnter();
 
     }
 

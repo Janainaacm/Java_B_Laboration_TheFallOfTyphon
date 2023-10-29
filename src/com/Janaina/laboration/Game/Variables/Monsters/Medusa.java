@@ -6,8 +6,8 @@ import com.Janaina.laboration.Game.Variables.Characters;
 import java.util.List;
 
 public class Medusa extends Characters {
-    public Medusa(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level, List<Attacks> specialAttackList) {
-        super(name, strength, health, baseDamage, agility, intelligence, gold, experience, level);
+    public Medusa() {
+        super("Medusa", 20, 100, 10, 10, 30, 100, 60, 0);
     }
     //Level 3
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Fury extends Characters {
     public Fury() {
-        super("Fury", 3, 50, 3, 10, 10, 10, 30, 0);
+        super("Fury", 3, 50, 3, 10, 10, 15, 30, 0);
     }
     //Level 1 monster
 

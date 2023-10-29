@@ -42,8 +42,7 @@ public class Introduction {
 
         if (Objects.equals(knowMoreAboutPythia, "yes")) {
             pythia();
-            println("Press enter to continue");
-            pressEnter();
+
         }
 
         PythiaSpeaking("Would you like a little tour to get you comfortable?");
@@ -58,7 +57,10 @@ public class Introduction {
             PythiaSpeaking("In case you change your mind, there is an option to view the tour in the main menu.");
         }
 
-        PythiaSpeaking("Best of luck to you " + player.getName() + ", may we meet again");
+        PythiaSpeaking("Here are 50 gold coins for you to start with");
+        player.setGold(player.getGold() + 50);
+        printBlack("50 Gold coins have been added to your inventory");
+        sleepThread(PURPLE + "Best of luck to you " + player.getName() + ", may we meet again");
         suspensefulDots();
 
 

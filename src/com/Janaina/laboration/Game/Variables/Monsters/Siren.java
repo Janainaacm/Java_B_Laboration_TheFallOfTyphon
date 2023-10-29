@@ -6,8 +6,8 @@ import com.Janaina.laboration.Game.Variables.Characters;
 import java.util.List;
 
 public class Siren extends Characters{
-    public Siren(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level, List<Attacks> specialAttackList) {
-        super(name, strength, health, baseDamage, agility, intelligence, gold, experience, level);
+    public Siren() {
+        super("Siren", 10, 60, 6, 30, 15, 50, 40, 0);
     }
     //Level 2
 

@@ -6,8 +6,8 @@ import com.Janaina.laboration.Game.Variables.Characters;
 import java.util.List;
 
 public class Cerberus extends Characters {
-    public Cerberus(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level) {
-        super(name, strength, health, baseDamage, agility, intelligence, gold, experience, level);
+    public Cerberus() {
+        super("Ceberus", 30, 100, 15, 10, 40, 200, 70, 0);
     }
     //Level 5
 

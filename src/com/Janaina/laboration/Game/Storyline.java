@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game;
 
+import com.Janaina.laboration.Game.GameMenu.Levels.LevelMenu;
 import com.Janaina.laboration.Game.GameMenu.PlayTheGame;
 import com.Janaina.laboration.Game.Shop.StoreFront;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
@@ -14,10 +15,14 @@ import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
 public class Storyline {
 
     public void mainGameMenu() {
+
         Introduction intro = new Introduction();
         PlayTheGame PlayTheGame = new PlayTheGame();
         StoreFront StoreFront = new StoreFront();
         Player player = new Player();
+        LevelMenu mn = new LevelMenu();
+        mn.levelMenu(player);
+
         intro.createPlayer(player);
 
         boolean mainGameMenuSwitch = true;
@@ -38,7 +43,7 @@ public class Storyline {
                     suspensefulDots();
                     mainGameMenuSwitch = false;
                 }
-                default -> printRed("Pick a number from the options provided");
+                default -> printRed("Invalid input, please chose from the presented options");
 
             }
         }while (mainGameMenuSwitch);

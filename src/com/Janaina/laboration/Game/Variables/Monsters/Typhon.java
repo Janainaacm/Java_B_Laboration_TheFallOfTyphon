@@ -6,8 +6,8 @@ import com.Janaina.laboration.Game.Variables.Characters;
 import java.util.List;
 
 public class Typhon extends Characters{
-    public Typhon(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level, List<Attacks> specialAttackList) {
-        super(name, strength, health, baseDamage, agility, intelligence, gold, experience, level);
+    public Typhon() {
+        super("Typhon", 30, 100, 20, 20, 30, 300, 100, 0);
     }
 
     //Final boss
