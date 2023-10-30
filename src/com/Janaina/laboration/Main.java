@@ -16,8 +16,9 @@ public class Main {
     public static void main(String[] args) {
 
         Storyline Storyline = new Storyline();
-        Player fury = new Player();
-        System.out.println(BLACK_BACKGROUND + " " + WHITE_BOLD_BRIGHT + "HEJ" + RESET + BLACK_BACKGROUND + " " + RESET);
+        Player player = new Player();
+
+
 
         /*
         fury.setAgility(70);
@@ -31,7 +32,7 @@ public class Main {
 
          */
 
-        //Storyline.mainGameMenu();
+        Storyline.mainGameMenu();
 
 
 

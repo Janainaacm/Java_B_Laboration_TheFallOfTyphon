@@ -7,6 +7,7 @@ import com.Janaina.laboration.Game.GameMenu.PlayerStats.GetPlayerStats;
 import com.Janaina.laboration.Game.Shop.StoreFront;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
+import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Resources.Colors;
 
 import static com.Janaina.laboration.Resources.Colors.*;
@@ -28,6 +29,9 @@ public class Storyline {
         LevelMenu LevelMenu = new LevelMenu();
         GetPlayerAchievements GetPlayerAchievements = new GetPlayerAchievements();
         Inventory Inventory = new Inventory();
+        Fury fury = new Fury();
+
+        player.act(fury, Inventory);
         //mn.levelMenu(player);
 
         intro.createPlayer(player);

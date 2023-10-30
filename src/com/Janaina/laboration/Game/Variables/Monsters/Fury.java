@@ -2,10 +2,13 @@ package com.Janaina.laboration.Game.Variables.Monsters;
 
 import com.Janaina.laboration.Game.Shop.ShopCategories.Books.Attacks;
 import com.Janaina.laboration.Game.Variables.Characters;
+import com.Janaina.laboration.Game.Variables.Hero.Player;
 
 import java.util.List;
+import java.util.Random;
 
 import static com.Janaina.laboration.Resources.Colors.*;
+import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 
 public class Fury extends Characters {
     public Fury() {
@@ -17,18 +20,26 @@ public class Fury extends Characters {
 
 
     @Override
-    public void attack(Characters target) {
-
-
-    }
-
-    @Override
-    public void flee(Characters target) {
+    public void attack(Characters player) {
+        player.dodge(this);
 
     }
 
     @Override
-    public void dodge(Characters target) {
+    public boolean flee(Characters player) {
+        return true;
+    }
+
+    @Override
+    public void dodge(Characters player) {
+        if (didDodge()){
+            System.out.println(RED + getName() + " dodged your attack!");
+            chillForASecond(200);
+            attack(player);
+        }else {
+            receiveDamage(player);
+        }
+
 
     }
 
@@ -42,12 +53,26 @@ public class Fury extends Characters {
 
     @Override
     public boolean didDodge() {
+        Random random = new Random();
+        int randomValue = random.nextInt(1, 100);
 
-        return false;
+         return randomValue < getAgility();
     }
 
     @Override
-    public void receiveDamage(Characters target) {
+    public void receiveDamage(Characters player) {
+        Random random = new Random();
+        int acquiredStrength = random.nextInt(1, player.getStrength());
+        int damageFromAttack = acquiredStrength * player.getBaseDamage();
 
+        setHealth(getHealth() - damageFromAttack);
+        System.out.println(CYAN + "Your attack did " + damageFromAttack + " damage!" + RESET);
+
+        chillForASecond(200);
+        attack(player);
     }
+
 }
+
+
+

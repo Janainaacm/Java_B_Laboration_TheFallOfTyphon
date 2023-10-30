@@ -21,8 +21,8 @@ public class Minotaur extends Characters {
     }
 
     @Override
-    public void flee(Characters target) {
-
+    public boolean flee(Characters target) {
+        return true;
     }
 
     @Override

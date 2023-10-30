@@ -40,6 +40,14 @@ public class TextDelay {
         }
     }
 
+    public static void chillForASecond(long millis){
+        try {
+           Thread.sleep(millis);
+        } catch (InterruptedException ignored) {
+
+        }
+    }
+
 
 
 }

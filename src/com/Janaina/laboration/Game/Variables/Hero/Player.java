@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.Scanners.*;
+import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Player extends Characters {
 
@@ -20,7 +21,7 @@ public class Player extends Characters {
     public List<Weapons> weaponsList;
 
     public Player(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level) {
-        super("name", 10, 100, 5, 20, 20, 0, 0, 1, "Lethal Lunge");
+        super("name", 2, 100, 15, 20, 20, 0, 0, 1, "Lethal Lunge");
     }
 
     public Player() {
@@ -66,7 +67,13 @@ public class Player extends Characters {
                 //3. Inventory
 
                 case 1 -> attack(monster);
-                case 2 -> flee(monster);
+                case 2 -> {
+                    if (flee(monster)){
+                        monsterEncounter = false;
+                    } else {
+                        continue;
+                    }
+                }
                 case 3 -> Inventory.playerInventory();
             }
 
@@ -85,29 +92,58 @@ public class Player extends Characters {
 
     @Override
     public void attack(Characters monster) {
-        if (!specialAttackList.isEmpty()) {
-            //Create switch to chose from attacks
-        } else {
-            pressEnterToAttack();
-            System.out.println(" ");
+        //if (!specialAttackList.isEmpty()) {
+        //            //Create switch to chose from attacks
+        //            System.out.println("poop");
+        //        } else {
+        //
+        //
+        //        }
 
+
+        System.out.println(YELLOW + getName() + " used " + getDefaultAttack() + "!" + RESET);
+        sleepThread(YELLOW + "▭▭ι═══════ﺤ" + RESET);
+        pressEnterToAttack();
+        monster.dodge(this);
+
+    }
+
+    @Override
+    public boolean flee(Characters monster) {
+
+        System.out.println(PURPLE + "Lets see if you are lucky enough to escape the " + monster.getName() + RESET);
+        suspensefulDots(PURPLE + "." + RESET);
+
+        if (canPlayerFlee(monster)){
+            System.out.println(PURPLE + "You managed to escape!" + RESET);
+            return true;
+        }else {
+            System.out.println(PURPLE + "Oh no, you were caught!" + RESET);
+            dodge(monster);
+            return false;
         }
 
 
     }
 
-    @Override
-    public void flee(Characters monster) {
+    public boolean canPlayerFlee(Characters monster) {
+        Random random = new Random();
+        int escapeChance = getAgility() - monster.getIntelligence();
+        int randomValue = random.nextInt(1, 100);
 
-
+        return randomValue < escapeChance;
     }
 
     @Override
     public void dodge(Characters monster) {
-
+        chillForASecond(200);
+        System.out.println(RED_BOLD_BRIGHT + monster.getName() + " used " + monster.getDefaultAttack() + " on you!" + RESET);
+        sleepThread(RED + "ﮩ٨ـﮩﮩ٨ـﮩ٨ـﮩﮩ٨" + RESET);
+        
         if (didDodge()){
 
         } else {
+
             receiveDamage(monster);
         }
 

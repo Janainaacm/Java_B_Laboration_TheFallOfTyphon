@@ -25,7 +25,7 @@ public class PlayTheGame {
                     "1. Levels\n2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
 
             switch (scannerNumber()) {
-                case 1 -> LevelMenu.levelMenu(player);
+                case 1 -> LevelMenu.levelMenu(player, Inventory);
                 case 2 -> PlayerStats.currentStats(player);
                 case 3 -> GetPlayerAchievements.playerAchievements(player);
                 case 4 -> Inventory.playerInventory();

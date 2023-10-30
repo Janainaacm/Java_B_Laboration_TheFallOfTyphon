@@ -9,7 +9,7 @@ import static com.Janaina.laboration.Resources.Colors.*;
 
 public class Typhon extends Characters{
     public Typhon() {
-        super("Typhon", 7, 100, 10, 20, 30, 300, 100, 0, "Apocalyptic Surge");
+        super("Typhon", 7, 100, 10, 20, 60, 300, 100, 0, "Apocalyptic Surge");
     }
 
     //Final boss
@@ -22,8 +22,8 @@ public class Typhon extends Characters{
     }
 
     @Override
-    public void flee(Characters target) {
-
+    public boolean flee(Characters target) {
+        return true;
     }
 
     @Override

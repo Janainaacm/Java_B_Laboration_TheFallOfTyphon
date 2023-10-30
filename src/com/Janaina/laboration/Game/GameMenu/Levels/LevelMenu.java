@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 
 import static com.Janaina.laboration.Resources.Colors.*;
@@ -7,7 +8,7 @@ import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 
 public class LevelMenu {
-    public void levelMenu(Player player){
+    public void levelMenu(Player player, Inventory Inventory){
         LevelOne LevelOne = new LevelOne();
         LevelTwo LevelTwo = new LevelTwo();
         LevelThree LevelThree = new LevelThree();
@@ -58,7 +59,7 @@ public class LevelMenu {
 
 
             switch (scannerNumber()) {
-                case 1 -> LevelOne.playLevelOne(player);
+                case 1 -> LevelOne.playLevelOne(player, Inventory);
                 case 2 -> {
                     if (LevelOne.levelOneComplete("Fix this")) {
                         LevelTwo.playLevelTwo(player);
