@@ -14,6 +14,7 @@ public class LevelOne {
         Fury fury = new Fury();
         println("1");
 
+
         if (fury.getHealth() <= 0){
             levelOneComplete("winner");
             player.setGold(player.getGold() + fury.getGold());

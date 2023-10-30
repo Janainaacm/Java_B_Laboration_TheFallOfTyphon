@@ -2,12 +2,12 @@ package com.Janaina.laboration.Game.Variables;
 
 public interface Combat {
 
-    String attack();
-    void flee();
-    String dodge();
+    void attack(Characters target);
+    void flee(Characters target);
+    void dodge(Characters target);
     String getStats();
     boolean didDodge();
-    int recieveDamage();
+    void receiveDamage(Characters target);
 
 
 }

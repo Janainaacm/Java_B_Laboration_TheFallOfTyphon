@@ -5,31 +5,37 @@ import com.Janaina.laboration.Game.Variables.Characters;
 
 import java.util.List;
 
+import static com.Janaina.laboration.Resources.Colors.*;
+import static com.Janaina.laboration.Resources.Colors.RESET;
+
 public class Minotaur extends Characters {
     public Minotaur() {
-        super("Minotaur", 25, 100, 15, 20, 20, 150, 70, 0);
+        super("Minotaur", 3, 100, 10, 30, 30, 150, 70, 0, "Bestial Fury");
     }
     //Level 4
 
 
     @Override
-    public String attack() {
-        return null;
-    }
-
-    @Override
-    public void flee() {
+    public void attack(Characters target) {
 
     }
 
     @Override
-    public String dodge() {
-        return null;
+    public void flee(Characters target) {
+
+    }
+
+    @Override
+    public void dodge(Characters target) {
+
     }
 
     @Override
     public String getStats() {
-        return null;
+        return BLACK_BACKGROUND + "          " + YELLOW_UNDERLINED + "MINOTAUR" + RESET + BLACK_BACKGROUND + "          " + RESET
+                + "\n" + BLACK_BACKGROUND + " " + YELLOW_BOLD + "Health: " + getHealth() + "   Strength: " + getStrength() + RESET + BLACK_BACKGROUND + " " + RESET
+                + "\n" + BLACK_BACKGROUND + "                            " + RESET
+                + "\n" + YELLOW_BOLD + "1. Attack\n2. Flee\n3. Inventory";
     }
 
     @Override
@@ -38,7 +44,9 @@ public class Minotaur extends Characters {
     }
 
     @Override
-    public int recieveDamage() {
-        return 0;
+    public void receiveDamage(Characters target) {
+
     }
+
+
 }

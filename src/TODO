@@ -1,0 +1,65 @@
+
+ TODO
+
+PLAYER:
+Player methods:
+
+act( )
+Spelaren ska få X valmöjligheter, dessa kommer gå igenom en Switch med Scanner för att kunna
+styra vad spelaren får lov att göra under ‘strids sekvensen’.
+Följande metoder hade kunnat kallas från act():
+
+• flee( )
+Spelaren ska kunna få välja att fly från ett monster under ‘strids sekvensen’.
+Den här metoden kan då kallas från playerCombat( ).
+Kalkyleringen hade kunnat basera sig på en procentuell chans, som tar in ‘Agility’ som
+förslag på om vi lyckats springa iväg!
+
+• attack( )
+Spelaren slåss för att skada monstret.
+Kan kalla på ‘calculateDamage' härifrån.
+
+• getStatus( )
+Spelaren kan välja att hämta ut information om monstret såväl som spelarens nuvarande
+hälsa och styrka!
+
+
+attack()
+    Monstret skadar spelaren.
+    If ( player.playerDIdDodge() ) {
+    SOUT( “DODGED” )
+    } else {
+    calculate Monster Damage
+    }
+
+didDodge()
+Vi ska kunna kalkylera och returnera en ‘Boolean' om vi lyckats undvika motståndarens slag.
+Här hade vi kunnat ta med ett slumpat tal mellan 1-100.
+Exempel: vår ‘Agility’ är 25, då är ribban 25 av 100!
+Slumpa tal — 24 —> return true (Vi har LYCKATS undvika slaget)
+Slumpa tal — 35 —> return false (Vi har INTE lyckats undvika slaget)
+
+calculateDamage( int strength )
+Vi ska kunna kalkylera variabeln: baseDamage + (styrka * 2 / 4 + 1).
+Därefter så returnerar vi värdet.
+
+levelUp( )
+För varje X EXP så ökar spelarens ‘Level’ med +1 och skriver ut ett meddelande som feedback
+att spelaren har uppnått ny nivå!
+
+
+
+
+
+
+
+
+Storyline - intro
+- Finish tour + testLevel
+
+
+
+
+
+
+

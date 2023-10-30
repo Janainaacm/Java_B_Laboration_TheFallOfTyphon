@@ -2,7 +2,10 @@ package com.Janaina.laboration.Game;
 
 import com.Janaina.laboration.Game.GameMenu.Levels.LevelMenu;
 import com.Janaina.laboration.Game.GameMenu.PlayTheGame;
+import com.Janaina.laboration.Game.GameMenu.PlayerAchievements.GetPlayerAchievements;
+import com.Janaina.laboration.Game.GameMenu.PlayerStats.GetPlayerStats;
 import com.Janaina.laboration.Game.Shop.StoreFront;
+import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Colors;
 
@@ -21,6 +24,10 @@ public class Storyline {
         StoreFront StoreFront = new StoreFront();
         Player player = new Player();
         LevelMenu mn = new LevelMenu();
+        GetPlayerStats PlayerStats = new GetPlayerStats();
+        LevelMenu LevelMenu = new LevelMenu();
+        GetPlayerAchievements GetPlayerAchievements = new GetPlayerAchievements();
+        Inventory Inventory = new Inventory();
         //mn.levelMenu(player);
 
         intro.createPlayer(player);
@@ -34,13 +41,13 @@ public class Storyline {
                     "1. Play\n2. Shop\n3. Read Game Lore\n4. View Tour\n0. Quit Game" + RESET);
 
             switch (scannerNumber()) {
-                case 1 -> PlayTheGame.gameMenu(player);
+                case 1 -> PlayTheGame.gameMenu(player, PlayerStats, LevelMenu, GetPlayerAchievements, Inventory);
                 case 2 -> StoreFront.mainStoreFront();
                 case 3 -> readGameLore();
                 case 4 -> intro.initialTourOfGame();
                 case 0 -> {
                     PythiaSpeaking("Goodbye " + player.getName() + ", may we meet again");
-                    suspensefulDots();
+                    suspensefulDots(PURPLE + "." + RESET);
                     mainGameMenuSwitch = false;
                 }
                 default -> printRed("Invalid input, please chose from the presented options");

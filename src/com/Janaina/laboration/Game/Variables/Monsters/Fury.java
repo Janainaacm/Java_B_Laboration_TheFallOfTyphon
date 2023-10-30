@@ -5,9 +5,11 @@ import com.Janaina.laboration.Game.Variables.Characters;
 
 import java.util.List;
 
+import static com.Janaina.laboration.Resources.Colors.*;
+
 public class Fury extends Characters {
     public Fury() {
-        super("Fury", 3, 50, 3, 10, 10, 15, 30, 0);
+        super("Fury", 1, 50, 10, 10, 10, 15, 30, 0, "Rage of the Erinyes");
     }
     //Level 1 monster
 
@@ -15,24 +17,27 @@ public class Fury extends Characters {
 
 
     @Override
-    public String attack() {
+    public void attack(Characters target) {
 
-        return "meow";
-    }
-
-    @Override
-    public void flee() {
 
     }
 
     @Override
-    public String dodge() {
-        return null;
+    public void flee(Characters target) {
+
+    }
+
+    @Override
+    public void dodge(Characters target) {
+
     }
 
     @Override
     public String getStats() {
-        return null;
+        return BLACK_BACKGROUND + "           " + RED_BOLD_BRIGHT + RED_UNDERLINED + "FURY" + RESET + BLACK_BACKGROUND + "           " + RESET
+                + "\n" + BLACK_BACKGROUND + " " + RED_BOLD + "Health: " + getHealth() + "   Strength: " + getStrength() + RESET + BLACK_BACKGROUND + " " + RESET
+                + "\n" + BLACK_BACKGROUND + "                          " + RESET
+                + "\n" + RED_BOLD + "1. Attack\n2. Flee\n3. Inventory";
     }
 
     @Override
@@ -42,7 +47,7 @@ public class Fury extends Characters {
     }
 
     @Override
-    public int recieveDamage() {
-        return 0;
+    public void receiveDamage(Characters target) {
+
     }
 }

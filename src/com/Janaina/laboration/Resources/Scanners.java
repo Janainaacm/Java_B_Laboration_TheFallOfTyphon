@@ -4,8 +4,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 
-import static com.Janaina.laboration.Resources.Colors.RED;
-import static com.Janaina.laboration.Resources.Colors.RESET;
+import static com.Janaina.laboration.Resources.Colors.*;
 
 public class Scanners {
     public static int scannerNumber() {
@@ -42,6 +41,34 @@ public class Scanners {
 
     public static String pressEnter() {
         Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
+        System.out.println("\u001B[37m" + "Press enter to continue." + RESET);
+
+        String readString = sc.nextLine();
+        while(readString!=null) {
+
+            if (readString.isEmpty()) {
+                return readString;
+            } else {
+                break;
+            }
+        }
+        return pressEnter();
     }
+
+    public static String pressEnterToAttack() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(PURPLE_BOLD_BRIGHT + "Press enter to attack!" + RESET);
+
+        String readString = sc.nextLine();
+        while(readString!=null) {
+
+            if (readString.isEmpty()) {
+                return readString;
+            } else {
+                break;
+            }
+        }
+        return pressEnterToAttack();
+    }
+
 }

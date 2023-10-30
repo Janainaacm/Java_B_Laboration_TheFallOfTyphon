@@ -20,14 +20,16 @@ public class GetPlayerStats {
                     "\nAgility: " + RESET + GREEN + player.getAgility() + RESET + BLUE +
                     "\nIntelligence: " + RESET + GREEN + player.getIntelligence() + RESET + BLUE +
                     "\nGold: " + RESET + GREEN + player.getGold() + RESET + BLUE +
-                    "\nExperience Points: " + RESET + GREEN + player.getExperience() + " / 100" + RESET + BLUE +
+                    "\nExperience Points: " + RESET + GREEN + player.getExperience() + " / " + player.getLevel() * 100 + RESET + BLUE +
                     "\nSpecial Attacks: ");
 
 
             printPurple("0 to go back");
-            suspensefulDots();
+            suspensefulDots(".");
             if (scannerNumber() == 0){
                 break;
+            } else {
+                printRed("Invalid input");
             }
         }
 

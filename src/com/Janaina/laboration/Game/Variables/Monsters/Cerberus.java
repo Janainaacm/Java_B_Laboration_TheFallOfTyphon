@@ -5,31 +5,37 @@ import com.Janaina.laboration.Game.Variables.Characters;
 
 import java.util.List;
 
+import static com.Janaina.laboration.Resources.Colors.*;
+import static com.Janaina.laboration.Resources.Colors.RESET;
+
 public class Cerberus extends Characters {
     public Cerberus() {
-        super("Ceberus", 30, 100, 15, 10, 40, 200, 70, 0);
+        super("Cerberus", 5, 100, 10, 10, 40, 200, 70, 0, "Underworld Carnage");
     }
     //Level 5
 
 
     @Override
-    public String attack() {
-        return null;
-    }
-
-    @Override
-    public void flee() {
+    public void attack(Characters target) {
 
     }
 
     @Override
-    public String dodge() {
-        return null;
+    public void flee(Characters target) {
+
+    }
+
+    @Override
+    public void dodge(Characters target) {
+
     }
 
     @Override
     public String getStats() {
-        return null;
+        return BLACK_BACKGROUND + "          " + RED_UNDERLINED + "CERBERUS" + RESET + BLACK_BACKGROUND + "          " + RESET
+                + "\n" + BLACK_BACKGROUND + " " + RED_BOLD + "Health: " + getHealth() + "   Strength: " + getStrength() + RESET + BLACK_BACKGROUND + " " + RESET
+                + "\n" + BLACK_BACKGROUND + "                            " + RESET
+                + "\n" + RED_BOLD + "1. Attack\n2. Flee\n3. Inventory";
     }
 
     @Override
@@ -38,7 +44,7 @@ public class Cerberus extends Characters {
     }
 
     @Override
-    public int recieveDamage() {
-        return 0;
+    public void receiveDamage(Characters target) {
+
     }
 }

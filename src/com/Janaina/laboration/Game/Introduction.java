@@ -21,9 +21,8 @@ public class Introduction {
                 + "\n" + BLACK_BACKGROUND + "                             " + RESET + "\n");
 
         printYellow("(This game is inspired by and based of greek mythology, for every creature you encounter you will get the choice to learn more about them)");
-        println("Press enter to continue");
+        suspensefulDots(".");
         pressEnter();
-        suspensefulDots();
 
 
         PythiaSpeaking("""
@@ -35,7 +34,7 @@ public class Introduction {
         player.setName(scannerText());
 
         PythiaSpeaking("Welcome to the land of Elathriya " + player.getName() + ", I will be your guide on this journey\n");
-        suspensefulDots();
+        suspensefulDots(PURPLE + "." + RESET);
 
         printYellow("Do you wish to know more about Pythia? yes or no");
         String knowMoreAboutPythia = scannerYesOrNo();
@@ -61,7 +60,7 @@ public class Introduction {
         player.setGold(player.getGold() + 50);
         printBlack("50 Gold coins have been added to your inventory");
         sleepThread(PURPLE + "Best of luck to you " + player.getName() + ", may we meet again");
-        suspensefulDots();
+        suspensefulDots(".");
 
 
     }
@@ -73,13 +72,13 @@ public class Introduction {
                 "1. Play\n2. Shop\n3. Read game lore\n0. Quit Game" + RESET);
 
         PythiaSpeaking("This is the main game menu");
-        suspensefulDots();
+        suspensefulDots(PURPLE + "." + RESET);
         sleepThread(PURPLE + "Let's explore it a bit deeper:\n" + RESET);
 
         //Show Game Lore
         println("1. Play\n2. Shop\n" + CYAN_BOLD + "3. Read game lore\n" + RESET + "0. Quit Game");
         PythiaSpeaking("If you press 3, the storyteller will tell you the tale of this battle. Though it is a most \nfascinating tale, it is not mandatory, therefore reading it will remain your choice.");
-        suspensefulDots();
+        suspensefulDots(PURPLE + "." + RESET);
 
         //Show Play the Game
         println(CYAN_BOLD + "1. Play\n" + RESET + "2. Shop\n3. Read game lore\n0. Quit Game");
@@ -111,7 +110,7 @@ public class Introduction {
 
         println("1. Play\n2. Shop\n3. Read game lore\n" + CYAN_BOLD + "0. Quit Game" + RESET);
         PythiaSpeaking("Lastly, you type '0' in order to quit game");
-        suspensefulDots();
+        suspensefulDots(PURPLE + "." + RESET);
 
 
     }

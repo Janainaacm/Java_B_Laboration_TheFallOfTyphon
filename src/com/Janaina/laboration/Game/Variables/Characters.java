@@ -21,10 +21,10 @@ public abstract class Characters implements Combat{
     //Hur mycket man får för varje monster man dödar
     private int experience;
     private int level;
-    private List<Attacks> specialAttackList;
+    private String defaultAttack;
 
 
-    public Characters(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level) {
+    public Characters(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level, String defaultAttack) {
         this.name = name;
         this.strength = strength;
         this.health = health;
@@ -34,7 +34,20 @@ public abstract class Characters implements Combat{
         this.gold = gold;
         this.experience = experience;
         this.level = level;
-        this.specialAttackList = specialAttackList;
+        this.defaultAttack = defaultAttack;
+
+    }
+
+    public String getDefaultAttack() {
+        return defaultAttack;
+    }
+
+    public void setDefaultAttack(String defaultAttack) {
+        this.defaultAttack = defaultAttack;
+    }
+
+    public boolean isAlive() {
+        return health > 0;
     }
 
     public String getName() {
@@ -109,11 +122,4 @@ public abstract class Characters implements Combat{
         this.level = level;
     }
 
-    public List<Attacks> getSpecialAttackList() {
-        return specialAttackList;
-    }
-
-    public void setSpecialAttackList(List<Attacks> specialAttackList) {
-        this.specialAttackList = specialAttackList;
-    }
 }

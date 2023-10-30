@@ -1,7 +1,6 @@
 package com.Janaina.laboration.Resources;
 
-import static com.Janaina.laboration.Resources.Colors.RESET;
-import static com.Janaina.laboration.Resources.Colors.YELLOW;
+import static com.Janaina.laboration.Resources.Colors.*;
 
 public class TextDelay {
 
@@ -16,12 +15,12 @@ public class TextDelay {
         }
     }
 
-    public static void suspensefulDots(){
+    public static void suspensefulDots(String dot){
         int numberOfDots = 3;
         try {
             for (int i = 0; i < numberOfDots; i++) {
                 Thread.sleep(1000);
-                System.out.print(".");
+                System.out.print(dot);
             }
         } catch (InterruptedException ignored) {
 
@@ -40,5 +39,7 @@ public class TextDelay {
 
         }
     }
+
+
 
 }

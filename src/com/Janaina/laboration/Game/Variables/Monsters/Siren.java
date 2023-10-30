@@ -5,31 +5,37 @@ import com.Janaina.laboration.Game.Variables.Characters;
 
 import java.util.List;
 
+import static com.Janaina.laboration.Resources.Colors.*;
+import static com.Janaina.laboration.Resources.Colors.RESET;
+
 public class Siren extends Characters{
     public Siren() {
-        super("Siren", 10, 60, 6, 30, 15, 50, 40, 0);
+        super("Siren", 2, 60, 10, 30, 15, 50, 40, 0, "Deadly Wail");
     }
     //Level 2
 
 
     @Override
-    public String attack() {
-        return null;
-    }
-
-    @Override
-    public void flee() {
+    public void attack(Characters target) {
 
     }
 
     @Override
-    public String dodge() {
-        return null;
+    public void flee(Characters target) {
+
+    }
+
+    @Override
+    public void dodge(Characters target) {
+
     }
 
     @Override
     public String getStats() {
-        return null;
+        return BLACK_BACKGROUND + "           " + CYAN_UNDERLINED + "SIREN" + RESET + BLACK_BACKGROUND + "           " + RESET
+                + "\n" + BLACK_BACKGROUND + " " + CYAN_BOLD + "Health: " + getHealth() + "   Strength: " + getStrength() + RESET + BLACK_BACKGROUND + " " + RESET
+                + "\n" + BLACK_BACKGROUND + "                           " + RESET
+                + "\n" + CYAN_BOLD + "1. Attack\n2. Flee\n3. Inventory";
     }
 
     @Override
@@ -38,9 +44,10 @@ public class Siren extends Characters{
     }
 
     @Override
-    public int recieveDamage() {
-        return 0;
+    public void receiveDamage(Characters target) {
+
     }
+
 
 
 }
