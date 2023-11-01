@@ -1,8 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.PlayerStats;
 
-import com.Janaina.laboration.Game.Shop.ShopCategories.Books.Attacks;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
-import com.Janaina.laboration.Resources.Colors;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;

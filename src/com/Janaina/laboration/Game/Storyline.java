@@ -46,7 +46,7 @@ public class Storyline {
 
             switch (scannerNumber()) {
                 case 1 -> PlayTheGame.gameMenu(player, PlayerStats, LevelMenu, GetPlayerAchievements, Inventory);
-                case 2 -> StoreFront.mainStoreFront();
+                case 2 -> StoreFront.mainStoreFront(player, Inventory);
                 case 3 -> readGameLore();
                 case 4 -> intro.initialTourOfGame();
                 case 0 -> {

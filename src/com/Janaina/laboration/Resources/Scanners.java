@@ -57,7 +57,6 @@ public class Scanners {
 
     public static String pressEnterToAttack() {
         Scanner sc = new Scanner(System.in);
-        System.out.println(PURPLE_BOLD_BRIGHT + "Press enter to attack!" + RESET);
 
         String readString = sc.nextLine();
         while(readString!=null) {

@@ -4,9 +4,8 @@ public interface Combat {
 
     void attack(Characters target);
     boolean flee(Characters target);
-    void dodge(Characters target);
+    boolean dodge(Characters target);
     String getStats();
-    boolean didDodge();
     void receiveDamage(Characters target);
 
 

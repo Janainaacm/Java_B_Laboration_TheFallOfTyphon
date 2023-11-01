@@ -6,19 +6,15 @@ import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 
 import java.util.Objects;
 
-import static com.Janaina.laboration.Resources.PrintHandler.println;
-
 public class LevelOne {
     //Fury attack
 
     public void playLevelOne(Player player, Inventory Inventory){
         Fury fury = new Fury();
-        println("1");
+
+        player.act(fury, Inventory);
 
 
-        while (player.isAlive() && fury.isAlive()){
-            player.act(fury, Inventory);
-        }
 
     }
 

@@ -19,7 +19,7 @@ public class TextDelay {
         int numberOfDots = 3;
         try {
             for (int i = 0; i < numberOfDots; i++) {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 System.out.print(dot);
             }
         } catch (InterruptedException ignored) {

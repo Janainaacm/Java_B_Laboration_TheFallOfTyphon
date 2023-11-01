@@ -1,5 +1,6 @@
 package com.Janaina.test;
 
+import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Game.Variables.Monsters.Medusa;
@@ -30,6 +31,27 @@ public class TheFallOfTyphonTest {
 
     @Test
     public void testPlayerTakeDamage(){
+        Player testPlayer1 = new Player();
+        Fury fury1 = new Fury();
+
+        System.out.println("Initial health: " + testPlayer1.getHealth());
+
+        testPlayer1.receiveDamage(fury1);
+
+        System.out.println("Health after attack: " + testPlayer1.getHealth());
+
+    }
+
+    @Test
+    public void testIfFightEndsWhenMonsterDies(){
+        Player player1 = new Player();
+        Fury fury1 = new Fury();
+        Inventory Inventory = new Inventory();
+
+        fury1.setHealth(0);
+        player1.act(fury1, Inventory);
+
+        //?????????????????
 
     }
 

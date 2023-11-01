@@ -1,9 +1,5 @@
 package com.Janaina.laboration.Game.Variables;
 
-import com.Janaina.laboration.Game.Shop.ShopCategories.Books.Attacks;
-
-import java.util.List;
-
 public abstract class Characters implements Combat{
 
     private String name;
