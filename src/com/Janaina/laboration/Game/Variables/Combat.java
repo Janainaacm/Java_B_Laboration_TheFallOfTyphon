@@ -6,7 +6,7 @@ public interface Combat {
     boolean flee(Characters target);
     boolean dodge(Characters target);
     String getStats();
-    void receiveDamage(Characters target);
+    void receiveDamage(Characters target, int damage);
 
 
 }

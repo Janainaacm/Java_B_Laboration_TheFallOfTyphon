@@ -10,25 +10,22 @@ import static com.Janaina.laboration.Resources.PrintHandler.println;
 
 public class LevelSix {
     //Final boss Typhon
+    private boolean levelComplete = false;
 
     public void playLevelSix(Player player){
         Typhon typhon = new Typhon();
         println("6");
 
         if (typhon.getHealth() <= 0){
-            levelSixComplete("winner");
+            levelSixComplete();
             player.setGold(player.getGold() + typhon.getGold());
 
         }
 
     }
-    public boolean levelSixComplete(String text){
+    public boolean levelSixComplete(){
 
-        if (Objects.equals(text, "winner")){
-            return true;
-        } else {
-            return false;
-        }
+        return levelComplete;
     }
 
 }

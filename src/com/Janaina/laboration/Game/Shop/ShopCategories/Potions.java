@@ -20,10 +20,10 @@ public class Potions {
 
         //String name, int price, int strength, int health, int agility, int intelligence
         List<ShopProducts> productList = new ArrayList<>();
-        productList.add(new ShopProducts("Small Health Potion", 30,0,50,0,0));
-        productList.add(new ShopProducts("Large Health Potion", 50,0,100,0,0));
-        productList.add(new ShopProducts("Flexibility potion", 50,0,0,5,0));
-        productList.add(new ShopProducts("Strength potion", 50,5,0,0,0));
+        productList.add(new ShopProducts("Small Health Potion", "", 30,0,50,0,0));
+        productList.add(new ShopProducts("Large Health Potion","", 50,0,100,0,0));
+        productList.add(new ShopProducts("Flexibility potion","", 50,0,0,5,0));
+        productList.add(new ShopProducts("Strength potion", "",50,5,0,0,0));
 
 
 

@@ -1,7 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Hero;
 
-import com.Janaina.laboration.Game.Shop.ShopCategories.Attacks;
-import com.Janaina.laboration.Game.Shop.ShopCategories.Weapons;
+import com.Janaina.laboration.Game.GameMenu.Levels.LevelOne;
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.Characters;
 
@@ -16,13 +15,15 @@ public class Player extends Characters {
     public List<Attacks> specialAttackList;
     private final int resetHealth = 100;
     public ShopProducts equippedWeapon;
+    private int availableLevels = 1;
 
     public Player() {
-        super("name", 2, 100, 10, 20, 20, 0, 0, 1, "Knife slash");
+        super("name", 2, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
         specialAttackList = new ArrayList<>();
-        this.equippedWeapon = new ShopProducts("knife", 0, 2, 0, 0, 0);
+        this.equippedWeapon = new ShopProducts("knife", "Lethal Lunge", 0, 2, 0, 0, 0);
 
     }
+
 
     public ShopProducts getEquippedWeapon() {
         return equippedWeapon;
@@ -33,26 +34,10 @@ public class Player extends Characters {
     }
 
 
-
-
-
     public void addSpecialAttack(Attacks attack) {
         specialAttackList.add(attack);
     }
 
-    public void displaySpecialAttacks() {
-        System.out.println("Special Attacks:");
-        for (int i = 0; i < specialAttackList.size(); i++) {
-            System.out.println((i + 1) + ". " + specialAttackList.get(i).getName());
-        }
-    }
-
-    public Attacks getSpecialAttack(int index) {
-        if (index >= 0 && index < specialAttackList.size()) {
-            return specialAttackList.get(index);
-        }
-        return null;
-    }
 
     public void act(Characters monster, Inventory Inventory) {
 
@@ -66,7 +51,7 @@ public class Player extends Characters {
 
                 case 1 -> attack(monster);
                 case 2 -> {
-                    if (flee(monster)){
+                    if (flee(monster)) {
                         monsterEncounter = false;
                     } else {
                         continue;
@@ -80,65 +65,94 @@ public class Player extends Characters {
 
             }
 
-            if (!monster.isAlive()) {
-                playerWins(monster);
+            if (playerWins(monster)){
                 monsterEncounter = false;
-            } else if (!isAlive()) {
-                System.out.println("Game over");
             }
-
-
 
         } while (monsterEncounter);
 
         pressEnter();
     }
 
-    public void playerWins(Characters monster){
-        System.out.println(PURPLE_BOLD_BRIGHT + "You managed to slay " + monster.getName() + "!" + RESET);
-        chillForASecond(1000);
-        System.out.println(YELLOW_BOLD + "+ " + monster.getGold() + "Gold");
-        chillForASecond(1000);
-        System.out.println("+ " + monster.getExperience() + " XP" + RESET);
-        chillForASecond(1000);
+    public boolean playerWins(Characters monster) {
+        if (!monster.isAlive()) {
+            System.out.println(PURPLE_BOLD_BRIGHT + "You managed to slay " + monster.getName() + "!" + RESET);
+            chillForASecond(1000);
+            System.out.println(YELLOW_BOLD + "+ " + monster.getGold() + " Gold");
+            chillForASecond(1000);
+            System.out.println("+ " + monster.getExperience() + " XP" + RESET);
+            chillForASecond(1000);
 
-        gainExperience(monster.getExperience());
+            gainExperience(monster.getExperience());
+            return true;
 
+        } else {
+            return false;
+        }
 
     }
 
 
     @Override
     public void attack(Characters monster) {
-        //if (!specialAttackList.isEmpty()) {
-        //            //Create switch to chose from attacks
-        //            System.out.println("poop");
-        //        } else {
-        //
-        //
-        //        }
 
+    int attack;
+        if (!specialAttackList.isEmpty()) {
+            attack = chosenAttack();
+        } else {
+            attack = attackWeapon();
+        }
 
-        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + getDefaultAttack() + "!" + RESET);
-        pressEnterToAttack();
-        sleepThread(YELLOW + "▭▭ι═══════ﺤ\n" + RESET);
-
-        if (monster.dodge(this)){
+        if (monster.dodge(this)) {
             System.out.println(RED + monster.getName() + " dodged your attack!");
             chillForASecond(1000);
         } else {
-            monster.receiveDamage(this);
+            monster.receiveDamage(this, attack);
         }
 
         if (monster.isAlive()) {
             monster.attack(this);
             if (!dodge(monster)) {
-                receiveDamage(monster);
+                receiveDamage(monster, 0);
             }
             chillForASecond(200);
         }
+    }
+
+    public int attackWeapon (){
+        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + getDefaultAttack() + "!" + RESET);
+        pressEnterToAttack();
+        sleepThread(YELLOW + "▭▭ι═══════ﺤ\n" + RESET);
+        Random random = new Random();
+        int acquiredStrength = random.nextInt(1, getStrength() + 1);
+
+        return acquiredStrength * getBaseDamage();
+
+    }
 
 
+    public int chosenAttack() {
+        System.out.println(YELLOW + ITALIC + "0. Use Weapon" + RESET);
+        System.out.println(ORANGE + BOLD + "Special Attacks:" + RESET);
+        for (int i = 0; i < specialAttackList.size(); i++) {
+            System.out.println(ORANGE + ITALIC + (i + 1) + ". " + specialAttackList.get(i).getName() + GRAY + ITALIC + "\nDamage: " + RED + specialAttackList.get(i).getDamage() + RESET);
+
+        }
+        int choice = scannerNumber();
+
+        if (choice == 0) {
+            return attackWeapon();
+        }
+
+        if (choice < 1 || choice > specialAttackList.size()) {
+            System.out.println(BLACK + "Invalid choice, please try again" + RESET);
+        }
+
+        Attacks selectedAttack = specialAttackList.get(choice - 1);
+        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + selectedAttack.getName() + "!" + RESET);
+        pressEnterToAttack();
+        sleepThread(YELLOW + "▭▭ι═══════ﺤ\n" + RESET);
+        return selectedAttack.getDamage();
 
     }
 
@@ -148,10 +162,10 @@ public class Player extends Characters {
         System.out.println(PURPLE + "Lets see if you are lucky enough to escape the " + monster.getName() + RESET);
         suspensefulDots(PURPLE + "." + RESET);
 
-        if (canPlayerFlee(monster)){
+        if (canPlayerFlee(monster)) {
             System.out.println(GREEN + "You managed to escape!" + RESET);
             return true;
-        }else {
+        } else {
             System.out.println(RED + "Oh no, you were caught!" + RESET);
             dodge(monster);
             return false;
@@ -175,23 +189,23 @@ public class Player extends Characters {
         String nameStats = CYAN_UNDERLINED + CYAN_BOLD_BRIGHT + getName() + RESET;
         String healthStats = null;
         String strengthStats = null;
-        if (getHealth() >50){
+        if (getHealth() > 50) {
             healthStats = CYAN + "Health: " + GREEN + getHealth() + RESET;
 
-        }else if (getHealth() <= 50 && getHealth() > 20){
+        } else if (getHealth() <= 50 && getHealth() > 20) {
             healthStats = CYAN + "Health: " + YELLOW + getHealth() + RESET;
 
-        }else if (getHealth() <= 20 && getHealth() >= 1) {
+        } else if (getHealth() <= 20 && getHealth() >= 1) {
             healthStats = CYAN + "Health: " + RED + getHealth() + RESET;
 
         }
-        if (getStrength() >50){
+        if (getStrength() > 50) {
             strengthStats = CYAN + "Strength: " + GREEN + getStrength() + RESET;
 
-        }else if (getStrength() <= 50 && getStrength() > 20){
+        } else if (getStrength() <= 50 && getStrength() > 20) {
             strengthStats = CYAN + "Strength: " + YELLOW + getStrength() + RESET;
 
-        }else if (getStrength() <= 20 && getStrength() >= 1) {
+        } else if (getStrength() <= 20 && getStrength() >= 1) {
             strengthStats = CYAN + "Strength: " + RED + getStrength() + RESET;
 
         }
@@ -221,7 +235,7 @@ public class Player extends Characters {
         Thread countdownThread = new Thread(() -> {
             System.out.println("Dodge in:");
             for (int i = timeLimit; i > 0; i--) {
-                    System.out.println(i);
+                System.out.println(i);
 
                 try {
                     Thread.sleep(1000);
@@ -230,10 +244,10 @@ public class Player extends Characters {
                     return;
                 }
             }
+            timeUp[0] = true;
             System.out.println(RED + "You didn't dodge in time. The monster's attack hit you!" + RESET);
             chillForASecond(1000);
             System.out.println(GRAY + "Press enter to continue" + RESET);
-            timeUp[0] = true;
 
         });
 
@@ -242,11 +256,11 @@ public class Player extends Characters {
             while (!successfulDodge[0] && !timeUp[0]) {
                 if (scanner.hasNextLine()) {
                     if ((Objects.equals(scanner.nextLine(), toDodge) && !timeUp[0])) {
+                        countdownThread.interrupt();
                         successfulDodge[0] = true;
                         timeUp[0] = true;
-                        countdownThread.interrupt(); // Stop the countdown
                         System.out.println(GREEN + "You successfully dodged the monster's attack!" + RESET);
-                        break; // Exit the loop
+                        break;
                     }
                 }
             }
@@ -269,19 +283,19 @@ public class Player extends Characters {
     }
 
     @Override
-    public void receiveDamage(Characters monster) {
+    public void receiveDamage(Characters monster, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, monster.getStrength());
         int damageFromAttack = acquiredStrength * monster.getBaseDamage();
 
         setHealth(getHealth() - damageFromAttack);
-        if (getHealth() >50){
+        if (getHealth() > 50) {
             System.out.println(BLUE_BOLD_BRIGHT + "-" + damageFromAttack + " HP" + RESET);
 
-        }else if (getHealth() <= 50 && getHealth() > 20){
+        } else if (getHealth() <= 50 && getHealth() > 20) {
             System.out.println(YELLOW_BOLD_BRIGHT + "-" + damageFromAttack + " HP" + RESET);
 
-        }else if (getHealth() <= 20 && getHealth() >= 1) {
+        } else if (getHealth() <= 20 && getHealth() >= 1) {
             System.out.println(RED_BOLD_BRIGHT + "-" + damageFromAttack + " HP" + RESET);
 
         }
@@ -306,7 +320,7 @@ public class Player extends Characters {
         setLevel(getLevel() + 1);
         System.out.println(BLACK_BACKGROUND + "                          " + RESET +
                 "\n" + BLACK_BACKGROUND + PURPLE_BOLD_BRIGHT + " " + PURPLE_UNDERLINED + "YOU HAVE REACHED LEVEL " + getLevel() + RESET + BLACK_BACKGROUND + " " + RESET +
-                "\n" + BLACK_BACKGROUND  + "                          " + RESET);
+                "\n" + BLACK_BACKGROUND + "                          " + RESET);
 
         setExperience(getExperience() - ((getLevel() - 1) * 100));
         setAgility(getAgility() + 10);
@@ -315,11 +329,22 @@ public class Player extends Characters {
         setHealth(100 + (((getLevel() - 1) * 100) / 5));
 
         System.out.println(PURPLE + "Health: + 20\nAgility: + 10\nStrength: + 10\nIntelligence: + 10");
-        pressEnter();
     }
 
     private int calculateExperienceRequiredForNextLevel() {
         return getLevel() * 100;
+    }
+
+    public int getAvailableLevels() {
+        return availableLevels;
+    }
+
+    public void setAvailableLevels(int availableLevels) {
+        this.availableLevels = availableLevels;
+    }
+
+    public void unlockNewLevel(){
+        setAvailableLevels(getAvailableLevels() + 1);
     }
 
 

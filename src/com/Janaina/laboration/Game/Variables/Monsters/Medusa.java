@@ -9,7 +9,7 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Medusa extends Characters {
     public Medusa() {
-        super("Medusa", 3, 100, 10, 10, 30, 100, 60, 0, "Gorgon's Gazing Curse");
+        super("Medusa", 3, 100, 10, 10, 30, 100, 60, 0, "Gorgon's Gazing Curse", 100);
     }
     //Level 3
 
@@ -69,7 +69,7 @@ public class Medusa extends Characters {
 
 
     @Override
-    public void receiveDamage(Characters player) {
+    public void receiveDamage(Characters player, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, player.getStrength());
         int damageFromAttack = acquiredStrength * player.getBaseDamage();

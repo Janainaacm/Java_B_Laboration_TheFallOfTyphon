@@ -36,7 +36,6 @@ public class Inventory {
 
             }
 
-
         }
     }
 
@@ -83,6 +82,7 @@ public class Inventory {
             weaponsList.remove(player.equippedWeapon);
             System.out.println(player.getName() + " equipped " + player.equippedWeapon.getName() + "!");
             player.setStrength(player.getStrength() + player.equippedWeapon.getStrength());
+            player.setDefaultAttack(player.equippedWeapon.getAttackName());
             System.out.println("Strength +" + player.equippedWeapon.getStrength());
             pressEnter();
             break;

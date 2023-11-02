@@ -11,7 +11,7 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Cerberus extends Characters {
     public Cerberus() {
-        super("Cerberus", 5, 100, 10, 10, 40, 200, 70, 0, "Underworld Carnage");
+        super("Cerberus", 5, 100, 10, 10, 40, 200, 70, 0, "Underworld Carnage", 150);
     }
     //Level 5
 
@@ -70,7 +70,7 @@ public class Cerberus extends Characters {
 
 
     @Override
-    public void receiveDamage(Characters player) {
+    public void receiveDamage(Characters player, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, player.getStrength());
         int damageFromAttack = acquiredStrength * player.getBaseDamage();

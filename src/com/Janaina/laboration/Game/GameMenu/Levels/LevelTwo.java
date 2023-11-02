@@ -10,13 +10,14 @@ import static com.Janaina.laboration.Resources.PrintHandler.println;
 
 public class LevelTwo {
     // Sirens
+    private boolean levelComplete = false;
 
     public void playLevelTwo(Player player){
         Siren siren = new Siren();
         println("2");
 
         if (siren.getHealth() <= 0){
-            levelTwoComplete("winner");
+            levelTwoComplete();
             player.setGold(player.getGold() + siren.getGold());
 
         }
@@ -24,13 +25,9 @@ public class LevelTwo {
 
     }
 
-    public boolean levelTwoComplete(String text){
+    public boolean levelTwoComplete(){
 
-        if (Objects.equals(text, "winner")){
-            return true;
-        } else {
-            return false;
-        }
+        return levelComplete;
     }
 
 }

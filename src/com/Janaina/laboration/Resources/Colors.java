@@ -103,6 +103,8 @@ public class Colors {
     public static final String ITALIC = "\033[3m";
     public static final String BOLD = "\033[1m";
     public static final String STRIKETHROUGH = "\033[9m";
+    public static final String UNDERLINED = "\033[4m";
+
 
 
 }

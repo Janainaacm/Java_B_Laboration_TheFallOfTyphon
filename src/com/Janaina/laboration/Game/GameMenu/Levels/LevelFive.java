@@ -10,24 +10,21 @@ import static com.Janaina.laboration.Resources.PrintHandler.println;
 
 public class LevelFive {
     //Gates of hell + Cerberus
+    private boolean levelComplete = false;
 
     public void playLevelFive(Player player){
         Cerberus cerberus = new Cerberus();
         println("5");
         if (cerberus.getHealth() <= 0){
-            levelFiveComplete("winner");
+            levelFiveComplete();
             player.setGold(player.getGold() + cerberus.getGold());
 
         }
     }
 
-    public boolean levelFiveComplete(String text){
+    public boolean levelFiveComplete(){
 
-        if (Objects.equals(text, "winner")){
-            return true;
-        } else {
-            return false;
-        }
+        return levelComplete;
     }
 
 }

@@ -10,6 +10,7 @@ import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Resources.Colors;
 
+import static com.Janaina.laboration.Main.playerIsPlayingGame;
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
@@ -33,7 +34,7 @@ public class Storyline {
         //player.setGold(200);
         //StoreFront.mainStoreFront(player, Inventory);
 
-        //mn.levelMenu(player);
+        mn.levelMenu(player, Inventory);
 
         //intro.createPlayer(player);
 
@@ -54,6 +55,7 @@ public class Storyline {
                     PythiaSpeaking("Goodbye " + player.getName() + ", may we meet again");
                     suspensefulDots(PURPLE + "." + RESET);
                     mainGameMenuSwitch = false;
+                    playerIsPlayingGame = false;
                 }
                 default -> printRed("Invalid input, please chose from the presented options");
 

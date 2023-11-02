@@ -11,7 +11,7 @@ import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 
 public class StoreFront {
 
-    //Switch with diff types of categories
+    //Make Kris merchant
     public void mainStoreFront(Player player, Inventory Inventory) {
         Weapons Weapons = new Weapons();
         Potions Potions = new Potions();

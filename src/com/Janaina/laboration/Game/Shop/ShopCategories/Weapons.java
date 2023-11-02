@@ -15,18 +15,20 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 public class Weapons {
 
     public int total = 0;
-    public int finalTotal = 0;
     public void shopWeapons(Characters player, Inventory Inventory) {
         //String name, int price, int strength, int health, int agility, int intelligence
         List<ShopProducts> productList = new ArrayList<>();
-        productList.add(new ShopProducts("Frostbite Dagger", 120, 10, 0,0,0));
-        productList.add(new ShopProducts("Shadowfang Blade", 140, 11, 0,0,0));
-        productList.add(new ShopProducts("Cursed Scythe", 150, 12, 0,0,0));
-        productList.add(new ShopProducts("OceanicTrident", 180, 15, 0, 0, 0));
-        productList.add(new ShopProducts("Phoenix Bow", 200,18,0,0,0));
-        productList.add(new ShopProducts("Thunderstrike Hammer", 220,20,0,0,0));
+        productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", 120, 10, 0,0,0));
+        productList.add(new ShopProducts("Shadowfang Blade", "Dark Eclipse", 140, 11, 0,0,0));
+        productList.add(new ShopProducts("Cursed Scythe", "Reaper's Grasp", 150, 12, 0,0,0));
+        productList.add(new ShopProducts("Oceanic Trident", "Abyssal Torrent", 180, 15, 0, 0, 0));
+        productList.add(new ShopProducts("Phoenix Bow","Flaming Arrow Barrage", 200,18,0,0,0));
+        productList.add(new ShopProducts("Thunderstrike Hammer", "Lightning Hammerblow", 220,20,0,0,0));
 
-        productList.add(new ShopProducts("Glock-19", 1000, 100, 0, 0, 0));
+        if (player.getLevel() >= 10){
+            productList.add(new ShopProducts("Glock-19", "Kurdiska räven", 1000, 100, 0, 0, 0));
+
+        }
 
         while (true) {
             System.out.println(BLACK_BACKGROUND + BOLD + RED + " Available weapons: " + RESET + "\n"

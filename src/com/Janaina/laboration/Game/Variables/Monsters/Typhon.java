@@ -10,7 +10,7 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Typhon extends Characters{
     public Typhon() {
-        super("Typhon", 7, 100, 10, 20, 60, 300, 100, 0, "Apocalyptic Surge");
+        super("Typhon", 7, 100, 10, 20, 60, 300, 100, 0, "Apocalyptic Surge", 200);
     }
 
     //Final boss
@@ -70,10 +70,8 @@ public class Typhon extends Characters{
 
     }
 
-
-
     @Override
-    public void receiveDamage(Characters player) {
+    public void receiveDamage(Characters player, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, player.getStrength());
         int damageFromAttack = acquiredStrength * player.getBaseDamage();

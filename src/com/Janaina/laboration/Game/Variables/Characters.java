@@ -1,6 +1,6 @@
 package com.Janaina.laboration.Game.Variables;
 
-public abstract class Characters implements Combat{
+public abstract class Characters implements Combat {
 
     private String name;
     private int strength;
@@ -18,9 +18,10 @@ public abstract class Characters implements Combat{
     private int experience;
     private int level;
     private String defaultAttack;
+    private final int defaultHealth;
 
 
-    public Characters(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level, String defaultAttack) {
+    public Characters(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level, String defaultAttack, int defaultHealth) {
         this.name = name;
         this.strength = strength;
         this.health = health;
@@ -31,7 +32,7 @@ public abstract class Characters implements Combat{
         this.experience = experience;
         this.level = level;
         this.defaultAttack = defaultAttack;
-
+        this.defaultHealth = defaultHealth;
     }
 
     public String getDefaultAttack() {
@@ -68,6 +69,9 @@ public abstract class Characters implements Combat{
 
     public void setHealth(int health) {
         this.health = health;
+        if (this.health > defaultHealth){
+            this.health = defaultHealth;
+        }
     }
 
     public int getBaseDamage() {
@@ -116,6 +120,10 @@ public abstract class Characters implements Combat{
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public void revive(){
+        this.health = defaultHealth;
     }
 
 }

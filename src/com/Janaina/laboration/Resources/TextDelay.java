@@ -16,6 +16,7 @@ public class TextDelay {
     }
 
     public static void suspensefulDots(String dot){
+
         int numberOfDots = 3;
         try {
             for (int i = 0; i < numberOfDots; i++) {

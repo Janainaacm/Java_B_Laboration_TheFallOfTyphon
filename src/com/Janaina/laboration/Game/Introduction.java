@@ -58,7 +58,7 @@ public class Introduction {
 
         sleepThread("Here are 50 gold coins for you to start with");
         player.setGold(player.getGold() + 50);
-        printBlack("50 Gold coins have been added to your inventory");
+        System.out.println(YELLOW_DARK + "Gold + 50");
         sleepThread(PURPLE + "Best of luck to you " + player.getName() + ", may we meet again");
         suspensefulDots(".");
 

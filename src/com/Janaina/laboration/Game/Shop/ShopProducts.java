@@ -3,14 +3,16 @@ package com.Janaina.laboration.Game.Shop;
 public class ShopProducts {
 
     private String name;
+    private String attackName;
     private int price;
     private int strength;
     private int health;
     private int agility;
     private int intelligence;
 
-    public ShopProducts(String name, int price, int strength, int health, int agility, int intelligence) {
+    public ShopProducts(String name, String attackName, int price, int strength, int health, int agility, int intelligence) {
         this.name = name;
+        this.attackName = attackName;
         this.price = price;
         this.strength = strength;
         this.health = health;
@@ -19,6 +21,13 @@ public class ShopProducts {
     }
 
 
+    public String getAttackName() {
+        return attackName;
+    }
+
+    public void setAttackName(String attackName) {
+        this.attackName = attackName;
+    }
 
     public String getName() {
         return name;

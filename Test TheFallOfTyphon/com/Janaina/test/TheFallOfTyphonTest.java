@@ -36,7 +36,7 @@ public class TheFallOfTyphonTest {
 
         System.out.println("Initial health: " + testPlayer1.getHealth());
 
-        testPlayer1.receiveDamage(fury1);
+        testPlayer1.receiveDamage(fury1, 0);
 
         System.out.println("Health after attack: " + testPlayer1.getHealth());
 
@@ -49,7 +49,6 @@ public class TheFallOfTyphonTest {
         Inventory Inventory = new Inventory();
 
         fury1.setHealth(0);
-        player1.act(fury1, Inventory);
 
         //?????????????????
 

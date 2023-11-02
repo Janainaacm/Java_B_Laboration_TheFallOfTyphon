@@ -1,6 +1,7 @@
 package com.Janaina.laboration;
 
 import com.Janaina.laboration.Game.GameMenu.Levels.LevelMenu;
+import com.Janaina.laboration.Game.GameMenu.Levels.LevelOne;
 import com.Janaina.laboration.Game.Introduction;
 import com.Janaina.laboration.Game.Shop.ShopCategories.Weapons;
 import com.Janaina.laboration.Game.Storyline;
@@ -16,12 +17,21 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
 
 public class Main {
+    public static boolean playerIsAlive = true;
+    public static boolean playerIsPlayingGame = true;
+
     public static void main(String[] args) {
+        LevelOne test = new LevelOne();
+        Fury fury = new Fury();
 
         Storyline Storyline = new Storyline();
-        Player player = new Player();
-        Weapons weapons = new Weapons();
-        Inventory inventory = new Inventory(player);
+        while (playerIsAlive && playerIsPlayingGame) {
+            Storyline.mainGameMenu();
+
+
+            //Player player = new Player();
+            //Weapons weapons = new Weapons();
+            //Inventory inventory = new Inventory();
 
 
 
@@ -45,13 +55,6 @@ public class Main {
 
          */
 
-        Storyline.mainGameMenu();
 
-
-
-
-
-
-
-
+        }
 }}

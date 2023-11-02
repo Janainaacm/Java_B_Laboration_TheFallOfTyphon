@@ -11,6 +11,7 @@ import static com.Janaina.laboration.Resources.PrintHandler.println;
 
 public class LevelFour {
     //Labyrinth + minotaur
+    private boolean levelComplete = false;
 
     public void playLevelFour(Player player){
         Minotaur minotaur = new Minotaur();
@@ -18,19 +19,15 @@ public class LevelFour {
         println("4");
 
         if (minotaur.getHealth() <= 0){
-            levelFourComplete("winner");
+            levelFourComplete();
             player.setGold(player.getGold() + minotaur.getGold());
 
         }
     }
 
-    public boolean levelFourComplete(String text){
+    public boolean levelFourComplete(){
 
-        if (Objects.equals(text, "winner")){
-            return true;
-        } else {
-            return false;
-        }
+        return levelComplete;
     }
 
 }

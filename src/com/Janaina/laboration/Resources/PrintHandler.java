@@ -1,5 +1,7 @@
 package com.Janaina.laboration.Resources;
 
+import com.Janaina.laboration.Game.Variables.Hero.Player;
+
 import static com.Janaina.laboration.Resources.Colors.*;
 
 public class PrintHandler {
@@ -44,8 +46,35 @@ public class PrintHandler {
                 e.printStackTrace();
             }
         }
+    }
 
+    public static void playerSpeaking(String text, Player player){
 
+        System.out.println(PURPLE_PASTEL + BOLD + player.getName() + ":" + RESET);
+
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(PURPLE_PASTEL + text.charAt(i) + RESET);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+        System.out.print("\n");
+    }
+
+    public static void furySpeaking(String text){
+        System.out.println(RED + BOLD + UNDERLINED +"Fury:" + RESET);
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(RED + text.charAt(i) + RESET);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("\n");
     }
 
 }

@@ -11,7 +11,7 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Minotaur extends Characters {
     public Minotaur() {
-        super("Minotaur", 3, 100, 10, 30, 30, 150, 70, 0, "Bestial Fury");
+        super("Minotaur", 3, 100, 10, 30, 30, 150, 70, 0, "Bestial Fury", 100);
     }
     //Level 4
 
@@ -69,7 +69,7 @@ public class Minotaur extends Characters {
 
 
     @Override
-    public void receiveDamage(Characters player) {
+    public void receiveDamage(Characters player, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, player.getStrength());
         int damageFromAttack = acquiredStrength * player.getBaseDamage();
