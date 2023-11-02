@@ -20,15 +20,15 @@ public class PlayTheGame {
         boolean isChoosingFromGameMenu = true;
         do {
 
-            println(BLACK_BACKGROUND + "          " + CYAN_BOLD + "Game Menu" + RESET + BLACK_BACKGROUND + "          " + RESET
-                    + "\n" + CYAN_BOLD +
+            println(BLACK_BACKGROUND + "          " + PURPLE_BOLD_BRIGHT + "Game Menu" + RESET + BLACK_BACKGROUND + "          " + RESET
+                    + "\n" + PURPLE_DARK + BOLD +
                     "1. Levels\n2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
 
             switch (scannerNumber()) {
                 case 1 -> LevelMenu.levelMenu(player, Inventory);
                 case 2 -> PlayerStats.currentStats(player);
                 case 3 -> GetPlayerAchievements.playerAchievements(player);
-                case 4 -> Inventory.playerInventory();
+                case 4 -> Inventory.playerInventory(player);
                 case 0 -> isChoosingFromGameMenu = false;
                 default -> printRed("Invalid input, please chose from the presented options");
             }

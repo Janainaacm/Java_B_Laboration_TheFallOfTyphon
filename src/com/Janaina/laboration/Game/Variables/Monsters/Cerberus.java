@@ -25,7 +25,7 @@ public class Cerberus extends Characters {
     }
 
     @Override
-    public boolean flee(Characters target) {
+    public boolean flee(Characters player) {
         return true;
     }
 

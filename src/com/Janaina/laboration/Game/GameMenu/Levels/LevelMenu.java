@@ -24,7 +24,7 @@ public class LevelMenu {
 
         printCyan("1. Level one");
 
-        if (LevelOne.levelOneComplete("Fix this")){
+        if (LevelOne.levelOneComplete(player)){
             printCyan("2. Level two");
         } else {
             println("???");
@@ -61,7 +61,7 @@ public class LevelMenu {
             switch (scannerNumber()) {
                 case 1 -> LevelOne.playLevelOne(player, Inventory);
                 case 2 -> {
-                    if (LevelOne.levelOneComplete("Fix this")) {
+                    if (LevelOne.levelOneComplete(player)) {
                         LevelTwo.playLevelTwo(player);
                     } else {
                         printRed("Invalid input, please chose from the presented options");

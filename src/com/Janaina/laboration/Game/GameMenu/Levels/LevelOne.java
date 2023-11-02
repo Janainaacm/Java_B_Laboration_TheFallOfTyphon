@@ -18,13 +18,13 @@ public class LevelOne {
 
     }
 
-    public boolean levelOneComplete(String text){
-
-        if (Objects.equals(text, "winner")){
+    public boolean levelOneComplete(Player player){
+        if (player.isAlive()){
             return true;
-        } else {
+        }else {
             return false;
         }
+
     }
 
 }

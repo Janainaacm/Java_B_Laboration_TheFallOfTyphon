@@ -76,7 +76,7 @@ public class Player extends Characters {
                     System.out.println(getStats());
                     pressEnter();
                 }
-                case 4 -> Inventory.playerInventory();
+                case 4 -> Inventory.playerInventory(this);
 
             }
 
@@ -241,7 +241,7 @@ public class Player extends Characters {
         Thread playerInputThread = new Thread(() -> {
             while (!successfulDodge[0] && !timeUp[0]) {
                 if (scanner.hasNextLine()) {
-                    if (Objects.equals(scanner.nextLine(), toDodge)) {
+                    if ((Objects.equals(scanner.nextLine(), toDodge) && !timeUp[0])) {
                         successfulDodge[0] = true;
                         timeUp[0] = true;
                         countdownThread.interrupt(); // Stop the countdown

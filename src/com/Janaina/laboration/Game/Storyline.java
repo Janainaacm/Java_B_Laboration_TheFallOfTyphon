@@ -30,11 +30,12 @@ public class Storyline {
         GetPlayerAchievements GetPlayerAchievements = new GetPlayerAchievements();
         Inventory Inventory = new Inventory();
         Fury fury = new Fury();
+        //player.setGold(200);
+        //StoreFront.mainStoreFront(player, Inventory);
 
-        player.act(fury, Inventory);
         //mn.levelMenu(player);
 
-        intro.createPlayer(player);
+        //intro.createPlayer(player);
 
         boolean mainGameMenuSwitch = true;
         do {
@@ -57,7 +58,7 @@ public class Storyline {
                 default -> printRed("Invalid input, please chose from the presented options");
 
             }
-        }while (mainGameMenuSwitch);
+        }while (mainGameMenuSwitch && player.isAlive());
     }
 
 

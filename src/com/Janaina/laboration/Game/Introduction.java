@@ -36,7 +36,7 @@ public class Introduction {
         PythiaSpeaking("Welcome to the land of Elathriya " + player.getName() + ", I will be your guide on this journey\n");
         suspensefulDots(PURPLE + "." + RESET);
 
-        printYellow("Do you wish to know more about Pythia? yes or no");
+        printYellow("Do you wish to know more about Pythia? yes or no\n");
         String knowMoreAboutPythia = scannerYesOrNo();
 
         if (Objects.equals(knowMoreAboutPythia, "yes")) {
@@ -44,16 +44,16 @@ public class Introduction {
 
         }
 
-        PythiaSpeaking("Would you like a little tour to get you comfortable?");
+        PythiaSpeaking("Would you like a little tour to get you comfortable?\n");
         System.out.println("yes or no");
 
         if (Objects.equals(scannerYesOrNo(), "yes")) {
 
             initialTourOfGame();
-            PythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fifth option of repeating this tour to the main menu.");
+            PythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fifth option of repeating this tour to the main menu.\n");
 
         } else {
-            PythiaSpeaking("In case you change your mind, there is an option to view the tour in the main menu.");
+            PythiaSpeaking("In case you change your mind, there is an option to view the tour in the main menu.\n");
         }
 
         sleepThread("Here are 50 gold coins for you to start with");

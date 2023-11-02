@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.Janaina.laboration.Resources.Colors.*;
+import static com.Janaina.laboration.Resources.Scanners.pressEnter;
 import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
+import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 
 public class Weapons {
 
@@ -20,25 +22,26 @@ public class Weapons {
         productList.add(new ShopProducts("Frostbite Dagger", 120, 10, 0,0,0));
         productList.add(new ShopProducts("Shadowfang Blade", 140, 11, 0,0,0));
         productList.add(new ShopProducts("Cursed Scythe", 150, 12, 0,0,0));
-        productList.add(new ShopProducts("Sunstrike", 180, 15, 0, 0, 0));
+        productList.add(new ShopProducts("OceanicTrident", 180, 15, 0, 0, 0));
         productList.add(new ShopProducts("Phoenix Bow", 200,18,0,0,0));
         productList.add(new ShopProducts("Thunderstrike Hammer", 220,20,0,0,0));
 
         productList.add(new ShopProducts("Glock-19", 1000, 100, 0, 0, 0));
 
-        List<ShopProducts> shoppingCart = new ArrayList<>();
-
         while (true) {
-            System.out.println(YELLOW_BRIGHT + "SHOP" + RESET);
-            System.out.println(YELLOW + "Available products:" + RESET);
+            System.out.println(BLACK_BACKGROUND + BOLD + RED + " Available weapons: " + RESET + "\n"
+                                + RED + "Gold: " + YELLOW_DARK + player.getGold() + RESET);
 
             for (int i = 0; i < productList.size(); i++) {
                 ShopProducts product = productList.get(i);
-                System.out.println(CYAN + (i + 1) + ". " + product.getName() + " - $" + product.getPrice() + RESET);
-            }
-            System.out.println(CYAN + "0. View shopping cart and checkout" + RESET);
+                System.out.println(RED + BOLD + (i + 1) + ". " + product.getName() + YELLOW_DARK + " - $" + product.getPrice() + RESET +
+                                    "\n" + BLACK + ITALIC + "Strength: +" + product.getStrength() + RESET);
 
-            System.out.println(YELLOW + "Enter the number of the item you would like to purchase" + RESET);
+            }
+            System.out.println(BLACK_BACKGROUND + RED_DARK + BOLD + "0. Go back" + RESET);
+
+            chillForASecond(1000);
+            System.out.println(GRAY + "Enter the number of the item you would like to purchase" + RESET);
             int choice = scannerNumber();
 
             if (choice == 0){
@@ -46,30 +49,31 @@ public class Weapons {
             }
 
             if (choice < 1 || choice > productList.size()){
-                System.out.println(BLUE + "Invalid choice, please try again" + RESET);
+                System.out.println(BLACK + "Invalid choice, please try again" + RESET);
                 continue;
             }
 
             ShopProducts selectedProduct = productList.get(choice - 1);
 
             if (total + selectedProduct.getPrice() <= player.getGold()){
-                shoppingCart.add(selectedProduct);
                 total += selectedProduct.getPrice();
-                System.out.println(PURPLE + selectedProduct.getName() + " has been added to your cart." + RESET);
+                player.setGold(player.getGold() - selectedProduct.getPrice());
+                System.out.println(RED_DARK + BOLD + "Gold: -" + selectedProduct.getPrice());
+                System.out.println(WHITE + selectedProduct.getName() + " has been added to your Inventory." + RESET);
+                Inventory.addToWeaponsInventory(selectedProduct);
+                productList.remove(selectedProduct);
+                pressEnter();
             } else {
-                System.out.println(RED + selectedProduct.getName() + " is out of your budget \n(you do not have the capacity for that big man)" + RESET);
+                System.out.println(RED + "Insufficient funds to buy " + selectedProduct.getName() + RESET);
+                pressEnter();
             }
 
 
 
         }
 
-        System.out.println(YELLOW + "Items in your cart: " + RESET);
-        for (ShopProducts product : shoppingCart){
-            Inventory.addToWeaponsInventory(product);
-            System.out.println(CYAN + product.getName() + " - $" + product.getPrice() + RESET);
-        }
-        System.out.println(YELLOW + "Your total is: " + total + RESET);
+
+
 
 
 

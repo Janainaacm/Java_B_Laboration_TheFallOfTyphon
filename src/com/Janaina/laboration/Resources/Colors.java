@@ -7,14 +7,37 @@ public class Colors {
 
     // Regular Colors
     public static final String BLACK = "\033[0;30m";   // BLACK
-    public static final String RED = "\033[0;31m";  // RED
+    public static final String RED = "\033[38;5;160m";  // RED
+    public static final String RED_LILDARKER = "\033[38;5;124m";  // RED
     public static final String GREEN = "\033[0;32m";   // GREEN
+    public static final String GREEN_DIRTY = "\033[38;5;58m";   // DIRTY GREEN
+    public static final String GREEN_DARK = "\033[38;5;22m";   // DARK GREEN
     public static final String YELLOW = "\033[0;33m";  // YELLOW
+    public static final String YELLOW_MUSTARD = "\033[38;5;22m";   // MUSTARD YELLOW
+    public static final String YELLOW_DARK = "\033[38;5;214m";   // DARK YELLOW
     public static final String BLUE = "\033[0;34m"; // BLUE
+    public static final String BLUE_LIGHT = "\033[38;5;111m";   // LIGHT BLUE
+    public static final String BLUE_PASTEL = "\033[38;5;153m";   // PASTEL BLUE
+    public static final String BLUE_DARK = "\033[38;5;26m";   // DARK BLUE
     public static final String PURPLE = "\033[0;35m";  // PURPLE
+    public static final String PURPLE_DARK = "\033[38;5;134m"; // DARK PURPLE
+    public static final String PURPLE_LIGHT = "\033[38;5;213m"; // LIGHT PURPLE
+    public static final String PURPLE_PASTEL = "\033[38;5;219m"; // PASTEL PURPLE
     public static final String CYAN = "\033[0;36m"; // CYAN
-    public static final String WHITE = "\u001B[37m";   // WHITE
-    public static final String GRAY = "\u001B[37m"; //GRAY
+    public static final String WHITE = "\033[38;5;231m";   // WHITE
+    public static final String GRAY = "\u001B[37m"; // GRAY
+    public static final String PINK = "\033[38;5;206m"; // PINK
+    public static final String PINK_DARK = "\033[38;5;169m"; //DARK PINK
+    public static final String PINK_LIGHT = "\033[38;5;212m"; // LIGHT PINK
+    public static final String PINK_PASTEL = "\033[38;5;218m"; // PASTEL PINK
+    public static final String ORANGE = "\033[38;5;208m"; // ORANGE
+    public static final String RED_BURGUNDY = "\033[38;5;52m"; // BURGUNDY
+    public static final String RED_DARK = "\033[38;5;88m"; //DARK RED
+    public static final String CORAL = "\033[38;5;210m"; //CORAL
+    public static final String LILAC = "\033[38;5;147m"; //LILAC
+
+
+
 
     // Bold
     public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
@@ -75,5 +98,11 @@ public class Colors {
     public static final String PURPLE_BACKGROUND_BRIGHT = "\033[0;105m"; // PURPLE
     public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
     public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
+
+    // Text Styles
+    public static final String ITALIC = "\033[3m";
+    public static final String BOLD = "\033[1m";
+    public static final String STRIKETHROUGH = "\033[9m";
+
 
 }

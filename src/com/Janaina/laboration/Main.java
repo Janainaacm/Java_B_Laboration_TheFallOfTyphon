@@ -21,7 +21,7 @@ public class Main {
         Storyline Storyline = new Storyline();
         Player player = new Player();
         Weapons weapons = new Weapons();
-        Inventory inventory = new Inventory();
+        Inventory inventory = new Inventory(player);
 
 
 
@@ -36,14 +36,16 @@ public class Main {
         }
 
          */
+        /*
         System.out.println("Equipped weapon b4: " + player.getEquippedWeapon().getName() + " + strength " + player.getStrength());
         player.setGold(200);
         weapons.shopWeapons(player, inventory);
         inventory.equipWeapon(player);
+                System.out.println("Equipped weapon after: " + player.getEquippedWeapon().getName() + " + strength: " + player.getStrength());
 
-        System.out.println("Equipped weapon after: " + player.getEquippedWeapon().getName() + " + strength: " + player.getStrength());
+         */
 
-        //Storyline.mainGameMenu();
+        Storyline.mainGameMenu();
 
 
 
