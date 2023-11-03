@@ -13,6 +13,7 @@ public class TextDelay {
                 e.printStackTrace();
             }
         }
+        System.out.print("\n");
     }
 
     public static void suspensefulDots(String dot){
@@ -39,6 +40,7 @@ public class TextDelay {
         } catch (InterruptedException ignored) {
 
         }
+        System.out.print("\n");
     }
 
     public static void chillForASecond(long millis){

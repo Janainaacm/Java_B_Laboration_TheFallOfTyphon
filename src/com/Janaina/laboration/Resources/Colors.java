@@ -13,7 +13,7 @@ public class Colors {
     public static final String GREEN_DIRTY = "\033[38;5;58m";   // DIRTY GREEN
     public static final String GREEN_DARK = "\033[38;5;22m";   // DARK GREEN
     public static final String YELLOW = "\033[0;33m";  // YELLOW
-    public static final String YELLOW_MUSTARD = "\033[38;5;22m";   // MUSTARD YELLOW
+    public static final String YELLOW_MUSTARD = "\033[38;5;136m";   // MUSTARD YELLOW
     public static final String YELLOW_DARK = "\033[38;5;214m";   // DARK YELLOW
     public static final String BLUE = "\033[0;34m"; // BLUE
     public static final String BLUE_LIGHT = "\033[38;5;111m";   // LIGHT BLUE

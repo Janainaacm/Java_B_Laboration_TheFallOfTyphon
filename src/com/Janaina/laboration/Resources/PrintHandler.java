@@ -46,6 +46,7 @@ public class PrintHandler {
                 e.printStackTrace();
             }
         }
+        System.out.print("\n");
     }
 
     public static void playerSpeaking(String text, Player player){

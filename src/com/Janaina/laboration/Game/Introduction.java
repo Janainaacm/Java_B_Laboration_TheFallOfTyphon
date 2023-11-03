@@ -28,15 +28,14 @@ public class Introduction {
         PythiaSpeaking("""
                 Hello player,\s
                 My name is Pythia, but you might formally know me as The Oracle of Delphi.\s
-                What is your name?
-                """);
+                What is your name?""");
 
         player.setName(scannerText());
 
-        PythiaSpeaking("Welcome to the land of Elathriya " + player.getName() + ", I will be your guide on this journey\n");
+        PythiaSpeaking("Welcome to the land of Elathriya " + player.getName() + ", I will be your guide on this journey");
         suspensefulDots(PURPLE + "." + RESET);
 
-        printYellow("Do you wish to know more about Pythia? yes or no\n");
+        printYellow("Do you wish to know more about Pythia? yes or no");
         String knowMoreAboutPythia = scannerYesOrNo();
 
         if (Objects.equals(knowMoreAboutPythia, "yes")) {
@@ -44,7 +43,7 @@ public class Introduction {
 
         }
 
-        PythiaSpeaking("Would you like a little tour to get you comfortable?\n");
+        PythiaSpeaking("Would you like a little tour to get you comfortable?");
         System.out.println("yes or no");
 
         if (Objects.equals(scannerYesOrNo(), "yes")) {
@@ -73,7 +72,7 @@ public class Introduction {
 
         PythiaSpeaking("This is the main game menu");
         suspensefulDots(PURPLE + "." + RESET);
-        sleepThread(PURPLE + "Let's explore it a bit deeper:\n" + RESET);
+        sleepThread(PURPLE + "Let's explore it a bit deeper:" + RESET);
 
         //Show Game Lore
         println("1. Play\n2. Shop\n" + CYAN_BOLD + "3. Read game lore\n" + RESET + "0. Quit Game");

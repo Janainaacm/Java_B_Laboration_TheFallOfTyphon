@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game;
 
+import com.Janaina.laboration.Game.GameMenu.Levels.LevelFour;
 import com.Janaina.laboration.Game.GameMenu.Levels.LevelMenu;
 import com.Janaina.laboration.Game.GameMenu.PlayTheGame;
 import com.Janaina.laboration.Game.GameMenu.PlayerAchievements.GetPlayerAchievements;
@@ -31,10 +32,11 @@ public class Storyline {
         GetPlayerAchievements GetPlayerAchievements = new GetPlayerAchievements();
         Inventory Inventory = new Inventory();
         Fury fury = new Fury();
+        LevelFour lf = new LevelFour();
         //player.setGold(200);
         //StoreFront.mainStoreFront(player, Inventory);
-
-        mn.levelMenu(player, Inventory);
+        lf.playLevelFour(player, Inventory);
+        // /mn.levelMenu(player, Inventory);
 
         //intro.createPlayer(player);
 

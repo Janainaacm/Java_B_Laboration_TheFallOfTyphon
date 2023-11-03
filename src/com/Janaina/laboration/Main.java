@@ -13,8 +13,7 @@ import com.Janaina.laboration.Resources.Storyteller;
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.Scanners.pressEnter;
-import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
-import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
+import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Main {
     public static boolean playerIsAlive = true;
@@ -27,6 +26,9 @@ public class Main {
         Storyline Storyline = new Storyline();
         while (playerIsAlive && playerIsPlayingGame) {
             Storyline.mainGameMenu();
+
+            break;
+
 
 
             //Player player = new Player();

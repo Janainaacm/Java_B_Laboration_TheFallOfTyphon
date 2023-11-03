@@ -11,7 +11,7 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Siren extends Characters{
     public Siren() {
-        super("Siren", 2, 60, 10, 30, 15, 50, 40, 0, "Deadly Wail", 60);
+        super("Siren", 2, 60, 10, 40, 15, 50, 40, 0, "Deadly Wail", 60);
     }
     //Level 2
 

@@ -62,7 +62,7 @@ public class LevelMenu {
                 case 1 -> LevelOne.playLevelOne(player, Inventory);
                 case 2 -> {
                     if (player.getAvailableLevels() > 1) {
-                        LevelTwo.playLevelTwo(player);
+                        LevelTwo.playLevelTwo(player, Inventory);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }
@@ -76,21 +76,21 @@ public class LevelMenu {
                 }
                 case 4 -> {
                     if (player.getAvailableLevels() > 3) {
-                        LevelFour.playLevelFour(player);
+                        LevelFour.playLevelFour(player, Inventory);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }
                 }
                 case 5 -> {
                     if (player.getAvailableLevels() > 4) {
-                        LevelFive.playLevelFive(player);
+                        LevelFive.playLevelFive(player, Inventory);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }
                 }
                 case 6 -> {
                     if (player.getAvailableLevels() > 5) {
-                        LevelSix.playLevelSix(player);
+                        LevelSix.playLevelSix(player, Inventory);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }

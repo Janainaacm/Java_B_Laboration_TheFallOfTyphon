@@ -68,6 +68,7 @@ public class LevelOne {
 
 
             sleepThread(YELLOW + "Surrounded by the corpses of the dead furies, " + player.getName() + " approaches the only living beast. \nClinging on to life, pleading for mercy.\n");
+            chillForASecond(500);
             playerSpeaking("Where is he? Where did he take my Althea!\nAnswer me and i will heal you!", player);
             chillForASecond(1000);
             furySpeaking("m- map, you will not find h- her... without t- the.. map");
@@ -91,7 +92,7 @@ public class LevelOne {
             chillForASecond(500);
             suspensefulDots(GRAY + "." + RESET);
             chillForASecond(500);
-            sleepThread(GRAY + "You have completed level one.\n" + RESET);
+            sleepThread(GRAY + "You have completed level one." + RESET);
             pressEnter();
 
             player.unlockNewLevel();

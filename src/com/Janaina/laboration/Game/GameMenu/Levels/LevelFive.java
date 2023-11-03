@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Cerberus;
 import com.Janaina.laboration.Game.Variables.Monsters.Siren;
@@ -12,7 +13,7 @@ public class LevelFive {
     //Gates of hell + Cerberus
     private boolean levelComplete = false;
 
-    public void playLevelFive(Player player){
+    public void playLevelFive(Player player, Inventory Inventory){
         Cerberus cerberus = new Cerberus();
         println("5");
         if (cerberus.getHealth() <= 0){
