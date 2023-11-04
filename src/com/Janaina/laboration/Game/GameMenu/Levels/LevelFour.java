@@ -13,7 +13,6 @@ import static com.Janaina.laboration.Resources.Scanners.scannerText;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelFour {
-    //Labyrinth + minotaur
     private boolean foughtMinotaur = false;
 
     public void playLevelFour(Player player, Inventory Inventory){
@@ -38,10 +37,8 @@ public class LevelFour {
                        1         2          3
                     """ + RESET);
 
-            int choice = scannerNumber();
-            int chosenPath = randomizePaths.get(choice - 1);
 
-            switch (chosenPath) {
+            switch (scannerNumber()) {
                 case 1 -> findTreasureChest(player, Inventory);
                 case 2 -> {
                     rightPathsChosen++;
@@ -52,7 +49,7 @@ public class LevelFour {
                 default -> System.out.println(RED + "Invalid input, try again" + RESET);
             }
 
-            if (rightPathsChosen == 1) {
+            if (rightPathsChosen == 5) {
                 break;
             }
 

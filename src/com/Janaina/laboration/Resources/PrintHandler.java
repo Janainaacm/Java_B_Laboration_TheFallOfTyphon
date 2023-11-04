@@ -65,6 +65,21 @@ public class PrintHandler {
         System.out.print("\n");
     }
 
+    public static void sirenSpeaking(String text){
+
+        System.out.println(BLUE_LIGHT + BOLD + "Siren:" + RESET);
+
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(BLUE_LIGHT + text.charAt(i) + RESET);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+        System.out.print("\n");
+    }
     public static void furySpeaking(String text){
         System.out.println(RED + BOLD + UNDERLINED +"Fury:" + RESET);
         for (int i = 0; i < text.length(); i++) {

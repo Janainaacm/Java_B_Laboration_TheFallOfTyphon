@@ -20,8 +20,6 @@ public class Main {
     public static boolean playerIsPlayingGame = true;
 
     public static void main(String[] args) {
-        LevelOne test = new LevelOne();
-        Fury fury = new Fury();
 
         Storyline Storyline = new Storyline();
         while (playerIsAlive && playerIsPlayingGame) {
@@ -30,33 +28,6 @@ public class Main {
             break;
 
 
-
-            //Player player = new Player();
-            //Weapons weapons = new Weapons();
-            //Inventory inventory = new Inventory();
-
-
-
-        /*
-        fury.setAgility(70);
-
-
-        if (fury.didDodge()){
-            System.out.println("slay");
-        }else { //Be able to press enter
-            System.out.println("gay");
         }
-
-         */
-        /*
-        System.out.println("Equipped weapon b4: " + player.getEquippedWeapon().getName() + " + strength " + player.getStrength());
-        player.setGold(200);
-        weapons.shopWeapons(player, inventory);
-        inventory.equipWeapon(player);
-                System.out.println("Equipped weapon after: " + player.getEquippedWeapon().getName() + " + strength: " + player.getStrength());
-
-         */
-
-
-        }
-}}
+    }
+}

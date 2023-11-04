@@ -33,6 +33,8 @@ public class LevelOne {
 
 
 
+
+
         while (true) {
 
             player.act(fury, Inventory);
@@ -86,7 +88,7 @@ public class LevelOne {
             furySpeaking("Now hea-");
             suspensefulDots(RED + "." + RESET);
             chillForASecond(1000);
-            playerSpeaking("The Scaled Garden of stone...", player);
+            playerSpeaking("The Scaled Garden of Stone...", player);
             sleepThread(YELLOW + "With the mysterious location across the Sea of Serene Whispers, " + player.getName() + " feared what was to come, \nfor he knew that he was about to enter the enthralling realm of the aquatic enchantresses\nfor they guard the path to the hidden map that holds the key to unlocking the next chapter of his epic journey\n");
 
             chillForASecond(500);
@@ -94,6 +96,8 @@ public class LevelOne {
             chillForASecond(500);
             sleepThread(GRAY + "You have completed level one." + RESET);
             pressEnter();
+
+
 
             player.unlockNewLevel();
             break;
