@@ -16,7 +16,9 @@ public class LevelFour {
     private boolean foughtMinotaur = false;
 
     public void playLevelFour(Player player, Inventory Inventory){
-        player.setStrength(100);
+
+        //It doesn't randomize anymore idk why, fix it
+
         int rightPathsChosen = 0;
         boolean isPlaying = true;
         List<Integer> randomizePaths = new ArrayList<>();
@@ -118,6 +120,7 @@ public class LevelFour {
 
             if (playersAnswer.toLowerCase().contains(answer)) {
                 System.out.println("Your answer is correct!");
+                //Serpent's Key.
                 player.unlockNewLevel();
                 break;
 

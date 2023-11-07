@@ -6,6 +6,8 @@ import com.Janaina.laboration.Game.Variables.Characters;
 
 import java.util.*;
 
+import static com.Janaina.laboration.Main.playerIsAlive;
+import static com.Janaina.laboration.Main.playerIsPlayingGame;
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
@@ -66,6 +68,12 @@ public class Player extends Characters {
             }
 
             if (playerWins(monster)){
+                monsterEncounter = false;
+            }
+
+            if (!isAlive()) {
+                playerIsAlive = false;
+                playerIsPlayingGame = false;
                 monsterEncounter = false;
             }
 

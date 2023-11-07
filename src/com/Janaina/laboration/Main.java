@@ -25,8 +25,11 @@ public class Main {
         while (playerIsAlive && playerIsPlayingGame) {
             Storyline.mainGameMenu();
 
-            break;
+            if (!playerIsAlive) {
 
+                System.out.println("Game Over. You have been defeated.");
+                break;
+            }
 
         }
     }

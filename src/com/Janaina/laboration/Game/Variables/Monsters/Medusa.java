@@ -9,7 +9,7 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Medusa extends Characters {
     public Medusa() {
-        super("Medusa", 3, 100, 10, 10, 30, 100, 60, 0, "Gorgon's Gazing Curse", 100);
+        super("Medusa", 3, 100, 10, 10, 30, 100, 60, 0, "Serpents Curse", 100);
     }
     //Level 3
 
@@ -17,8 +17,8 @@ public class Medusa extends Characters {
 
     @Override
     public void attack(Characters target) {
-        System.out.println(GREEN_BOLD_BRIGHT + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
-        sleepThread(GREEN + "\uD80C\uDD9A\uD80C\uDD97\uD80C\uDD9A\uD80C\uDD97\uD80C\uDD9A\uD80C\uDD97" + "\n" + RESET);
+        System.out.println(GREEN_LIGHT + BOLD + UNDERLINED + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
+        sleepThread(GREEN_LIGHT + "\uD80C\uDD9A\uD80C\uDD97\uD80C\uDD9A\uD80C\uDD97\uD80C\uDD9A\uD80C\uDD97" + "\n" + RESET);
         chillForASecond(200);
     }
 
@@ -40,27 +40,27 @@ public class Medusa extends Characters {
     @Override
     public String getStats() {
 
-        String nameStats = BLACK_BACKGROUND + "           " + GREEN_BOLD_BRIGHT + GREEN_UNDERLINED + "MEDUSA" + RESET + BLACK_BACKGROUND + "           " + RESET;
+        String nameStats = BLACK_BACKGROUND + "           " + GREEN_LIGHT + BOLD + UNDERLINED + "MEDUSA" + RESET + BLACK_BACKGROUND + "           " + RESET;
         String healthStats = null;
         String strengthStats = null;
         if (getHealth() >50){
-            healthStats = GREEN_BOLD + "Health: " + RED + getHealth() + RESET;
+            healthStats = GREEN_LIGHT + BOLD + "Health: " + RED + getHealth() + RESET;
 
         }else if (getHealth() <= 50 && getHealth() > 20){
-            healthStats = GREEN_BOLD + "Health: " + YELLOW + getHealth() + RESET;
+            healthStats = GREEN_LIGHT + BOLD + "Health: " + YELLOW + getHealth() + RESET;
 
         }else if (getHealth() <= 20 && getHealth() >= 1) {
-            healthStats = GREEN_BOLD + "Health: " + BLACK + getHealth() + RESET;
+            healthStats = GREEN_LIGHT + BOLD + "Health: " + BLACK + getHealth() + RESET;
 
         }
         if (getStrength() >50){
-            strengthStats = GREEN_BOLD + "Strength: " + RED + getStrength() + RESET;
+            strengthStats = GREEN_LIGHT + BOLD + "Strength: " + RED + getStrength() + RESET;
 
         }else if (getStrength() <= 50 && getStrength() > 20){
-            strengthStats = GREEN_BOLD + "Strength: " + YELLOW + getStrength() + RESET;
+            strengthStats = GREEN_LIGHT + BOLD + "Strength: " + YELLOW + getStrength() + RESET;
 
         }else if (getStrength() <= 20 && getStrength() >= 1) {
-            strengthStats = GREEN_BOLD + "Strength: " + BLACK + getStrength() + RESET;
+            strengthStats = GREEN_LIGHT + BOLD + "Strength: " + BLACK + getStrength() + RESET;
 
         }
 

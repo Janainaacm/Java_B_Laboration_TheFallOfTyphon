@@ -11,6 +11,9 @@ public class Colors {
     public static final String RED_LILDARKER = "\033[38;5;124m";  // RED
     public static final String GREEN = "\033[0;32m";   // GREEN
     public static final String GREEN_DIRTY = "\033[38;5;58m";   // DIRTY GREEN
+    public static final String GREEN_LIGHT = "\033[38;5;70m";   // LIGHT GREEN
+    public static final String PURPLE_ISH = "\033[38;5;96m";
+
     public static final String GREEN_DARK = "\033[38;5;22m";   // DARK GREEN
     public static final String YELLOW = "\033[0;33m";  // YELLOW
     public static final String YELLOW_MUSTARD = "\033[38;5;136m";   // MUSTARD YELLOW

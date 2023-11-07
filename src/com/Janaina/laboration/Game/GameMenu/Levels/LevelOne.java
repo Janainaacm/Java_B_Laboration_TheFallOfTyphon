@@ -98,7 +98,6 @@ public class LevelOne {
             pressEnter();
 
 
-
             player.unlockNewLevel();
             break;
         }
