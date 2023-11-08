@@ -40,7 +40,7 @@ public class LevelOne {
             player.act(fury, Inventory);
             if (fury.isAlive()){
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "..." + RESET);
+                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
             fury.revive();
@@ -51,7 +51,7 @@ public class LevelOne {
             player.act(fury, Inventory);
             if (fury.isAlive()){
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "..." + RESET);
+                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
             fury.revive();
@@ -63,7 +63,7 @@ public class LevelOne {
             player.act(fury, Inventory);
             if (fury.isAlive()){
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "..." + RESET);
+                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
 

@@ -82,9 +82,9 @@ public class PrintHandler {
     }
 
     public static void medusaSpeaking(String text){
-        System.out.println(GREEN_LIGHT + BOLD + UNDERLINED +"Medusa:" + RESET);
+        System.out.println(GREEN_DARK + BOLD + UNDERLINED +"Medusa:" + RESET);
         for (int i = 0; i < text.length(); i++) {
-            System.out.print(GREEN_LIGHT + text.charAt(i) + RESET);
+            System.out.print(GREEN_DARK + text.charAt(i) + RESET);
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {

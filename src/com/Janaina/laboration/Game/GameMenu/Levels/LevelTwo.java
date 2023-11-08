@@ -14,7 +14,7 @@ import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelTwo {
-    // Sirens
+
     public void playLevelTwo(Player player, Inventory Inventory) {
         Siren siren = new Siren();
 
@@ -85,7 +85,7 @@ public class LevelTwo {
             player.act(siren, Inventory);
             if (siren.isAlive()) {
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "..." + RESET);
+                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
             siren.revive();
@@ -93,7 +93,7 @@ public class LevelTwo {
             player.act(siren, Inventory);
             if (siren.isAlive()) {
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "..." + RESET);
+                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
             siren.revive();
@@ -101,7 +101,7 @@ public class LevelTwo {
             player.act(siren, Inventory);
             if (siren.isAlive()) {
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "..." + RESET);
+                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
             siren.revive();

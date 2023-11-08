@@ -17,7 +17,7 @@ public class Medusa extends Characters {
 
     @Override
     public void attack(Characters target) {
-        System.out.println(GREEN_LIGHT + BOLD + UNDERLINED + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
+        System.out.println(GREEN_LIGHT + BOLD + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(GREEN_LIGHT + "\uD80C\uDD9A\uD80C\uDD97\uD80C\uDD9A\uD80C\uDD97\uD80C\uDD9A\uD80C\uDD97" + "\n" + RESET);
         chillForASecond(200);
     }
