@@ -7,7 +7,7 @@ import java.util.Objects;
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.Scanners.*;
-import static com.Janaina.laboration.Resources.Storyteller.pythia;
+import static com.Janaina.laboration.Resources.Storyteller.pythiaBackstory;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
 
@@ -16,11 +16,11 @@ public class Introduction {
     public void createPlayer(Player player) {
 
         println(BLACK_BACKGROUND + "                             " + RESET
-                + "\n" + BLACK_BACKGROUND + "     " + RED_BOLD + RED_UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
-                + "\n" + BLACK_BACKGROUND + "    " + RED_BOLD + "A Quest for Vengeance" + RESET + BLACK_BACKGROUND + "    " + RESET
+                + "\n" + BLACK_BACKGROUND + "     " + PURPLE_LIGHT + BOLD + UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
+                + "\n" + BLACK_BACKGROUND + "    " + "\033[40;35m" + ITALIC + "A Quest for Vengeance" + RESET + BLACK_BACKGROUND + "    " + RESET
                 + "\n" + BLACK_BACKGROUND + "                             " + RESET + "\n");
 
-        printYellow("(This game is inspired by and based of greek mythology, for every creature you encounter you will get the choice to learn more about them)");
+        sleepThread(PURPLE_ISH + "(This game is inspired by and based on greek mythology, for every creature you encounter you will get the chance to learn more about them)");
         suspensefulDots(".");
         pressEnter();
 
@@ -39,11 +39,10 @@ public class Introduction {
         String knowMoreAboutPythia = scannerYesOrNo();
 
         if (Objects.equals(knowMoreAboutPythia, "yes")) {
-            pythia();
-
+            pythiaBackstory();
         }
 
-        PythiaSpeaking("Would you like a little tour to get you comfortable?");
+        PythiaSpeaking("Would you like a little tour of the game?");
         System.out.println("yes or no");
 
         if (Objects.equals(scannerYesOrNo(), "yes")) {

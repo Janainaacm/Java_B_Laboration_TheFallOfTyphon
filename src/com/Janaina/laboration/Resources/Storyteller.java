@@ -26,7 +26,7 @@ public class Storyteller {
         pressEnter();
     }
 
-    public static void pythia(){
+    public static void pythiaBackstory(){
         printYellow("""
                 Pythia, the Oracle of Delphi, has a rich and mystical background story steeped in the legends of ancient Greece.\s
                 \s

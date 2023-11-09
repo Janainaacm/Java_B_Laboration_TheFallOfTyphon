@@ -263,7 +263,7 @@ public class Player extends Characters {
         Thread playerInputThread = new Thread(() -> {
             while (!successfulDodge[0] && !timeUp[0]) {
                 if (scanner.hasNextLine()) {
-                    if ((Objects.equals(scanner.nextLine(), toDodge) && !timeUp[0])) {
+                    if ((scanner.nextLine().contains(toDodge)) && !timeUp[0]) {
                         countdownThread.interrupt();
                         successfulDodge[0] = true;
                         timeUp[0] = true;

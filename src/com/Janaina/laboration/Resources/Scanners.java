@@ -70,4 +70,14 @@ public class Scanners {
         return pressEnterToAttack();
     }
 
+    public static int scannerOnlyOneNumber() {
+        int number = scannerNumber();
+
+        if (number >= 1 && number <= 9) {
+            return number;
+        }
+        System.out.println(RED + "Enter one number" + RESET);
+        return scannerOnlyOneNumber();
+    }
+
 }

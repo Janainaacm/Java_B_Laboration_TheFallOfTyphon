@@ -94,4 +94,17 @@ public class PrintHandler {
         System.out.print("\n");
     }
 
+    public static void sphinxSpeaking(String text){
+        System.out.println(YELLOW_DARK + BOLD + UNDERLINED +"Spinx:" + RESET);
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(YELLOW_DARK + text.charAt(i) + RESET);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("\n");
+    }
+
 }
