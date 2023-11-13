@@ -7,6 +7,7 @@ import com.Janaina.laboration.Game.Variables.Monsters.Medusa;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class TheFallOfTyphonTest {
 
@@ -34,12 +35,15 @@ public class TheFallOfTyphonTest {
         Player testPlayer1 = new Player();
         Fury fury1 = new Fury();
 
+        int initialHealth = testPlayer1.getHealth();
         System.out.println("Initial health: " + testPlayer1.getHealth());
 
         testPlayer1.receiveDamage(fury1, 0);
 
+        int resultHealth = testPlayer1.getHealth();
         System.out.println("Health after attack: " + testPlayer1.getHealth());
 
+        assertNotEquals(initialHealth, resultHealth);
     }
 
     @Test

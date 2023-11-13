@@ -13,7 +13,7 @@ public class Player extends Characters {
 
     public List<Attacks> specialAttackList;
     public ShopProducts equippedWeapon;
-    private int availableLevels = 6;
+    private int availableLevels = 1;
 
     public Player() {
         super("name", 2, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);

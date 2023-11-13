@@ -45,8 +45,6 @@ public class Storyline {
 
         boolean mainGameMenuSwitch = true;
         do {
-            player.setAgility(100);
-            player.setStrength(100);
 
             println(BLACK_BACKGROUND + "     " + CYAN_BOLD + CYAN_UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
                     + "\n" + BLACK_BACKGROUND + "          " + CYAN_BOLD + "Main Menu" + RESET + BLACK_BACKGROUND + "          " + RESET

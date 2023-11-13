@@ -15,7 +15,7 @@ public class LevelOne {
 
     public void playLevelOne(Player player, Inventory Inventory) {
         Fury fury = new Fury();
-        /*
+
         sleepThread(YELLOW + "In the heart of ancient Greece, our hero " + player.getName() + " stands ready to embark on a perilous journey. His beloved sister Althea, has been captured by the monstrous Typhon. \n" +
                 "With unwavering determination, he sets forth to rescue her from the clutches of darkness. But as night's chilling embrace tightens, \nthe faint sound of heavy breathing slowly emerges from the shadows.\n" + RESET);
 
@@ -30,8 +30,6 @@ public class LevelOne {
         chillForASecond(1000);
         furySpeaking("Not to worry mortal, after we take your life your soul will join your precious sister");
 
-
-         */
 
         while (true) {
 
