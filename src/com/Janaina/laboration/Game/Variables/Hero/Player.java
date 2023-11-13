@@ -1,13 +1,10 @@
 package com.Janaina.laboration.Game.Variables.Hero;
 
-import com.Janaina.laboration.Game.GameMenu.Levels.LevelOne;
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.Characters;
 
 import java.util.*;
 
-import static com.Janaina.laboration.Main.playerIsAlive;
-import static com.Janaina.laboration.Main.playerIsPlayingGame;
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
@@ -15,9 +12,8 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 public class Player extends Characters {
 
     public List<Attacks> specialAttackList;
-    private final int resetHealth = 100;
     public ShopProducts equippedWeapon;
-    private int availableLevels = 1;
+    private int availableLevels = 6;
 
     public Player() {
         super("name", 2, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
@@ -54,6 +50,8 @@ public class Player extends Characters {
                 case 1 -> attack(monster);
                 case 2 -> {
                     if (flee(monster)) {
+                        sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
+                        suspensefulDots(PURPLE_LIGHT + "." + RESET);
                         monsterEncounter = false;
                     } else {
                         continue;
@@ -67,19 +65,20 @@ public class Player extends Characters {
 
             }
 
-            if (playerWins(monster)){
+            if (playerWins(monster)) {
                 monsterEncounter = false;
             }
 
             if (!isAlive()) {
-                playerIsAlive = false;
-                playerIsPlayingGame = false;
+                sleepThread(RED + ITALIC + "You were killed by " + monster.getName() + RESET);
+                suspensefulDots(RED + "." + RESET);
+                System.out.println(RED + BOLD + "Game Over." + RESET);
+                System.exit(0);
                 monsterEncounter = false;
             }
 
         } while (monsterEncounter);
 
-        pressEnter();
     }
 
     public boolean playerWins(Characters monster) {
@@ -104,7 +103,7 @@ public class Player extends Characters {
     @Override
     public void attack(Characters monster) {
 
-    int attack;
+        int attack;
         if (!specialAttackList.isEmpty()) {
             attack = chosenAttack();
         } else {
@@ -125,9 +124,10 @@ public class Player extends Characters {
             }
             chillForASecond(200);
         }
+
     }
 
-    public int attackWeapon (){
+    public int attackWeapon() {
         System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + getDefaultAttack() + "!" + RESET);
         pressEnterToAttack();
         sleepThread(YELLOW + "▭▭ι═══════ﺤ\n" + RESET);
@@ -351,7 +351,7 @@ public class Player extends Characters {
         this.availableLevels = availableLevels;
     }
 
-    public void unlockNewLevel(){
+    public void unlockNewLevel() {
         setAvailableLevels(getAvailableLevels() + 1);
     }
 

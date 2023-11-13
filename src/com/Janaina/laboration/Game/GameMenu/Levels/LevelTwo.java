@@ -2,9 +2,7 @@ package com.Janaina.laboration.Game.GameMenu.Levels;
 
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
-import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Game.Variables.Monsters.Siren;
-import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.*;
 
@@ -17,6 +15,8 @@ public class LevelTwo {
 
     public void playLevelTwo(Player player, Inventory Inventory) {
         Siren siren = new Siren();
+
+        while (true){
 
         sleepThread(YELLOW + "As the sun begins to rise over the endless horizon of the Sea of Serene Whispers, " + player.getName() + " stands at the serene beach, surrounded by the gentle lapping of the\n waves and the sweet scent of saltwater in the air. The soft, melodic hum of the Sirens resonates in the background, enticing unwary travelers with their enchanting song.\nClose to the edge of the sea a silhouette can be seen roaming around in the sand" + RESET);
         chillForASecond(1000);
@@ -81,32 +81,26 @@ public class LevelTwo {
         sirenSpeaking("You dare defy us, mortal? We are the daughters of the sea, and we decide your fate!");
         playerSpeaking("So be it! If it's a battle you want, it's a battle you'll get! Prepare to face my wrath, sirens!", player);
 
-        while (true){
+
             player.act(siren, Inventory);
             if (siren.isAlive()) {
-                sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
             siren.revive();
 
             player.act(siren, Inventory);
             if (siren.isAlive()) {
-                sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
             siren.revive();
 
             player.act(siren, Inventory);
             if (siren.isAlive()) {
-                sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "." + RESET);
                 break;
             }
             siren.revive();
 
-            Scanners.pressEnter();
+            pressEnter();
             sleepThread(YELLOW + """
                     Having defeated the sirens in a fierce battle, the hero sails onward, determined to reach the Scaled Garden of Stone. \s
                     With the mystical sea guardians now vanquished, his boat plows through the turbulent waves, bringing him one step closer to rescuing his sister from Typhon's clutches. \s
@@ -114,7 +108,7 @@ public class LevelTwo {
                     """);
 
             chillForASecond(1000);
-            Scanners.pressEnter();
+            pressEnter();
 
             player.unlockNewLevel();
             break;
@@ -213,7 +207,7 @@ public class LevelTwo {
         int materialsCollected = 0;
 
         while (materialsCollected < requiredMaterials) {
-            pressEnter();
+            pressEnterToAttack();
             materialsCollected++;
 
             if (materialsCollected == 2){
@@ -250,21 +244,6 @@ public class LevelTwo {
         }
     }
 
-
-    private String pressEnter() {
-        Scanner sc = new Scanner(System.in);
-
-        String readString = sc.nextLine();
-        while (readString != null) {
-
-            if (readString.isEmpty()) {
-                return readString;
-            } else {
-                break;
-            }
-        }
-        return pressEnter();
-    }
 
 
 }

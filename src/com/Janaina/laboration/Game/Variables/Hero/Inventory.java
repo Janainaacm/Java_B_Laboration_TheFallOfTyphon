@@ -142,6 +142,11 @@ public class Inventory {
                 System.out.println(GRAY + ITALIC + "Agility +" + drinkPotion.getAgility()+ RESET);
                 player.setAgility(player.getAgility() + drinkPotion.getAgility());
             }
+
+            if (player.getHealth() > 100){
+                player.setHealth(100);
+            }
+
             potionsList.remove(drinkPotion);
             pressEnter();
 

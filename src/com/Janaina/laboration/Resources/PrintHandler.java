@@ -107,4 +107,43 @@ public class PrintHandler {
         System.out.print("\n");
     }
 
+    public static void guardianSpeaking(String text){
+        System.out.println(BLUE_PASTEL + BOLD + UNDERLINED +"Guardian:" + RESET);
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(BLUE_PASTEL + text.charAt(i) + RESET);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("\n");
+    }
+
+    public static void cerberusSpeaking(String text){
+        System.out.println(ORANGE + BOLD + UNDERLINED +"Cerberus:" + RESET);
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(ORANGE + text.charAt(i) + RESET);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("\n");
+    }
+
+    public static void typhonSpeaking(String text){
+        System.out.println(RED + BOLD + UNDERLINED +"Typhon:" + RESET);
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(RED + text.charAt(i) + RESET);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("\n");
+    }
+
 }

@@ -8,7 +8,7 @@ import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 
 public class LevelMenu {
-    public void levelMenu(Player player, Inventory Inventory){
+    public void levelMenu(Player player, Inventory Inventory) {
         LevelOne LevelOne = new LevelOne();
         LevelTwo LevelTwo = new LevelTwo();
         LevelThree LevelThree = new LevelThree();
@@ -20,42 +20,41 @@ public class LevelMenu {
         boolean isChoosingLevel = true;
         while (isChoosingLevel) {
 
-        println(BLACK_BACKGROUND + "          " + CYAN_BOLD_BRIGHT + CYAN_UNDERLINED + "Available levels:" + RESET + BLACK_BACKGROUND + "          " + RESET);
+            println(BLACK_BACKGROUND + "          " + CYAN_BOLD_BRIGHT + CYAN_UNDERLINED + "Available levels:" + RESET + BLACK_BACKGROUND + "          " + RESET);
 
-        printCyan("1. Level one");
+            printCyan("1. Level one");
 
-        if (player.getAvailableLevels() > 1){
-            printCyan("2. Level two");
-        } else {
-            println("???");
-        }
+            if (player.getAvailableLevels() > 1) {
+                printCyan("2. Level two");
+            } else {
+                println("???");
+            }
 
-        if (player.getAvailableLevels() > 2){
-            printCyan("3. Level three");
-        } else {
-            println("???");
-        }
+            if (player.getAvailableLevels() > 2) {
+                printCyan("3. Level three");
+            } else {
+                println("???");
+            }
 
-        if (player.getAvailableLevels() > 3){
-            printCyan("4. Level four");
-        } else {
-            println("???");
-        }
+            if (player.getAvailableLevels() > 3) {
+                printCyan("4. Level four");
+            } else {
+                println("???");
+            }
 
-        if (player.getAvailableLevels() > 4){
-            printCyan("5. Level five");
-        } else {
-            println("???");
-        }
+            if (player.getAvailableLevels() > 4) {
+                printCyan("5. Level five");
+            } else {
+                println("???");
+            }
 
-        if (player.getAvailableLevels() > 5){
-            printCyan("6. Level six");
-        } else {
-            println("???");
-        }
+            if (player.getAvailableLevels() > 5) {
+                printCyan("6. Level six");
+            } else {
+                println("???");
+            }
 
-        printCyan("0.Go back");
-
+            printCyan("0. Go back");
 
 
             switch (scannerNumber()) {
@@ -99,15 +98,6 @@ public class LevelMenu {
                 default -> printRed("Invalid input, please chose from the presented options");
             }
         }
-
-
-
-
-
-
-
-
-
 
 
     }

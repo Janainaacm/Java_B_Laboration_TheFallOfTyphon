@@ -17,7 +17,6 @@ public class LevelThree {
     public void playLevelThree(Player player, Inventory Inventory) {
         Medusa medusa = new Medusa();
         Random random = new Random();
-        /*
 
         sleepThread(YELLOW + """
                 The garden exuded an eerie aura, its moonlit stone statues seemingly coming to life, their watchful eyes unsettling but alluring. The hero marveled at the artistry\s
@@ -26,11 +25,8 @@ public class LevelThree {
                 """ + RESET);
         suspensefulDots(GRAY + "." + RESET);
 
-         */
-
 
         while (true) {
-            /*
             System.out.println(PURPLE_DARK + "Pick a location to search:\n1\n2\n3" + RESET);
 
             switch (scannerNumber()) {
@@ -73,9 +69,6 @@ public class LevelThree {
                     The time had come to search for the hidden map within The Scaled Garden of Stone.
                     """);
             suspensefulDots("." + RESET);
-
-             */
-
 
             boolean messageFound = false;
             boolean keyFound = false;

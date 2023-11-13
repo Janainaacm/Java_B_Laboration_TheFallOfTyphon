@@ -33,7 +33,7 @@ public class PlayTheGame {
                 default -> printRed("Invalid input, please chose from the presented options");
             }
 
-        }while (isChoosingFromGameMenu);
+        }while (isChoosingFromGameMenu && player.isAlive());
 
     }
 

@@ -3,7 +3,6 @@ package com.Janaina.laboration.Game.GameMenu.Levels;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
-import com.Janaina.laboration.Resources.Colors;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.furySpeaking;
@@ -14,9 +13,9 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 public class LevelOne {
     //Fury attack
 
-    public void playLevelOne(Player player, Inventory Inventory){
+    public void playLevelOne(Player player, Inventory Inventory) {
         Fury fury = new Fury();
-
+        /*
         sleepThread(YELLOW + "In the heart of ancient Greece, our hero " + player.getName() + " stands ready to embark on a perilous journey. His beloved sister Althea, has been captured by the monstrous Typhon. \n" +
                 "With unwavering determination, he sets forth to rescue her from the clutches of darkness. But as night's chilling embrace tightens, \nthe faint sound of heavy breathing slowly emerges from the shadows.\n" + RESET);
 
@@ -32,15 +31,12 @@ public class LevelOne {
         furySpeaking("Not to worry mortal, after we take your life your soul will join your precious sister");
 
 
-
-
+         */
 
         while (true) {
 
             player.act(fury, Inventory);
-            if (fury.isAlive()){
-                sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "." + RESET);
+            if (fury.isAlive()) {
                 break;
             }
             fury.revive();
@@ -49,9 +45,7 @@ public class LevelOne {
             chillForASecond(500);
 
             player.act(fury, Inventory);
-            if (fury.isAlive()){
-                sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "." + RESET);
+            if (fury.isAlive()) {
                 break;
             }
             fury.revive();
@@ -61,12 +55,9 @@ public class LevelOne {
             chillForASecond(1000);
 
             player.act(fury, Inventory);
-            if (fury.isAlive()){
-                sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                suspensefulDots(PURPLE_LIGHT + "." + RESET);
+            if (fury.isAlive()) {
                 break;
             }
-
 
 
             sleepThread(YELLOW + "Surrounded by the corpses of the dead furies, " + player.getName() + " approaches the only living beast. \nClinging on to life, pleading for mercy.\n");
@@ -82,7 +73,7 @@ public class LevelOne {
             playerSpeaking("Where is this map?", player);
             chillForASecond(1000);
             suspensefulDots(RED + "." + RESET);
-            playerSpeaking( "Answer me!", player);
+            playerSpeaking("Answer me!", player);
             furySpeaking("It is located in the Scaled Garden of Stone...");
             suspensefulDots(RED + "." + RESET);
             furySpeaking("Now hea-");
@@ -100,9 +91,7 @@ public class LevelOne {
 
             player.unlockNewLevel();
             break;
+
         }
-
     }
-
-
 }
