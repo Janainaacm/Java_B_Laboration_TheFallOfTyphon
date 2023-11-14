@@ -18,7 +18,7 @@ public class Minotaur extends Characters {
 
     @Override
     public void attack(Characters target) {
-        System.out.println(BLUE_BOLD_BRIGHT + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
+        System.out.println(BLUE + BOLD + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(BLUE + "炎炎炎炎炎炎" + "\n" + RESET);
         chillForASecond(200);
     }
@@ -40,31 +40,9 @@ public class Minotaur extends Characters {
 
     @Override
     public String getStats() {
-        String nameStats = BLACK_BACKGROUND + "           " + BLUE_BOLD_BRIGHT + BLUE_UNDERLINED + "MINOTAUR" + RESET + BLACK_BACKGROUND + "           " + RESET;
-        String healthStats = null;
-        String strengthStats = null;
-        if (getHealth() >50){
-            healthStats = BLUE_BOLD + "Health: " + RED + getHealth() + RESET;
+        return BLACK_BACKGROUND + "           " + BLUE_DARK + BOLD + UNDERLINED + "Minotaur" + RESET + BLACK_BACKGROUND + "           " + RESET + "\n" + BLUE_DARK + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
 
-        }else if (getHealth() <= 50 && getHealth() > 20){
-            healthStats = BLUE_BOLD + "Health: " + YELLOW + getHealth() + RESET;
-
-        }else if (getHealth() <= 20 && getHealth() >= 1) {
-            healthStats = BLUE_BOLD + "Health: " + BLACK + getHealth() + RESET;
-
-        }
-        if (getStrength() >50){
-            strengthStats = BLUE_BOLD + "Strength: " + RED + getStrength() + RESET;
-
-        }else if (getStrength() <= 50 && getStrength() > 20){
-            strengthStats = BLUE_BOLD + "Strength: " + YELLOW + getStrength() + RESET;
-
-        }else if (getStrength() <= 20 && getStrength() >= 1) {
-            strengthStats = BLUE_BOLD + "Strength: " + BLACK + getStrength() + RESET;
-
-        }
-
-        return nameStats + "\n" + healthStats + "    " + strengthStats;}
+    }
 
 
 

@@ -14,7 +14,7 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelThree {
 
-    public void playLevelThree(Player player, Inventory Inventory) {
+    public void playLevelThree(Player player, Inventory inventory) {
         Medusa medusa = new Medusa();
         Random random = new Random();
 
@@ -57,7 +57,7 @@ public class LevelThree {
             medusaSpeaking("Well, no matter. Your pretty face will make a lovely addition");
             suspensefulDots(GRAY + "." + RESET);
 
-            player.act(medusa, Inventory);
+            player.act(medusa, inventory);
             if (medusa.isAlive()) {
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
                 suspensefulDots(PURPLE_LIGHT + "." + RESET);

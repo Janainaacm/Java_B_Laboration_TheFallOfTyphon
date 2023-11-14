@@ -40,31 +40,8 @@ public class Medusa extends Characters {
     @Override
     public String getStats() {
 
-        String nameStats = BLACK_BACKGROUND + "           " + GREEN_LIGHT + BOLD + UNDERLINED + "MEDUSA" + RESET + BLACK_BACKGROUND + "           " + RESET;
-        String healthStats = null;
-        String strengthStats = null;
-        if (getHealth() >50){
-            healthStats = GREEN_LIGHT + BOLD + "Health: " + RED + getHealth() + RESET;
+        return BLACK_BACKGROUND + "            " + GREEN_DARK + BOLD + UNDERLINED + "Medusa" + RESET + BLACK_BACKGROUND + "            " + RESET + "\n" + GREEN_LIGHT + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
 
-        }else if (getHealth() <= 50 && getHealth() > 20){
-            healthStats = GREEN_LIGHT + BOLD + "Health: " + YELLOW + getHealth() + RESET;
-
-        }else if (getHealth() <= 20 && getHealth() >= 1) {
-            healthStats = GREEN_LIGHT + BOLD + "Health: " + BLACK + getHealth() + RESET;
-
-        }
-        if (getStrength() >50){
-            strengthStats = GREEN_LIGHT + BOLD + "Strength: " + RED + getStrength() + RESET;
-
-        }else if (getStrength() <= 50 && getStrength() > 20){
-            strengthStats = GREEN_LIGHT + BOLD + "Strength: " + YELLOW + getStrength() + RESET;
-
-        }else if (getStrength() <= 20 && getStrength() >= 1) {
-            strengthStats = GREEN_LIGHT + BOLD + "Strength: " + BLACK + getStrength() + RESET;
-
-        }
-
-        return nameStats + "\n" + healthStats + "    " + strengthStats;
     }
 
 

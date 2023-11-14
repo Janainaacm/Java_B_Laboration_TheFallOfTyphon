@@ -19,7 +19,7 @@ public class Fury extends Characters {
 
     @Override
     public void attack(Characters player) {
-        System.out.println(RED_BOLD_BRIGHT + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
+        System.out.println(RED + BOLD + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(RED + "ﮩ٨ـﮩﮩ٨ـﮩ٨ـﮩﮩ٨" + "\n" + RESET );
         chillForASecond(200);
 
@@ -44,7 +44,7 @@ public class Fury extends Characters {
     @Override
     public String getStats() {
 
-        return BLACK_BACKGROUND + "           " + RED + BOLD + UNDERLINED + "FURY" + RESET + BLACK_BACKGROUND + "           " + RESET + "\n" + RED + ITALIC + "Health: " + getHealth() + "     Strength: " + getStrength();
+        return BLACK_BACKGROUND + "            " + RED + BOLD + UNDERLINED + "FURY" + RESET + BLACK_BACKGROUND + "            " + RESET + "\n" + RED + ITALIC + "Health: " + getHealth() + "    Max damage: " + (getStrength() * getBaseDamage());
 
     }
 

@@ -17,7 +17,7 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 public class LevelFour {
     private boolean foughtMinotaur = false;
 
-    public void playLevelFour(Player player, Inventory Inventory) {
+    public void playLevelFour(Player player, Inventory inventory) {
 
         sleepThread(GRAY + "Level Four." + RESET);
         chillForASecond(1500);
@@ -70,7 +70,7 @@ public class LevelFour {
                     chillForASecond(1500);
 
                     if (treasuresFound <= 5) {
-                        boolean didFind = findTreasureChest(player, Inventory);
+                        boolean didFind = findTreasureChest(player, inventory);
                         if (didFind) {
                             treasuresFound++;
                         }
@@ -93,7 +93,7 @@ public class LevelFour {
                 }
 
                 case 3 -> {
-                    boolean didDefeatMonster = battleMonster(player, Inventory);
+                    boolean didDefeatMonster = battleMonster(player, inventory);
 
                     if (!didDefeatMonster && player.isAlive()){
                         sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);

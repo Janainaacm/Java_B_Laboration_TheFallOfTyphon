@@ -40,31 +40,9 @@ public class Siren extends Characters{
 
     @Override
     public String getStats() {
-        String nameStats = BLACK_BACKGROUND + "           " + CYAN_BOLD_BRIGHT + CYAN_UNDERLINED + "SIREN" + RESET + BLACK_BACKGROUND + "           " + RESET;
-        String healthStats = null;
-        String strengthStats = null;
-        if (getHealth() >50){
-            healthStats = CYAN_BOLD + "Health: " + RED + getHealth() + RESET;
+        return BLACK_BACKGROUND + "            " + CYAN_BOLD_BRIGHT + CYAN_UNDERLINED + "Siren" + RESET + BLACK_BACKGROUND + "            " + RESET + "\n" + CYAN + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
 
-        }else if (getHealth() <= 50 && getHealth() > 20){
-            healthStats = CYAN_BOLD + "Health: " + YELLOW + getHealth() + RESET;
-
-        }else if (getHealth() <= 20 && getHealth() >= 1) {
-            healthStats = CYAN_BOLD + "Health: " + BLACK + getHealth() + RESET;
-
-        }
-        if (getStrength() >50){
-            strengthStats = CYAN_BOLD + "Strength: " + RED + getStrength() + RESET;
-
-        }else if (getStrength() <= 50 && getStrength() > 20){
-            strengthStats = CYAN_BOLD + "Strength: " + YELLOW + getStrength() + RESET;
-
-        }else if (getStrength() <= 20 && getStrength() >= 1) {
-            strengthStats = CYAN_BOLD + "Strength: " + BLACK + getStrength() + RESET;
-
-        }
-
-        return nameStats + "\n" + healthStats + "    " + strengthStats;}
+    }
 
 
     @Override

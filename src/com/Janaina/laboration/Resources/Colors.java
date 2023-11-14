@@ -13,7 +13,6 @@ public class Colors {
     public static final String GREEN_DIRTY = "\033[38;5;58m";   // DIRTY GREEN
     public static final String GREEN_LIGHT = "\033[38;5;70m";   // LIGHT GREEN
     public static final String PURPLE_ISH = "\033[38;5;96m";
-
     public static final String GREEN_DARK = "\033[38;5;22m";   // DARK GREEN
     public static final String YELLOW = "\033[0;33m";  // YELLOW
     public static final String YELLOW_LIGHT = "\033[38;5;220m";   // MUSTARD YELLOW
@@ -64,7 +63,7 @@ public class Colors {
 
     // Background
     public static final String BLACK_BACKGROUND = "\033[40m";  // BLACK
-    public static final String RED_BACKGROUND = "\033[41m"; // RED
+    public static final String RED_BACKGROUND = "\033[48;5;160m"; // RED
     public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
     public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
     public static final String BLUE_BACKGROUND = "\033[44m";   // BLUE

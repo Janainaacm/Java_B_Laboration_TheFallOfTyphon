@@ -41,35 +41,12 @@ public class Cerberus extends Characters {
 
     @Override
     public String getStats() {
-        String nameStats = BLACK_BACKGROUND + "           " + RED_BOLD_BRIGHT + RED_UNDERLINED + "CERBERUS" + RESET + BLACK_BACKGROUND + "           " + RESET;
-        String healthStats = null;
-        String strengthStats = null;
-        if (getHealth() >50){
-            healthStats = RED_BOLD + "Health: " + RED + getHealth() + RESET;
-
-        }else if (getHealth() <= 50 && getHealth() > 20){
-            healthStats = RED_BOLD + "Health: " + YELLOW + getHealth() + RESET;
-
-        }else if (getHealth() <= 20 && getHealth() >= 1) {
-            healthStats = RED_BOLD + "Health: " + BLACK + getHealth() + RESET;
-
-        }
-        if (getStrength() >50){
-            strengthStats = RED_BOLD + "Strength: " + RED + getStrength() + RESET;
-
-        }else if (getStrength() <= 50 && getStrength() > 20){
-            strengthStats = RED_BOLD + "Strength: " + YELLOW + getStrength() + RESET;
-
-        }else if (getStrength() <= 20 && getStrength() >= 1) {
-            strengthStats = RED_BOLD + "Strength: " + BLACK + getStrength() + RESET;
-
-        }
-
-        return nameStats + "\n" + healthStats + "    " + strengthStats;}
+        return BLACK_BACKGROUND + "           " + RED + BOLD + UNDERLINED + "Cerberus" + RESET + BLACK_BACKGROUND + "           " + RESET + "\n" + RED + ITALIC + "Health: " + getHealth() + "    Max damage: " + (getStrength() * getBaseDamage());
+    }
 
 
 
-    @Override
+        @Override
     public void receiveDamage(Characters player, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, player.getStrength());

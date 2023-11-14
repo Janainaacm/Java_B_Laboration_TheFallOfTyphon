@@ -40,6 +40,7 @@ public class Inventory {
     }
 
 
+
     public void addToWeaponsInventory(ShopProducts item) {
         weaponsList.add(item);
     }

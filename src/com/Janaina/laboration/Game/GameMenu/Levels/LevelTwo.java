@@ -13,7 +13,7 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelTwo {
 
-    public void playLevelTwo(Player player, Inventory Inventory) {
+    public void playLevelTwo(Player player, Inventory inventory) {
         Siren siren = new Siren();
 
         while (true){
@@ -82,19 +82,19 @@ public class LevelTwo {
         playerSpeaking("So be it! If it's a battle you want, it's a battle you'll get! Prepare to face my wrath, sirens!", player);
 
 
-            player.act(siren, Inventory);
+            player.act(siren, inventory);
             if (siren.isAlive()) {
                 break;
             }
             siren.revive();
 
-            player.act(siren, Inventory);
+            player.act(siren, inventory);
             if (siren.isAlive()) {
                 break;
             }
             siren.revive();
 
-            player.act(siren, Inventory);
+            player.act(siren, inventory);
             if (siren.isAlive()) {
                 break;
             }

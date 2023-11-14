@@ -39,7 +39,7 @@ public class PrintHandler {
 
     public static void playerSpeaking(String text, Player player){
 
-        System.out.println(PURPLE_PASTEL + BOLD + player.getName() + ":" + RESET);
+        System.out.println(PURPLE_PASTEL + UNDERLINED + BOLD + player.getName() + ":" + RESET);
 
         for (int i = 0; i < text.length(); i++) {
             System.out.print(PURPLE_PASTEL + text.charAt(i) + RESET);
@@ -55,7 +55,7 @@ public class PrintHandler {
 
     public static void sirenSpeaking(String text){
 
-        System.out.println(BLUE_LIGHT + BOLD + "Siren:" + RESET);
+        System.out.println(BLUE_LIGHT + UNDERLINED + BOLD + "Siren:" + RESET);
 
         for (int i = 0; i < text.length(); i++) {
             System.out.print(BLUE_LIGHT + text.charAt(i) + RESET);
@@ -121,15 +121,16 @@ public class PrintHandler {
     }
 
     public static void cerberusSpeaking(String text){
-        System.out.println(ORANGE + BOLD + UNDERLINED +"Cerberus:" + RESET);
+        System.out.println(RED + BOLD + UNDERLINED +"Cerberus:" + RESET);
         for (int i = 0; i < text.length(); i++) {
-            System.out.print(ORANGE + text.charAt(i) + RESET);
+            System.out.print(RED + text.charAt(i) + RESET);
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
         System.out.print("\n");
     }
 

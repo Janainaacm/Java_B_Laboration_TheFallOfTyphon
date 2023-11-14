@@ -37,13 +37,13 @@ public class Player extends Characters {
     }
 
 
-    public void act(Characters monster, Inventory Inventory) {
+    public void act(Characters monster, Inventory inventory) {
 
         boolean monsterEncounter = true;
 
         do {
             System.out.println(monster.getStats());
-            System.out.println(WHITE_BOLD_BRIGHT + "1. Attack\n2. Flee\n3. Get Stats\n4. Inventory" + RESET);
+            System.out.println(WHITE_BOLD_BRIGHT + "1. Attack\n2. Flee\n3. Get Stats\n4. inventory" + RESET);
 
             switch (scannerNumber()) {
 
@@ -61,7 +61,7 @@ public class Player extends Characters {
                     System.out.println(getStats());
                     pressEnter();
                 }
-                case 4 -> Inventory.playerInventory(this);
+                case 4 -> inventory.playerInventory(this);
 
             }
 
