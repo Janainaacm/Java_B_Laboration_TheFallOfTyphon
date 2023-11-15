@@ -1,6 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
-import com.Janaina.laboration.Game.Variables.Characters;
+import com.Janaina.laboration.Game.Variables.ACharacters;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
-public class Typhon extends Characters{
+public class Typhon extends ACharacters {
     public Typhon() {
         super("Typhon", 7, 100, 10, 20, 60, 300, 100, 0, "Apocalyptic Surge", 200);
     }
@@ -18,7 +18,7 @@ public class Typhon extends Characters{
 
 
     @Override
-    public void attack(Characters target) {
+    public void attack(ACharacters target) {
         System.out.println(RED_BOLD_BRIGHT + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(RED + "・・*:・:・゜:==≡≡Σ=͟͟͞͞(✡)`Д´\uD80C\uDCF5" + "\n" + RESET );
         chillForASecond(200);
@@ -26,12 +26,12 @@ public class Typhon extends Characters{
     }
 
     @Override
-    public boolean flee(Characters target) {
+    public boolean flee(ACharacters target) {
         return true;
     }
 
     @Override
-    public boolean dodge(Characters player) {
+    public boolean dodge(ACharacters player) {
 
         Random random = new Random();
         int randomValue = random.nextInt(1, 100);
@@ -47,7 +47,7 @@ public class Typhon extends Characters{
     }
 
     @Override
-    public void receiveDamage(Characters player, int damage) {
+    public void receiveDamage(ACharacters player, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, player.getStrength());
         int damageFromAttack = acquiredStrength * player.getBaseDamage();

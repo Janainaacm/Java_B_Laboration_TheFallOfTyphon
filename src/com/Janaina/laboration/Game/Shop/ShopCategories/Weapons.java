@@ -1,7 +1,7 @@
 package com.Janaina.laboration.Game.Shop.ShopCategories;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
-import com.Janaina.laboration.Game.Variables.Characters;
+import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 public class Weapons {
 
     public int total = 0;
-    public void shopWeapons(Characters player, Inventory Inventory) {
+    public void shopWeapons(ACharacters player, Inventory Inventory) {
         //String name, int price, int strength, int health, int agility, int intelligence
         List<ShopProducts> productList = new ArrayList<>();
         productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", 120, 10, 0,0,0));

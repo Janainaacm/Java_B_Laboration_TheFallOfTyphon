@@ -15,7 +15,7 @@ public class LevelOne {
     public void playLevelOne(Player player, Inventory inventory) {
         Fury fury = new Fury();
 
-        /*
+
         sleepThread(YELLOW + "In the heart of ancient Greece, our hero " + player.getName() + " stands ready to embark on a perilous journey. His beloved sister Althea, has been captured by the monstrous Typhon. \n" +
                 "With unwavering determination, he sets forth to rescue her from the clutches of darkness. But as night's chilling embrace tightens, \nthe faint sound of heavy breathing slowly emerges from the shadows.\n" + RESET);
 
@@ -30,35 +30,31 @@ public class LevelOne {
         chillForASecond(1000);
         furySpeaking("Not to worry mortal, after we take your life your soul will join your precious sister");
 
-         */
 
 
         while (true) {
 
-            player.act(fury, inventory);
-            if (fury.isAlive()) {
-                break;
+            int fightFuries = 0;
+            while (fightFuries <= 3){
+                player.act(fury, inventory);
+                if (fury.isAlive()) {
+                    break;
+                }
+                fury.revive();
+                fightFuries ++;
+
+                if (fightFuries == 1){
+                    playerSpeaking("Is that all you've got?", player);
+                    chillForASecond(500);
+                }
+
+                if (fightFuries == 2){
+                    playerSpeaking("Where is Typhon holding my sister?! Answer me and i will consider sparing your life!", player);
+                    furySpeaking("You will never find her");
+                    chillForASecond(1000);
+                }
+
             }
-            fury.revive();
-
-            playerSpeaking("Is that all you've got?", player);
-            chillForASecond(500);
-
-            player.act(fury, inventory);
-            if (fury.isAlive()) {
-                break;
-            }
-            fury.revive();
-
-            playerSpeaking("Where is Typhon holding my sister?! Answer me and i will consider sparing your life!", player);
-            furySpeaking("You will never find her");
-            chillForASecond(1000);
-
-            player.act(fury, inventory);
-            if (fury.isAlive()) {
-                break;
-            }
-
 
             sleepThread(YELLOW + "Surrounded by the corpses of the dead furies, " + player.getName() + " approaches the only living beast. \nClinging on to life, pleading for mercy.\n");
             chillForASecond(500);

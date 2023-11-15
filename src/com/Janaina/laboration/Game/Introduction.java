@@ -51,7 +51,7 @@ public class Introduction {
             PythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fifth option of repeating this tour to the main menu.\n");
 
         } else {
-            PythiaSpeaking("In case you change your mind, there is an option to view the tour in the main menu.\n");
+            PythiaSpeaking("In case you change your mind, there is an option to view tour in the main menu.\n");
         }
 
         sleepThread("Here are 50 gold coins for you to start with");

@@ -1,6 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
-import com.Janaina.laboration.Game.Variables.Characters;
+import com.Janaina.laboration.Game.Variables.ACharacters;
 
 import java.util.Random;
 
@@ -9,7 +9,7 @@ import static com.Janaina.laboration.Resources.Colors.RESET;
 import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
-public class Minotaur extends Characters {
+public class Minotaur extends ACharacters {
     public Minotaur() {
         super("Minotaur", 3, 100, 10, 30, 30, 150, 70, 0, "Bestial Fury", 100);
     }
@@ -17,19 +17,19 @@ public class Minotaur extends Characters {
 
 
     @Override
-    public void attack(Characters target) {
+    public void attack(ACharacters target) {
         System.out.println(BLUE + BOLD + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(BLUE + "炎炎炎炎炎炎" + "\n" + RESET);
         chillForASecond(200);
     }
 
     @Override
-    public boolean flee(Characters target) {
+    public boolean flee(ACharacters target) {
         return true;
     }
 
     @Override
-    public boolean dodge(Characters player) {
+    public boolean dodge(ACharacters player) {
 
         Random random = new Random();
         int randomValue = random.nextInt(1, 100);
@@ -40,14 +40,14 @@ public class Minotaur extends Characters {
 
     @Override
     public String getStats() {
-        return BLACK_BACKGROUND + "           " + BLUE_DARK + BOLD + UNDERLINED + "Minotaur" + RESET + BLACK_BACKGROUND + "           " + RESET + "\n" + BLUE_DARK + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
+        return BLACK_BACKGROUND + "           " + ORANGE + BOLD + UNDERLINED + "Minotaur" + RESET + BLACK_BACKGROUND + "           " + RESET + "\n" + ORANGE + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
 
     }
 
 
 
     @Override
-    public void receiveDamage(Characters player, int damage) {
+    public void receiveDamage(ACharacters player, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, player.getStrength());
         int damageFromAttack = acquiredStrength * player.getBaseDamage();

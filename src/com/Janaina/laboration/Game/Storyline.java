@@ -26,7 +26,7 @@ public class Storyline {
         LevelMenu mn = new LevelMenu();
         GetPlayerStats PlayerStats = new GetPlayerStats();
         LevelMenu LevelMenu = new LevelMenu();
-        GetPlayerAchievements GetPlayerAchievements = new GetPlayerAchievements();
+        GetPlayerAchievements playerAchievements = new GetPlayerAchievements();
         Inventory inventory = new Inventory();
         Fury fury = new Fury();
         LevelFour lf = new LevelFour();
@@ -34,13 +34,14 @@ public class Storyline {
         LevelThree ltt = new LevelThree();
         LevelFive lff = new LevelFive();
         LevelSix ls = new LevelSix();
+        playerAchievements.playerAchievements(player);
         //lt.playLevelTwo(player, inventory);
         //player.setGold(200);
         //StoreFront.mainStoreFront(player, inventory);
         //lf.playLevelFour(player, inventory);
        // mn.levelMenu(player, inventory);
         //ltt.playLevelThree(player, inventory);
-        lff.playLevelFive(player, inventory);
+        //lff.playLevelFive(player, inventory);
         //ls.playLevelSix(player, inventory);
 
         //intro.createPlayer(player);
@@ -54,7 +55,7 @@ public class Storyline {
                     "1. Play\n2. Shop\n3. Read Game Lore\n4. View Tour\n0. Quit Game" + RESET);
 
             switch (scannerNumber()) {
-                case 1 -> PlayTheGame.gameMenu(player, PlayerStats, LevelMenu, GetPlayerAchievements, inventory);
+                case 1 -> PlayTheGame.gameMenu(player, PlayerStats, LevelMenu, playerAchievements, inventory);
                 case 2 -> StoreFront.mainStoreFront(player, inventory);
                 case 3 -> readGameLore();
                 case 4 -> intro.initialTourOfGame();

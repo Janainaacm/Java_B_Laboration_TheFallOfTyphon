@@ -1,7 +1,7 @@
 package com.Janaina.laboration.Game.Variables.Hero;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
-import com.Janaina.laboration.Game.Variables.Characters;
+import com.Janaina.laboration.Game.Variables.ACharacters;
 
 import java.util.*;
 
@@ -9,11 +9,18 @@ import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
-public class Player extends Characters {
+public class Player extends ACharacters {
 
     public List<Attacks> specialAttackList;
     public ShopProducts equippedWeapon;
-    private int availableLevels = 1;
+    private int availableLevels = 3;
+
+    public int furiesSlayed = 1;
+    public int sirensSlayed = 1;
+    public int medusaSlayed = 0;
+    public int minotaurSlayed = 0;
+    public int cerberusSlayed = 0;
+    public int typhonSlayed = 0;
 
     public Player() {
         super("name", 2, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
@@ -37,7 +44,7 @@ public class Player extends Characters {
     }
 
 
-    public void act(Characters monster, Inventory inventory) {
+    public void act(ACharacters monster, Inventory inventory) {
 
         boolean monsterEncounter = true;
 
@@ -81,7 +88,7 @@ public class Player extends Characters {
 
     }
 
-    public boolean playerWins(Characters monster) {
+    public boolean playerWins(ACharacters monster) {
         if (!monster.isAlive()) {
             System.out.println(PURPLE_BOLD_BRIGHT + "You managed to slay " + monster.getName() + "!" + RESET);
             chillForASecond(1000);
@@ -89,8 +96,17 @@ public class Player extends Characters {
             chillForASecond(1000);
             System.out.println("+ " + monster.getExperience() + " XP" + RESET);
             chillForASecond(1000);
-
             gainExperience(monster.getExperience());
+
+            switch (monster.getName()){
+                case "Fury" -> furiesSlayed ++;
+                case "Siren" -> sirensSlayed ++;
+                case "Medusa" -> medusaSlayed ++;
+                case "Minotaur" -> minotaurSlayed ++;
+                case "Cerberus" -> cerberusSlayed ++;
+                case "Typhon" -> typhonSlayed++;
+            }
+
             return true;
 
         } else {
@@ -101,7 +117,7 @@ public class Player extends Characters {
 
 
     @Override
-    public void attack(Characters monster) {
+    public void attack(ACharacters monster) {
 
         int attack;
         if (!specialAttackList.isEmpty()) {
@@ -165,7 +181,7 @@ public class Player extends Characters {
     }
 
     @Override
-    public boolean flee(Characters monster) {
+    public boolean flee(ACharacters monster) {
 
         System.out.println(PURPLE + "Lets see if you are lucky enough to escape the " + monster.getName() + RESET);
         suspensefulDots(PURPLE + "." + RESET);
@@ -182,7 +198,7 @@ public class Player extends Characters {
 
     }
 
-    public boolean canPlayerFlee(Characters monster) {
+    public boolean canPlayerFlee(ACharacters monster) {
         Random random = new Random();
         int escapeChance = getAgility() - monster.getIntelligence();
         int randomValue = random.nextInt(1, 100);
@@ -223,7 +239,7 @@ public class Player extends Characters {
     }
 
     @Override
-    public boolean dodge(Characters monster) {
+    public boolean dodge(ACharacters monster) {
         Random random = new Random();
 
         int timeLimit = getAgility() / 10;
@@ -291,7 +307,7 @@ public class Player extends Characters {
     }
 
     @Override
-    public void receiveDamage(Characters monster, int damage) {
+    public void receiveDamage(ACharacters monster, int damage) {
         Random random = new Random();
         int acquiredStrength = random.nextInt(1, monster.getStrength());
         int damageFromAttack = acquiredStrength * monster.getBaseDamage();

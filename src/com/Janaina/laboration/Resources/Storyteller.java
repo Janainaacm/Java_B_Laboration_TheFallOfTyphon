@@ -48,22 +48,22 @@ public class Storyteller {
 
     }
 
-    public static void cerberus(){
+    public static void cerberusBackstory(){
 
     }
-    public void fury(){
+    public static void furyBackstory(){
 
     }
-    public void medusa(){
+    public static void medusaBackstory(){
 
     }
-    public void minotaur(){
+    public static void minotaurBackstory(){
 
     }
-    public void siren(){
+    public static void sirenBackstory(){
 
     }
-    public void typhon(){
+    public static void typhonBackstory(){
 
     }
 
