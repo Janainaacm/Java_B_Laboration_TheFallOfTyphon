@@ -2,11 +2,11 @@ package com.Janaina.laboration.Game.Variables.Hero;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.ACharacters;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.*;
 
 import static com.Janaina.laboration.Resources.Colors.*;
-import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Player extends ACharacters {
@@ -25,7 +25,7 @@ public class Player extends ACharacters {
     public Player() {
         super("name", 2, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
         specialAttackList = new ArrayList<>();
-        this.equippedWeapon = new ShopProducts("knife", "Lethal Lunge", 0, 2, 0, 0, 0);
+        this.equippedWeapon = new ShopProducts("knife", "Lethal Lunge", "▬ι=ﺤ", 0, 1, 0, 0, 0);
 
     }
 
@@ -44,7 +44,7 @@ public class Player extends ACharacters {
     }
 
 
-    public void act(ACharacters monster, Inventory inventory) {
+    public void act(ACharacters monster, Inventory inventory, Scanners sc) {
 
         boolean monsterEncounter = true;
 
@@ -52,9 +52,9 @@ public class Player extends ACharacters {
             System.out.println(monster.getStats());
             System.out.println(WHITE_BOLD_BRIGHT + "1. Attack\n2. Flee\n3. Get Stats\n4. inventory" + RESET);
 
-            switch (scannerNumber()) {
+            switch (sc.scannerNumber()) {
 
-                case 1 -> attack(monster);
+                case 1 -> attack(monster, sc);
                 case 2 -> {
                     if (flee(monster)) {
                         sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
@@ -66,9 +66,9 @@ public class Player extends ACharacters {
                 }
                 case 3 -> {
                     System.out.println(getStats());
-                    pressEnter();
+                    sc.pressEnter();
                 }
-                case 4 -> inventory.playerInventory(this);
+                case 4 -> inventory.playerInventory(this, sc);
 
             }
 
@@ -118,13 +118,13 @@ public class Player extends ACharacters {
 
 
     @Override
-    public void attack(ACharacters monster) {
+    public void attack(ACharacters monster, Scanners sc) {
 
         int attack;
         if (!specialAttackList.isEmpty()) {
-            attack = chosenAttack();
+            attack = chosenAttack(sc);
         } else {
-            attack = attackWeapon();
+            attack = attackWeapon(sc);
         }
 
         if (monster.dodge(this)) {
@@ -135,7 +135,7 @@ public class Player extends ACharacters {
         }
 
         if (monster.isAlive()) {
-            monster.attack(this);
+            monster.attack(this, sc);
             if (!dodge(monster)) {
                 receiveDamage(monster, 0);
             }
@@ -144,40 +144,42 @@ public class Player extends ACharacters {
 
     }
 
-    public int attackWeapon() {
-        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + getDefaultAttack() + "!" + RESET);
-        pressEnterToAttack();
-        sleepThread(YELLOW + "▭▭ι═══════ﺤ\n" + RESET);
+    public int attackWeapon(Scanners sc) {
+        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeapon.getAttackName() + "!" + RESET);
+        sc.pressEnterToAttack();
+        sleepThread(YELLOW + equippedWeapon.getAnimation() + RESET);
         Random random = new Random();
-        int acquiredStrength = random.nextInt(1, getStrength() + 1);
 
-        return acquiredStrength * getBaseDamage();
+        return random.nextInt(getBaseDamage(), ((getStrength() + equippedWeapon.getStrength()) * 10));
 
     }
 
 
-    public int chosenAttack() {
-        System.out.println(YELLOW + ITALIC + "0. Use Weapon" + RESET);
+    public int chosenAttack(Scanners sc) {
+        System.out.println(YELLOW + ITALIC + "0. Use " + equippedWeapon.getName() + RESET);
         System.out.println(ORANGE + BOLD + "Special Attacks:" + RESET);
         for (int i = 0; i < specialAttackList.size(); i++) {
             System.out.println(ORANGE + ITALIC + (i + 1) + ". " + specialAttackList.get(i).getName() + GRAY + ITALIC + "\nDamage: " + RED + specialAttackList.get(i).getDamage() + RESET);
 
         }
-        int choice = scannerNumber();
+        int choice = sc.scannerNumber();
 
         if (choice == 0) {
-            return attackWeapon();
+            return attackWeapon(sc);
         }
 
         if (choice < 1 || choice > specialAttackList.size()) {
             System.out.println(BLACK + "Invalid choice, please try again" + RESET);
-        }
+            return chosenAttack(sc);
 
-        Attacks selectedAttack = specialAttackList.get(choice - 1);
-        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + selectedAttack.getName() + "!" + RESET);
-        pressEnterToAttack();
-        sleepThread(YELLOW + "▭▭ι═══════ﺤ\n" + RESET);
-        return selectedAttack.getDamage();
+        } else {
+
+            Attacks selectedAttack = specialAttackList.get(choice - 1);
+            System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + selectedAttack.getName() + "!" + RESET);
+            sc.pressEnterToAttack();
+            sleepThread(YELLOW + "▭▭ι═══════ﺤ\n" + RESET);
+            return selectedAttack.getDamage();
+        }
 
     }
 
@@ -211,31 +213,13 @@ public class Player extends ACharacters {
 
     @Override
     public String getStats() {
-        String nameStats = CYAN_UNDERLINED + CYAN_BOLD_BRIGHT + getName() + RESET;
-        String healthStats = null;
-        String strengthStats = null;
-        if (getHealth() > 50) {
-            healthStats = CYAN + "Health: " + GREEN + getHealth() + RESET;
+        String stats = LILAC + BOLD + UNDERLINED + getName().toUpperCase() + RESET +
+                LILAC + ITALIC + "\n✧ Health: " + GREEN_LIGHT + getHealth() + LILAC + ITALIC +
+                "\n✧ Equipped Weapon: " + ORANGE + equippedWeapon.getName() + LILAC + ITALIC +
+                "\n✧ Min Damage: " + RED + getBaseDamage() + LILAC + ITALIC +
+                "\n✧ Max Damage: " + RED + getBaseDamage() * getStrength() * equippedWeapon.getStrength() + RESET;
 
-        } else if (getHealth() <= 50 && getHealth() > 20) {
-            healthStats = CYAN + "Health: " + YELLOW + getHealth() + RESET;
-
-        } else if (getHealth() <= 20 && getHealth() >= 1) {
-            healthStats = CYAN + "Health: " + RED + getHealth() + RESET;
-
-        }
-        if (getStrength() > 50) {
-            strengthStats = CYAN + "Strength: " + GREEN + getStrength() + RESET;
-
-        } else if (getStrength() <= 50 && getStrength() > 20) {
-            strengthStats = CYAN + "Strength: " + YELLOW + getStrength() + RESET;
-
-        } else if (getStrength() <= 20 && getStrength() >= 1) {
-            strengthStats = CYAN + "Strength: " + RED + getStrength() + RESET;
-
-        }
-
-        return nameStats + "\n" + healthStats + "\n" + strengthStats;
+        return stats;
 
     }
 

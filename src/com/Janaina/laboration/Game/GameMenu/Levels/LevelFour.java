@@ -1,23 +1,24 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.Game.Shop.ShopCategories.Potions;
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Game.Variables.Monsters.Minotaur;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.*;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.playerSpeaking;
 import static com.Janaina.laboration.Resources.PrintHandler.sphinxSpeaking;
-import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelFour {
     private boolean foughtMinotaur = false;
 
-    public void playLevelFour(Player player, Inventory inventory) {
+    public void playLevelFour(Player player, Inventory inventory, Scanners sc) {
 
         sleepThread(GRAY + "Level Four." + RESET);
         chillForASecond(1500);
@@ -40,7 +41,7 @@ public class LevelFour {
                 """ + RESET);
 
         suspensefulDots(".");
-        pressEnter();
+        sc.pressEnter();
 
         int rightPathsChosen = 0;
         int treasuresFound = 0;
@@ -52,7 +53,7 @@ public class LevelFour {
         randomizePaths.add(3);
 
 
-        while (isPlaying && player.isAlive()) {
+        while (isPlaying) {
             Collections.shuffle(randomizePaths);
 
             sleepThread(ORANGE + BOLD + " Choose which path to follow:" + RESET);
@@ -64,13 +65,13 @@ public class LevelFour {
                     """ + RESET);
 
 
-            switch (randomizePaths.get(scannerNumber() - 1)) {
+            switch (randomizePaths.get(sc.scannerNumber() - 1)) {
                 case 1 -> {
                     sleepThread(GRAY + "Walking...\n\uD83D\uDC63\n\uD83D\uDC63\n" + RESET);
                     chillForASecond(1500);
 
                     if (treasuresFound <= 5) {
-                        boolean didFind = findTreasureChest(player, inventory);
+                        boolean didFind = findTreasureChest(player, inventory, sc);
                         if (didFind) {
                             treasuresFound++;
                         }
@@ -79,7 +80,7 @@ public class LevelFour {
 
                         System.out.println(PURPLE_ISH + "Dead end...");
                         sleepThread(GRAY + "Press enter to go back." + RESET);
-                        pressEnterToAttack();
+                        sc.pressEnterToAttack();
 
                     }
 
@@ -93,7 +94,7 @@ public class LevelFour {
                 }
 
                 case 3 -> {
-                    boolean didDefeatMonster = battleMonster(player, inventory);
+                    boolean didDefeatMonster = battleMonster(player, inventory, sc);
 
                     if (!didDefeatMonster && player.isAlive()){
                         sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
@@ -115,7 +116,7 @@ public class LevelFour {
                         """ + RESET);
                 chillForASecond(1000);
 
-                if (sphinxMeeting(player)) {
+                if (sphinxMeeting(player, sc)) {
                     sphinxSpeaking("Impressive, indeed. You have proven your intellect and wit, worthy of the journey ahead.");
                     chillForASecond(500);
                     playerSpeaking("Thank you, Sphinx. Now I need not waste time, I must ensure my sister's freedom", player);
@@ -141,7 +142,7 @@ public class LevelFour {
                     sleepThread(GRAY + "Level four complete." + RESET);
                     player.unlockNewLevel();
                     chillForASecond(1000);
-                    pressEnter();
+                    sc.pressEnter();
 
                 } else {
                     sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
@@ -156,7 +157,7 @@ public class LevelFour {
     }
 
 
-    private boolean battleMonster(Player player, Inventory Inventory) {
+    private boolean battleMonster(Player player, Inventory Inventory, Scanners sc) {
         Random random = new Random();
         int randomValue = random.nextInt(1, 10);
 
@@ -171,7 +172,7 @@ public class LevelFour {
 
             if (secondRandomValue <= 3 && !foughtMinotaur) {
                 Minotaur minotaur = new Minotaur();
-                player.act(minotaur, Inventory);
+                player.act(minotaur, Inventory, sc);
                 if (minotaur.isAlive()) {
                     return false;
                 } else {
@@ -182,7 +183,7 @@ public class LevelFour {
 
             } else {
                 Fury fury = new Fury();
-                player.act(fury, Inventory);
+                player.act(fury, Inventory, sc);
                 return !fury.isAlive();
 
             }
@@ -190,45 +191,35 @@ public class LevelFour {
         } else {
             System.out.println(PURPLE_ISH + "Dead end...");
             sleepThread(GRAY + "Press enter to go back." + RESET);
-            pressEnterToAttack();
+            sc.pressEnterToAttack();
         }
         return true;
 
     }
 
 
-    private boolean findTreasureChest(Player player, Inventory Inventory) {
-
+    private boolean findTreasureChest(Player player, Inventory Inventory, Scanners sc) {
+        Potions potions = new Potions();
         Random random = new Random();
         int randomValue = random.nextInt(1, 10);
 
         switch (randomValue) {
-            case 1 -> {
+            case 1, 2 -> {
                 System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
                 chillForASecond(1000);
                 System.out.println(GRAY + "Press enter to open." + RESET);
-                pressEnterToAttack();
-                System.out.println(WHITE + "You found a large health potion inside the chest!");
-                sleepThread(GRAY + "Large Health Potion has been added to your inventory." + RESET);
-                Inventory.addToPotionsInventory(new ShopProducts("Large Health Potion", "", 50, 0, 100, 0, 0));
+                sc.pressEnterToAttack();
+                ShopProducts potionFound = potions.productList.get(random.nextInt(0, potions.productList.size()));
+                System.out.println(WHITE + "You found a " + potionFound.getName() + " inside the chest!");
+                sleepThread(GRAY + potionFound.getName() + " has been added to your inventory." + RESET);
+                Inventory.addToPotionsInventory(potionFound);
                 return true;
             }
-            case 2, 3 -> {
+            case 3, 4, 5, 6 -> {
                 System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
                 chillForASecond(1000);
                 System.out.println(GRAY + "Press enter to open." + RESET);
-                pressEnterToAttack();
-                System.out.println(WHITE + "You found a small health potion inside the chest!");
-                sleepThread(GRAY + "Small Health Potion has been added to your inventory." + RESET);
-                Inventory.addToPotionsInventory(new ShopProducts("Small Health Potion", "", 30, 0, 50, 0, 0));
-                return true;
-
-            }
-            case 4, 5, 6 -> {
-                System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
-                chillForASecond(1000);
-                System.out.println(GRAY + "Press enter to open." + RESET);
-                pressEnterToAttack();
+                sc.pressEnterToAttack();
                 int amount = random.nextInt(10, 20);
                 System.out.println(WHITE + "You found " + amount + " gold coins inside the chest!\n" + YELLOW + BOLD + "+ " + amount + " Gold");
                 player.setGold(player.getGold() + amount);
@@ -239,7 +230,7 @@ public class LevelFour {
                 System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
                 chillForASecond(1000);
                 System.out.println(GRAY + "Press enter to open." + RESET);
-                pressEnterToAttack();
+                sc.pressEnterToAttack();
                 int amount = random.nextInt(20, 30);
                 System.out.println("You found " + amount + " gold coins!\n" + YELLOW + BOLD + "+ " + amount + " Gold");
                 player.setGold(player.getGold() + amount);
@@ -252,7 +243,7 @@ public class LevelFour {
         return false;
     }
 
-    private boolean sphinxMeeting(Player player) {
+    private boolean sphinxMeeting(Player player, Scanners sc) {
         sphinxSpeaking("Hello " + player.getName() + ". I must express my admiration for the remarkable journey you have undertaken thus far.");
         chillForASecond(500);
         playerSpeaking("I have come here in search for that which my heart desires most.", player);
@@ -270,7 +261,7 @@ public class LevelFour {
         System.out.println(GRAY + "Type 'q' to quit level" + RESET);
 
         while (true) {
-            String playersAnswer = scannerText();
+            String playersAnswer = sc.scannerText();
             String answer = "human";
 
             if (playersAnswer.toLowerCase().contains(answer)) {

@@ -1,6 +1,7 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
 import com.Janaina.laboration.Game.Variables.ACharacters;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.Random;
 
@@ -18,7 +19,7 @@ public class Typhon extends ACharacters {
 
 
     @Override
-    public void attack(ACharacters target) {
+    public void attack(ACharacters target,  Scanners sc) {
         System.out.println(RED_BOLD_BRIGHT + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(RED + "・・*:・:・゜:==≡≡Σ=͟͟͞͞(✡)`Д´\uD80C\uDCF5" + "\n" + RESET );
         chillForASecond(200);

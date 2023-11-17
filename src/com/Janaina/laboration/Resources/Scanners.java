@@ -7,8 +7,35 @@ import java.util.Scanner;
 import static com.Janaina.laboration.Resources.Colors.*;
 
 public class Scanners {
-    public static int scannerNumber() {
-        Scanner sc = new Scanner(System.in);
+
+    static Scanner sc = new Scanner(System.in);
+
+    public int chooseFromGameMenu(){
+        return scannerNumber();
+    }
+    public int chooseFromMainMenu(){
+        return scannerNumber();
+    }
+    public int chooseFromLevelMenu(){
+        return scannerNumber();
+    }
+    public int chooseFromShopMenu(){
+        return scannerNumber();
+    }
+    public int chooseFromWeapons(){
+        return scannerNumber();
+    }
+    public int chooseFromPotions(){
+        return scannerNumber();
+    }
+    public int chooseFromWeaponsInventory(){
+        return scannerNumber();
+    }
+    public int chooseFromPotionsInventory(){
+        return scannerNumber();
+    }
+
+    public int scannerNumber() {
         if (sc.hasNextInt()) {
             return sc.nextInt();
         }
@@ -16,8 +43,7 @@ public class Scanners {
         return scannerNumber();
     }
 
-    public static String scannerText() {
-        Scanner sc = new Scanner(System.in);
+    public String scannerText() {
         if (sc.hasNextInt()) {
             System.out.println("Invalid input, try again!");
             return scannerText();
@@ -27,8 +53,7 @@ public class Scanners {
 
     }
 
-    public static String scannerYesOrNo() {
-        Scanner sc = new Scanner(System.in);
+    public String scannerYesOrNo() {
         String input = sc.nextLine().toLowerCase(Locale.ROOT);
         if (Objects.equals(input, "yes") || Objects.equals(input, "no")) {
             return input;
@@ -39,8 +64,7 @@ public class Scanners {
 
     }
 
-    public static String pressEnter() {
-        Scanner sc = new Scanner(System.in);
+    public String pressEnter() {
         System.out.println("\u001B[37m" + "Press enter to continue." + RESET);
 
         String readString = sc.nextLine();
@@ -55,9 +79,7 @@ public class Scanners {
         return pressEnter();
     }
 
-    public static String pressEnterToAttack() {
-        Scanner sc = new Scanner(System.in);
-
+    public String pressEnterToAttack() {
         String readString = sc.nextLine();
         while(readString!=null) {
 
@@ -70,7 +92,7 @@ public class Scanners {
         return pressEnterToAttack();
     }
 
-    public static int scannerOnlyOneNumber() {
+    public int scannerOnlyOneNumber() {
         int number = scannerNumber();
 
         if (number >= 1 && number <= 9) {

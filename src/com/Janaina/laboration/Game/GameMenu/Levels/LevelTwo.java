@@ -3,17 +3,17 @@ package com.Janaina.laboration.Game.GameMenu.Levels;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Siren;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.*;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
-import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelTwo {
 
-    public void playLevelTwo(Player player, Inventory inventory) {
+    public void playLevelTwo(Player player, Inventory inventory, Scanners sc) {
         Siren siren = new Siren();
 
         while (true){
@@ -34,12 +34,12 @@ public class LevelTwo {
         chillForASecond(1000);
         System.out.println(WHITE + "Would you like to help the old fisherman Krille find his wedding ring?" + RESET);
 
-        if (Objects.equals(scannerYesOrNo().toLowerCase(), "yes")) {
+        if (Objects.equals(sc.scannerYesOrNo().toLowerCase(), "yes")) {
             playerSpeaking("Alright fisherman, I'll find your ring for you", player);
             System.out.println(GREEN_DARK + BOLD + UNDERLINED + "Krille:" + RESET);
             sleepThread(GREEN_DARK + "I would be eternally grateful" + RESET);
 
-            helpKrille();
+            helpKrille(sc);
             System.out.println(GREEN_DARK + BOLD + UNDERLINED + "Krille:" + RESET);
             sleepThread(GREEN_DARK + "My ring! You found it!" + RESET);
             chillForASecond(1000);
@@ -56,7 +56,7 @@ public class LevelTwo {
             suspensefulDots(GRAY + "." + RESET);
 
         } else {
-            buildBoat(player);
+            buildBoat(player, sc);
 
             playerSpeaking("Finally! That took forever!\nThere is no more time to waste, time to face the unknown", player);
             suspensefulDots(".");
@@ -82,25 +82,25 @@ public class LevelTwo {
         playerSpeaking("So be it! If it's a battle you want, it's a battle you'll get! Prepare to face my wrath, sirens!", player);
 
 
-            player.act(siren, inventory);
+            player.act(siren, inventory, sc);
             if (siren.isAlive()) {
                 break;
             }
             siren.revive();
 
-            player.act(siren, inventory);
+            player.act(siren, inventory, sc);
             if (siren.isAlive()) {
                 break;
             }
             siren.revive();
 
-            player.act(siren, inventory);
+            player.act(siren, inventory, sc);
             if (siren.isAlive()) {
                 break;
             }
             siren.revive();
 
-            pressEnter();
+            sc.pressEnter();
             sleepThread(YELLOW + """
                     Having defeated the sirens in a fierce battle, the hero sails onward, determined to reach the Scaled Garden of Stone. \s
                     With the mystical sea guardians now vanquished, his boat plows through the turbulent waves, bringing him one step closer to rescuing his sister from Typhon's clutches. \s
@@ -108,7 +108,7 @@ public class LevelTwo {
                     """);
 
             chillForASecond(1000);
-            pressEnter();
+            sc.pressEnter();
 
             player.unlockNewLevel();
             break;
@@ -118,7 +118,7 @@ public class LevelTwo {
 
     }
 
-    private void buildBoat(Player player) {
+    private void buildBoat(Player player, Scanners sc) {
         System.out.println(GRAY + "rude, but whatever" + RESET);
         chillForASecond(1000);
         Random random = new Random();
@@ -137,7 +137,7 @@ public class LevelTwo {
                 System.out.println(YELLOW + (i + 1) + RESET);
             }
 
-            int choice = scannerNumber();
+            int choice = sc.scannerNumber();
 
             if (choice < 1 || choice > sandPiles.size()) {
                 System.out.println(GRAY + "Invalid choice, please try again" + RESET);
@@ -145,7 +145,7 @@ public class LevelTwo {
                 int chosenPile = sandPiles.get(choice - 1); // Adjust the index
 
                 System.out.print(GRAY + "Press enter to dig: " + RESET);
-                digging(20);
+                digging(20, sc);
 
                 if (chosenPile == correctPile) {
                     System.out.println(GRAY + "Correct!" + RESET);
@@ -160,10 +160,10 @@ public class LevelTwo {
         System.out.println(YELLOW + "You have the materials needed!\n Now since you refused to help an old man you get extra work.");
         sleepThread("Build your boat, " + player.getName());
         System.out.print(GRAY + "Press enter to build: " + RESET);
-        digging(50);
+        digging(50, sc);
     }
 
-    private void helpKrille() {
+    private void helpKrille(Scanners sc) {
         Random random = new Random();
         List<Integer> sandPiles = new ArrayList<>();
 
@@ -180,7 +180,7 @@ public class LevelTwo {
                 System.out.println(YELLOW + (i + 1) + RESET);
             }
 
-            int choice = scannerNumber();
+            int choice = sc.scannerNumber();
 
             if (choice < 1 || choice > sandPiles.size()) {
                 System.out.println(GRAY + "Invalid choice, please try again" + RESET);
@@ -188,7 +188,7 @@ public class LevelTwo {
                 int chosenPile = sandPiles.get(choice - 1); // Adjust the index
 
                 System.out.print(GRAY + "Press enter to dig: " + RESET);
-                digging(20);
+                digging(20, sc);
 
                 if (chosenPile == correctPile) {
                     System.out.println(GRAY + "Correct!" + RESET);
@@ -203,11 +203,11 @@ public class LevelTwo {
     }
 
 
-    private void digging(int requiredMaterials) {
+    private void digging(int requiredMaterials, Scanners sc) {
         int materialsCollected = 0;
 
         while (materialsCollected < requiredMaterials) {
-            pressEnterToAttack();
+            sc.pressEnterToAttack();
             materialsCollected++;
 
             if (materialsCollected == 2){

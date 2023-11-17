@@ -3,18 +3,18 @@ package com.Janaina.laboration.Game.GameMenu.Levels;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Medusa;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.Random;
 
 import static com.Janaina.laboration.Game.Variables.Hero.SpecialAttacks.specialAttackMedusa;
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
-import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelThree {
 
-    public void playLevelThree(Player player, Inventory inventory) {
+    public void playLevelThree(Player player, Inventory inventory, Scanners sc) {
         Medusa medusa = new Medusa();
         Random random = new Random();
         player.setStrength(100);
@@ -30,7 +30,7 @@ public class LevelThree {
         while (true) {
             System.out.println(PURPLE_DARK + "Pick a location to search:\n1\n2\n3" + RESET);
 
-            switch (scannerNumber()) {
+            switch (sc.scannerNumber()) {
                 case 1, 2, 3 -> sleepThread(GRAY + "Searching..." + RESET);
                 default -> printRed("Invalid input, please chose from the presented options");
             }
@@ -40,7 +40,7 @@ public class LevelThree {
             sleepThread(GREEN_DARK + ITALIC + "Do you like them?" + RESET);
             chillForASecond(1000);
             System.out.println(YELLOW + BOLD + "Turn around." + RESET);
-            pressEnterToAttack();
+            sc.pressEnterToAttack();
             chillForASecond(1000);
             medusaSpeaking("Well? What do you think of my beloved collection " + player.getName() + "?");
             playerSpeaking("How do you know my name?", player);
@@ -50,7 +50,7 @@ public class LevelThree {
             chillForASecond(1000);
             System.out.println(YELLOW + "1. 'I'm not here for your collection of lifeless victims, beast'\n2. Stay quiet." + RESET);
 
-            switch (scannerNumber()) {
+            switch (sc.scannerNumber()) {
                 case 1 -> playerSpeaking("I'm not here for your collection of lifeless victims, beast", player);
                 case 2 -> playerSpeaking("...", player);
             }
@@ -58,7 +58,7 @@ public class LevelThree {
             medusaSpeaking("Well, no matter. Your pretty face will make a lovely addition");
             suspensefulDots(GRAY + "." + RESET);
 
-            player.act(medusa, inventory);
+            player.act(medusa, inventory, sc);
             if (medusa.isAlive()) {
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
                 suspensefulDots(PURPLE_LIGHT + "." + RESET);
@@ -83,7 +83,7 @@ public class LevelThree {
                         "0. Give up" + RESET);
 
 
-                switch (scannerNumber()) {
+                switch (sc.scannerNumber()) {
                     case 1 -> {
                         sleepThread(GRAY + "Searching..." + RESET);
                         chillForASecond(1500);
@@ -95,7 +95,7 @@ public class LevelThree {
                         } else {
                             System.out.println(PURPLE_DARK + "You didn't find anything");
                         }
-                        pressEnter();
+                        sc.pressEnter();
                     }
 
                     case 2 -> {
@@ -107,17 +107,17 @@ public class LevelThree {
                             System.out.println(PURPLE_LIGHT + BOLD + "Pick where to search:\n" + PURPLE_DARK +
                                     "1. In the desk\n2. In the supply closet\n3. Beneath the loose floorboard\n4. By the window\n\n0. Go back" + RESET);
 
-                            switch (scannerNumber()) {
+                            switch (sc.scannerNumber()) {
                                 case 1 -> {
                                     sleepThread(GRAY + "Searching..." + RESET);
                                     chillForASecond(1500);
 
-                                    boolean decrypted = scytale();
+                                    boolean decrypted = scytale(sc);
                                     if (decrypted) {
                                         messageFound = true;
                                     }
 
-                                    pressEnter();
+                                    sc.pressEnter();
                                 }
 
                                 case 2 -> {
@@ -132,17 +132,17 @@ public class LevelThree {
                                         System.out.println(PURPLE_DARK + "You didn't find anything");
 
                                     }
-                                    pressEnter();
+                                    sc.pressEnter();
                                 }
 
                                 case 3 -> {
                                     if (keyFound) {
                                         System.out.println(GRAY + "Press enter to use key." + RESET);
-                                        pressEnterToAttack();
+                                        sc.pressEnterToAttack();
 
                                         suspensefulDots(PURPLE_ISH + "." + RESET);
                                         System.out.println(PURPLE_LIGHT + BOLD + "You found the map!" + RESET);
-                                        pressEnter();
+                                        sc.pressEnter();
                                         sleepThread(YELLOW + """
                                                 With the coveted map in hand, the hero's purpose gained newfound clarity. The next destination beckoned, and with a resolute heart, the \s
                                                 hero set forth on the path that would lead him one step closer to rescuing his sister from the clutches of darkness.
@@ -152,7 +152,7 @@ public class LevelThree {
                                         sleepThread(GRAY + "Level three complete." + RESET);
                                         player.unlockNewLevel();
                                         chillForASecond(1000);
-                                        pressEnter();
+                                        sc.pressEnter();
                                         insideConservatory = false;
                                         searching = false;
 
@@ -169,7 +169,7 @@ public class LevelThree {
                                         chillForASecond(1000);
                                         System.out.println(RED + "The chest is locked." + RESET);
                                         chillForASecond(1500);
-                                        pressEnter();
+                                        sc.pressEnter();
                                     }
 
 
@@ -179,7 +179,7 @@ public class LevelThree {
                                     chillForASecond(1500);
                                     sleepThread(PURPLE_DARK + "You didn't find anything besides four snakes engraved on the windshield" + RESET);
                                     chillForASecond(1500);
-                                    pressEnter();
+                                    sc.pressEnter();
 
                                 }
                                 case 0 -> insideConservatory = false;
@@ -207,7 +207,7 @@ public class LevelThree {
                         }
 
                         sleepThread(PURPLE_LIGHT + "A depiction of four keys can be seen engraved in the cement, underneath the flowing water" + RESET);
-                        pressEnter();
+                        sc.pressEnter();
 
                     }
 
@@ -219,7 +219,7 @@ public class LevelThree {
                             sleepThread(RED + "Chop the bitch's head off" + RESET);
                             chillForASecond(500);
 
-                            pressEnter();
+                            sc.pressEnter();
                             suspensefulDots(GRAY + "." + RESET);
                             chillForASecond(500);
                             sleepThread(PURPLE_ISH + "* gruesome details *");
@@ -241,7 +241,7 @@ public class LevelThree {
                             System.out.println(PURPLE_DARK + "You didn't find anything");
                             chillForASecond(500);
                         }
-                        pressEnter();
+                        sc.pressEnter();
 
                     }
 
@@ -258,7 +258,7 @@ public class LevelThree {
         }
     }
 
-    private boolean scytale() {
+    private boolean scytale(Scanners sc) {
 
         boolean usingScytale = true;
         System.out.println(BLUE_PASTEL + "You found a Scytale!" + RESET);
@@ -268,13 +268,13 @@ public class LevelThree {
             System.out.println(BLUE_PASTEL + "1. Use\n0. Go back" + RESET);
 
 
-            switch (scannerNumber()) {
+            switch (sc.scannerNumber()) {
                 case 1 -> {
                     System.out.println(PURPLE_ISH + "Enter text: " + RESET);
-                    String encryptedMessage = scannerText();
+                    String encryptedMessage = sc.scannerText();
 
                     System.out.println(PURPLE_ISH + "Enter key: " + RESET);
-                    int key = scannerOnlyOneNumber();
+                    int key = sc.scannerOnlyOneNumber();
 
                     String decryptedMessage = decryptScytale(encryptedMessage, key);
                     System.out.println(PURPLE_ISH + "Decrypted message: " + PURPLE_DARK + decryptedMessage + RESET);

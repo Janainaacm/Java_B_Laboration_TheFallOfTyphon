@@ -1,13 +1,12 @@
 package com.Janaina.laboration.Game.Variables.Hero;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.Janaina.laboration.Resources.Colors.*;
-import static com.Janaina.laboration.Resources.Scanners.pressEnter;
-import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 
 public class Inventory {
@@ -21,16 +20,16 @@ public class Inventory {
 
     }
 
-    public void playerInventory(Player player){
+    public void playerInventory(Player player, Scanners sc){
         boolean isPlaying = true;
 
         while (isPlaying) {
             System.out.println(BLACK_BACKGROUND + PURPLE_LIGHT + BOLD + "Inventory: " + RESET +
                     PURPLE_LIGHT + "\n1. Weapons\n2. Potions\n0. Go Back" + RESET);
 
-            switch (scannerNumber()) {
-                case 1 -> displayItemsInWeaponsInventory(player);
-                case 2 -> displayItemsInPotionsInventory(player);
+            switch (sc.scannerNumber()) {
+                case 1 -> displayItemsInWeaponsInventory(player, sc);
+                case 2 -> displayItemsInPotionsInventory(player, sc);
                 case 0 -> isPlaying = false;
                 default -> System.out.println(RED_DARK + "Invalid input, please chose from the options presented" + RESET);
 
@@ -49,7 +48,7 @@ public class Inventory {
         potionsList.add(item);
     }
 
-    public void displayItemsInWeaponsInventory(Player player) {
+    public void displayItemsInWeaponsInventory(Player player, Scanners sc) {
         System.out.println(BLACK_BACKGROUND + RED + BOLD + "       Weapons:       " + RESET);
         while (true) {
 
@@ -67,7 +66,7 @@ public class Inventory {
             }
             System.out.println("0. Go Back");
             System.out.println(WHITE + "Enter the number of the weapon you would like to equip" + RESET);
-            int choice = scannerNumber();
+            int choice = sc.chooseFromWeaponsInventory();
 
             if (choice == 0) {
                 break;
@@ -85,7 +84,7 @@ public class Inventory {
             player.setStrength(player.getStrength() + player.equippedWeapon.getStrength());
             player.setDefaultAttack(player.equippedWeapon.getAttackName());
             System.out.println("Strength +" + player.equippedWeapon.getStrength());
-            pressEnter();
+            sc.pressEnter();
             break;
 
         }
@@ -93,7 +92,7 @@ public class Inventory {
     }
 
 
-    public void displayItemsInPotionsInventory(Player player) {
+    public void displayItemsInPotionsInventory(Player player, Scanners sc) {
         while (true) {
 
             System.out.println(BLACK_BACKGROUND + PINK_LIGHT + BOLD + "    Potions:    " + RESET);
@@ -116,7 +115,7 @@ public class Inventory {
             }
             System.out.println("0. Go Back");
             System.out.println(WHITE + "Enter the number of the potion you would like to drink" + RESET);
-            int choice = scannerNumber();
+            int choice = sc.chooseFromPotionsInventory();
 
             if (choice == 0) {
                 break;
@@ -149,7 +148,7 @@ public class Inventory {
             }
 
             potionsList.remove(drinkPotion);
-            pressEnter();
+            sc.pressEnter();
 
             break;
         }

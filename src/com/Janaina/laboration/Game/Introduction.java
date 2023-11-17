@@ -1,6 +1,7 @@
 package com.Janaina.laboration.Game;
 
 import com.Janaina.laboration.Game.Variables.Hero.Player;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
 
 public class Introduction {
 
-    public void createPlayer(Player player) {
+    public void createPlayer(Player player, Scanners sc) {
 
         println(BLACK_BACKGROUND + "                             " + RESET
                 + "\n" + BLACK_BACKGROUND + "     " + PURPLE_LIGHT + BOLD + UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
@@ -22,7 +23,7 @@ public class Introduction {
 
         sleepThread(PURPLE_ISH + "(This game is inspired by and based on greek mythology, for every creature you encounter you will get the chance to learn more about them)");
         suspensefulDots(".");
-        pressEnter();
+        sc.pressEnter();
 
 
         PythiaSpeaking("""
@@ -30,13 +31,13 @@ public class Introduction {
                 My name is Pythia, but you might formally know me as The Oracle of Delphi.\s
                 What is your name?""");
 
-        player.setName(scannerText());
+        player.setName(sc.scannerText());
 
         PythiaSpeaking("Welcome to the land of Elathriya " + player.getName() + ", I will be your guide on this journey");
         suspensefulDots(PURPLE + "." + RESET);
 
         printYellow("Do you wish to know more about Pythia? yes or no");
-        String knowMoreAboutPythia = scannerYesOrNo();
+        String knowMoreAboutPythia = sc.scannerYesOrNo();
 
         if (Objects.equals(knowMoreAboutPythia, "yes")) {
             pythiaBackstory();
@@ -45,9 +46,9 @@ public class Introduction {
         PythiaSpeaking("Would you like a little tour of the game?");
         System.out.println("yes or no");
 
-        if (Objects.equals(scannerYesOrNo(), "yes")) {
+        if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
 
-            initialTourOfGame();
+            initialTourOfGame(sc);
             PythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fifth option of repeating this tour to the main menu.\n");
 
         } else {
@@ -63,7 +64,7 @@ public class Introduction {
 
     }
 
-    public void initialTourOfGame() {
+    public void initialTourOfGame(Scanners sc) {
         println(BLACK_BACKGROUND + "     " + CYAN_BOLD + CYAN_UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
                 + "\n" + BLACK_BACKGROUND + "          " + CYAN_BOLD + "Main Menu" + RESET + BLACK_BACKGROUND + "          " + RESET
                 + "\n" + CYAN_BOLD +
@@ -83,7 +84,7 @@ public class Introduction {
         PythiaSpeaking("Type 1 to enter the game");
 
         while (true) {
-            if (scannerNumber() == 1) {
+            if (sc.scannerNumber() == 1) {
                 //Show Game menu
                 break;
             } else {
@@ -98,7 +99,7 @@ public class Introduction {
         PythiaSpeaking("Type 2 to enter the shop");
 
         while (true) {
-            if (scannerNumber() == 2) {
+            if (sc.scannerNumber() == 2) {
                 //Show shop
                 break;
             } else {

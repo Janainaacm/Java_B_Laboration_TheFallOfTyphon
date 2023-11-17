@@ -8,17 +8,16 @@ import com.Janaina.laboration.Game.Shop.StoreFront;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
-import com.Janaina.laboration.Resources.Colors;
+import com.Janaina.laboration.Resources.Scanners;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
-import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 import static com.Janaina.laboration.Resources.Storyteller.readGameLore;
 import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
 
 public class Storyline {
 
-    public void mainGameMenu(Player player) {
+    public void mainGameMenu(Player player, Scanners sc) {
 
         Introduction intro = new Introduction();
         PlayTheGame playTheGame = new PlayTheGame();
@@ -45,7 +44,7 @@ public class Storyline {
         //lff.playLevelFive(player, inventory);
         //ls.playLevelSix(player, inventory);
 
-        //intro.createPlayer(player);
+        //intro.createPlayer(player, sc);
 
         boolean mainGameMenuSwitch = true;
 
@@ -56,11 +55,11 @@ public class Storyline {
                     + "\n" + CYAN_BOLD +
                     "1. Play\n2. Shop\n3. Read Game Lore\n4. View Tour\n0. Quit Game" + RESET);
 
-            switch (scannerNumber()) {
-                case 1 -> playTheGame.gameMenu(player, playerStats, levelMenu, playerAchievements, inventory);
-                case 2 -> storeFront.mainStoreFront(player, inventory);
-                case 3 -> readGameLore();
-                case 4 -> intro.initialTourOfGame();
+            switch (sc.chooseFromMainMenu()) {
+                case 1 -> playTheGame.gameMenu(player, playerStats, levelMenu, playerAchievements, inventory, sc);
+                case 2 -> storeFront.mainStoreFront(player, inventory, sc);
+                case 3 -> readGameLore(sc);
+                case 4 -> intro.initialTourOfGame(sc);
                 case 0 -> {
                     PythiaSpeaking("Goodbye " + player.getName() + ", may we meet again");
                     suspensefulDots(PURPLE + "." + RESET);

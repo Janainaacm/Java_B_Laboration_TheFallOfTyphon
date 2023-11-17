@@ -4,13 +4,14 @@ public class ShopProducts {
 
     private String name;
     private String attackName;
+    private String animation;
     private int price;
     private int strength;
     private int health;
     private int agility;
     private int intelligence;
 
-    public ShopProducts(String name, String attackName, int price, int strength, int health, int agility, int intelligence) {
+    public ShopProducts(String name, String attackName, String animation, int price, int strength, int health, int agility, int intelligence) {
         this.name = name;
         this.attackName = attackName;
         this.price = price;
@@ -18,8 +19,16 @@ public class ShopProducts {
         this.health = health;
         this.agility = agility;
         this.intelligence = intelligence;
+        this.animation = animation;
     }
 
+    public String getAnimation() {
+        return animation;
+    }
+
+    public void setAnimation(String animation) {
+        this.animation = animation;
+    }
 
     public String getAttackName() {
         return attackName;

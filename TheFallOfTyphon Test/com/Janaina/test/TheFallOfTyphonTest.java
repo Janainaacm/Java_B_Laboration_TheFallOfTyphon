@@ -4,12 +4,26 @@ import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Game.Variables.Monsters.Medusa;
+import com.Janaina.laboration.Resources.Scanners;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class TheFallOfTyphonTest {
+
+    @Mock
+    Scanners scanners;
+
+    @Mock
+    Player player;
+
+
 
     @Test
     public void testPlayerLevelUpMethod(){
@@ -57,19 +71,20 @@ public class TheFallOfTyphonTest {
 
     @Test
     public void playerGetsRewardAfterFight(){
-        Player player1 = new Player();
         Fury fury1 = new Fury();
         Inventory inventory = new Inventory();
-
         //Player stats before
-        int goldBefore = player1.getGold();
-        int xpBefore = player1.getExperience();
-
+        int goldBefore = player.getGold();
+        int xpBefore = player.getExperience();
+        when(player.playerWins(fury1)).thenReturn(true);
 
     }
 
 
+    @Test
+    public void setShopWeaponsMenu() {
+        when(scanners.chooseFromMainMenu()).thenReturn(2);
+        when(scanners.chooseFromShopMenu()).thenReturn(2);
 
-
-
+    }
 }

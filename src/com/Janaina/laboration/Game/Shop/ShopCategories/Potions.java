@@ -3,28 +3,27 @@ package com.Janaina.laboration.Game.Shop.ShopCategories;
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.Colors.RESET;
-import static com.Janaina.laboration.Resources.Scanners.pressEnter;
-import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 
 public class Potions {
 
     public int total = 0;
-    public void shopPotions(ACharacters player, Inventory Inventory) {
+    public List<ShopProducts> productList = new ArrayList<>();
+
+    public void shopPotions(ACharacters player, Inventory Inventory, Scanners sc) {
 
         //String name, int price, int strength, int health, int agility, int intelligence
-        List<ShopProducts> productList = new ArrayList<>();
-        productList.add(new ShopProducts("Small Health Potion", "", 30,0,50,0,0));
-        productList.add(new ShopProducts("Large Health Potion","", 50,0,100,0,0));
-        productList.add(new ShopProducts("Flexibility potion","", 50,0,0,5,0));
-        productList.add(new ShopProducts("Strength potion", "",50,5,0,0,0));
-
+        productList.add(new ShopProducts("Small Health Potion", "", "⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆", 30, 0, 50, 0, 0));
+        productList.add(new ShopProducts("Large Health Potion", "", "⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆", 50, 0, 100, 0, 0));
+        productList.add(new ShopProducts("Flexibility potion", "", "❥⁺⋆༺.*₊˚࿐༅", 50, 0, 0, 5, 0));
+        productList.add(new ShopProducts("Strength potion", "", "❥⁺⋆༺.*₊˚࿐༅", 50, 5, 0, 0, 0));
 
 
         while (true) {
@@ -34,12 +33,12 @@ public class Potions {
             for (int i = 0; i < productList.size(); i++) {
                 ShopProducts product = productList.get(i);
                 System.out.println(PINK_LIGHT + BOLD + (i + 1) + ". " + product.getName() + RESET + YELLOW_DARK + " - $" + product.getPrice() + RESET);
-                if (product.getHealth() > 0){
-                    System.out.println(GRAY + ITALIC + "Health: " + product.getHealth()+ RESET);
-                }else if (product.getStrength() > 0){
-                    System.out.println(GRAY + ITALIC + "Strength: " + product.getStrength()+ RESET);
-                }else if (product.getAgility() > 0 ){
-                    System.out.println(GRAY + ITALIC + "Agility: " + product.getAgility()+ RESET);
+                if (product.getHealth() > 0) {
+                    System.out.println(GRAY + ITALIC + "Health: " + product.getHealth() + RESET);
+                } else if (product.getStrength() > 0) {
+                    System.out.println(GRAY + ITALIC + "Strength: " + product.getStrength() + RESET);
+                } else if (product.getAgility() > 0) {
+                    System.out.println(GRAY + ITALIC + "Agility: " + product.getAgility() + RESET);
                 }
 
             }
@@ -47,7 +46,7 @@ public class Potions {
 
             chillForASecond(500);
             System.out.println(GRAY + "Enter the number of the item you would like to purchase" + RESET);
-            int choice = scannerNumber();
+            int choice = sc.chooseFromPotions();
 
             if (choice == 0) {
                 break;
@@ -66,11 +65,11 @@ public class Potions {
                 System.out.println(PINK_DARK + BOLD + "Gold: -" + selectedProduct.getPrice());
                 System.out.println(WHITE + selectedProduct.getName() + " has been added to your Inventory." + RESET);
                 Inventory.addToPotionsInventory(selectedProduct);
-                pressEnter();
+                sc.pressEnter();
             } else {
                 System.out.println(RED + "Insufficient funds to buy " + selectedProduct.getName() + RESET);
             }
-
         }
+    }
 
-    }}
+}

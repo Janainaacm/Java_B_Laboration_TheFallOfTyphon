@@ -3,13 +3,13 @@ package com.Janaina.laboration.Game.GameMenu.Levels;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Cerberus;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.Objects;
 import java.util.Random;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
-import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 
@@ -20,7 +20,7 @@ public class LevelFive {
     private final String[] SYMBOL_MEANINGS = {"God of Thunder", "Goddess of the Earth", "God of the Sea", "God of Women and Family", "Goddess of Harvest"};
 
 
-    public void playLevelFive(Player player, Inventory inventory) {
+    public void playLevelFive(Player player, Inventory inventory, Scanners sc) {
         Cerberus cerberus = new Cerberus();
 
         while (true) {
@@ -44,11 +44,11 @@ public class LevelFive {
             chillForASecond(1000);
 
             System.out.println(PURPLE_ISH + "Remember to keep track of both piles, only evaluate when you are sure they are the same" + RESET);
-            pressEnter();
+            sc.pressEnter();
 
 
 
-            if (!challenge()) {
+            if (!challenge(sc)) {
                 break;
             }
 
@@ -71,7 +71,7 @@ public class LevelFive {
             cerberusSpeaking("I will enjoy ripping you apart, and devouring you piece by piece");
             chillForASecond(1000);
 
-            player.act(cerberus, inventory);
+            player.act(cerberus, inventory, sc);
             if (cerberus.isAlive()) {
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
                 suspensefulDots(PURPLE_LIGHT + "." + RESET);
@@ -89,7 +89,7 @@ public class LevelFive {
 
             suspensefulDots(GRAY + "." + RESET);
             chillForASecond(1000);
-            openTheGates();
+            openTheGates(sc);
 
 
             sleepThread(YELLOW + "\nThe gates yielded open with a loud creek, exposing a wall covered in shiny black\n" +
@@ -99,14 +99,14 @@ public class LevelFive {
             suspensefulDots(GRAY + ".");
             sleepThread("You have completed level five." + RESET);
             player.unlockNewLevel();
-            pressEnter();
+            sc.pressEnter();
             break;
         }
 
 
     }
 
-    private boolean challenge() {
+    private boolean challenge(Scanners sc) {
         Random random = new Random();
 
         int virtuousWeight = 0;
@@ -126,7 +126,7 @@ public class LevelFive {
 
             while (choosing) {
 
-                switch (scannerNumber()) {
+                switch (sc.scannerNumber()) {
                     case 1 -> {
                         System.out.println(GRAY + ITALIC + randomWeight + " has been added on the virtuous scale" + RESET);
                         virtuousWeight += randomWeight;
@@ -149,7 +149,7 @@ public class LevelFive {
             System.out.println(GREEN_LIGHT + "1. Get a new token\n2. Evaluate balance\n0. Quit level" + RESET);
 
             while (choosing) {
-                switch (scannerNumber()) {
+                switch (sc.scannerNumber()) {
                     case 1 -> {
                         System.out.println(GREEN_DIRTY + ITALIC + "Your number is:");
                         choosing = false;
@@ -157,7 +157,7 @@ public class LevelFive {
 
                     case 2 -> {
                         System.out.println(GREEN_LIGHT + ITALIC + "Are you sure?" + RESET);
-                        String choice = scannerYesOrNo();
+                        String choice = sc.scannerYesOrNo();
                         if (Objects.equals(choice, "yes")) {
                             chillForASecond(1000);
                             return evaluateBalance(virtuousWeight, shadowWeight);
@@ -190,7 +190,7 @@ public class LevelFive {
         }
     }
 
-    private void openTheGates() {
+    private void openTheGates(Scanners sc) {
         String[] playerCombination = new String[CORRECT_SEQUENCE.length];
 
         while (true) {
@@ -199,7 +199,7 @@ public class LevelFive {
 
             for (int i = 0; i < CORRECT_SEQUENCE.length; i++) {
                 System.out.println(PURPLE + SYMBOL_MEANINGS[i] + ": " + RESET);
-                playerCombination[i] = scannerText();
+                playerCombination[i] = sc.scannerText();
             }
 
             if (isSigilCombinationCorrect(playerCombination)) {

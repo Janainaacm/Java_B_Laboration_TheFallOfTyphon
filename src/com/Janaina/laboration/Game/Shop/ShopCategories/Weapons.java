@@ -3,30 +3,29 @@ package com.Janaina.laboration.Game.Shop.ShopCategories;
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.Janaina.laboration.Resources.Colors.*;
-import static com.Janaina.laboration.Resources.Scanners.pressEnter;
-import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 
 public class Weapons {
 
     public int total = 0;
-    public void shopWeapons(ACharacters player, Inventory Inventory) {
+    public void shopWeapons(ACharacters player, Inventory Inventory, Scanners sc) {
         //String name, int price, int strength, int health, int agility, int intelligence
         List<ShopProducts> productList = new ArrayList<>();
-        productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", 120, 10, 0,0,0));
-        productList.add(new ShopProducts("Shadowfang Blade", "Dark Eclipse", 140, 11, 0,0,0));
-        productList.add(new ShopProducts("Cursed Scythe", "Reaper's Grasp", 150, 12, 0,0,0));
-        productList.add(new ShopProducts("Oceanic Trident", "Abyssal Torrent", 180, 15, 0, 0, 0));
-        productList.add(new ShopProducts("Phoenix Bow","Flaming Arrow Barrage", 200,18,0,0,0));
-        productList.add(new ShopProducts("Thunderstrike Hammer", "Lightning Hammerblow", 220,20,0,0,0));
+        productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", "+—⟪═════>", 120, 10, 0,0,0));
+        productList.add(new ShopProducts("Shadowfang Blade", "Dark Eclipse", "▭▭ι═══════ﺤ", 140, 11, 0,0,0));
+        productList.add(new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 150, 12, 0,0,0));
+        productList.add(new ShopProducts("Oceanic Trident", "Abyssal Torrent", "——————∈ ࿐ ࿔", 180, 15, 0, 0, 0));
+        productList.add(new ShopProducts("Phoenix Bow","Flaming Arrow Barrage", "ˎ-·˚ ༘₊· ͟͟͞͞➳", 200,18,0,0,0));
+        productList.add(new ShopProducts("Thunderstrike Hammer", "Lightning Hammerblow", "⌁˚⊹｡ﾟϟﾟ.｡⊹˚⌁", 220,20,0,0,0));
 
         if (player.getLevel() >= 10){
-            productList.add(new ShopProducts("Glock-19", "Kurdiska räven", 1000, 100, 0, 0, 0));
+            productList.add(new ShopProducts("Glock-19", "Kurdiska räven", "ᡕᠵ᠊ᡃ࡚ࠢ࠘ ⸝່ࠡࠣ᠊߯᠆ࠣ࠘ᡁࠣ࠘᠊᠊ࠢ࠘\uD802\uDC4F  \uD81A\uDCD3 \uD81A\uDCE8", 1000, 100, 0, 0, 0));
 
         }
 
@@ -44,7 +43,7 @@ public class Weapons {
 
             chillForASecond(1000);
             System.out.println(GRAY + "Enter the number of the item you would like to purchase" + RESET);
-            int choice = scannerNumber();
+            int choice = sc.chooseFromWeapons();
 
             if (choice == 0){
                 break;
@@ -64,10 +63,10 @@ public class Weapons {
                 System.out.println(WHITE + selectedProduct.getName() + " has been added to your Inventory." + RESET);
                 Inventory.addToWeaponsInventory(selectedProduct);
                 productList.remove(selectedProduct);
-                pressEnter();
+                sc.pressEnter();
             } else {
                 System.out.println(RED + "Insufficient funds to buy " + selectedProduct.getName() + RESET);
-                pressEnter();
+                sc.pressEnter();
             }
 
 

@@ -5,17 +5,16 @@ import com.Janaina.laboration.Game.GameMenu.PlayerAchievements.GetPlayerAchievem
 import com.Janaina.laboration.Game.GameMenu.PlayerStats.GetPlayerStats;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
+import com.Janaina.laboration.Resources.Scanners;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.printRed;
 import static com.Janaina.laboration.Resources.PrintHandler.println;
-import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
+
 
 public class PlayTheGame {
 
-    public void gameMenu(Player player, GetPlayerStats PlayerStats, LevelMenu LevelMenu, GetPlayerAchievements GetPlayerAchievements, Inventory Inventory){
-
-
+    public void gameMenu(Player player, GetPlayerStats PlayerStats, LevelMenu LevelMenu, GetPlayerAchievements GetPlayerAchievements, Inventory Inventory, Scanners sc){
 
         boolean isChoosingFromGameMenu = true;
         do {
@@ -24,11 +23,11 @@ public class PlayTheGame {
                     + "\n" + PURPLE_DARK + BOLD +
                     "1. Levels\n2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
 
-            switch (scannerNumber()) {
-                case 1 -> LevelMenu.levelMenu(player, Inventory);
-                case 2 -> PlayerStats.currentStats(player);
-                case 3 -> GetPlayerAchievements.playerAchievements(player);
-                case 4 -> Inventory.playerInventory(player);
+            switch (sc.chooseFromGameMenu()) {
+                case 1 -> LevelMenu.levelMenu(player, Inventory, sc);
+                case 2 -> PlayerStats.currentStats(player, sc);
+                case 3 -> GetPlayerAchievements.playerAchievements(player, sc);
+                case 4 -> Inventory.playerInventory(player, sc);
                 case 0 -> isChoosingFromGameMenu = false;
                 default -> printRed("Invalid input, please chose from the presented options");
             }

@@ -4,15 +4,14 @@ import com.Janaina.laboration.Game.Shop.ShopCategories.Potions;
 import com.Janaina.laboration.Game.Shop.ShopCategories.Weapons;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
+import com.Janaina.laboration.Resources.Scanners;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.printRed;
-import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 
 public class StoreFront {
 
-    //Make Kris merchant
-    public void mainStoreFront(Player player, Inventory Inventory) {
+    public void mainStoreFront(Player player, Inventory Inventory, Scanners sc) {
         Weapons Weapons = new Weapons();
         Potions Potions = new Potions();
 
@@ -25,9 +24,9 @@ public class StoreFront {
                     "\n" + WHITE + "1. Weapons\n2. Potions" + RESET);
             System.out.println(WHITE + "0. Go back" + RESET);
 
-            switch (scannerNumber()) {
-                case 1 -> Weapons.shopWeapons(player, Inventory);
-                case 2 -> Potions.shopPotions(player, Inventory);
+            switch (sc.chooseFromShopMenu()) {
+                case 1 -> Weapons.shopWeapons(player, Inventory, sc);
+                case 2 -> Potions.shopPotions(player, Inventory, sc);
                 case 0 -> { isShopping = false;
                 }
                 default -> printRed("Invalid input, please chose from the presented options");

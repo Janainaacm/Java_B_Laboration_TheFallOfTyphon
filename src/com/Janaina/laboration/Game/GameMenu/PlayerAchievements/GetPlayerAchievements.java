@@ -3,19 +3,19 @@ package com.Janaina.laboration.Game.GameMenu.PlayerAchievements;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.*;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.Objects;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.printRed;
-import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.Storyteller.*;
 import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class GetPlayerAchievements {
 
-    public void playerAchievements(Player player) {
+    public void playerAchievements(Player player, Scanners sc) {
         Fury fury = new Fury();
         Siren siren = new Siren();
         Medusa medusa = new Medusa();
@@ -78,45 +78,45 @@ public class GetPlayerAchievements {
 
             System.out.println(PINK_LIGHT + BOLD + "0. Go back" + RESET);
 
-            switch (scannerNumber()) {
+            switch (sc.scannerNumber()) {
                 case 1 -> {
                     if (player.furiesSlayed >= 1 || player.getAvailableLevels() >= 2) {
-                        furyStats(player, fury);
+                        furyStats(player, fury, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 2 -> {
                     if (player.sirensSlayed >= 1 || player.getAvailableLevels() >= 2) {
-                        sirensStats(player, siren);
+                        sirensStats(player, siren, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 3 -> {
                     if (player.medusaSlayed >= 1 || player.getAvailableLevels() >= 3) {
-                        medusaStats(player, medusa);
+                        medusaStats(player, medusa, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 4 -> {
                     if (player.minotaurSlayed >= 1 || player.getAvailableLevels() >= 4) {
-                        minotaurStats(player, minotaur);
+                        minotaurStats(player, minotaur, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 5 -> {
                     if (player.cerberusSlayed >= 1 || player.getAvailableLevels() >= 5) {
-                        cerberusStats(player, cerberus);
+                        cerberusStats(player, cerberus, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 6 -> {
                     if (player.typhonSlayed >= 1 || player.getAvailableLevels() >= 6) {
-                        typhonStats(player, typhon);
+                        typhonStats(player, typhon, sc);
                     } else {
                         printRed("Invalid input");
                     }
@@ -128,7 +128,7 @@ public class GetPlayerAchievements {
     }
 
 
-    private void furyStats(Player player, ACharacters monster) {
+    private void furyStats(Player player, ACharacters monster, Scanners sc) {
 
         if (player.furiesSlayed >= 1) {
             System.out.println(BLACK_BACKGROUND + "            " + RED + BOLD + UNDERLINED + "Fury" + RESET + BLACK_BACKGROUND + "            " + RESET
@@ -143,9 +143,10 @@ public class GetPlayerAchievements {
 
             sleepThread(YELLOW + "Would you like to read more about " + monster.getName() + "?" + RESET);
 
-            if (Objects.equals(scannerYesOrNo(), "yes")) {
+            if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
                 furyBackstory();
                 chillForASecond(1000);
+                sc.pressEnter();
             } else {
                 chillForASecond(1000);
             }
@@ -154,10 +155,10 @@ public class GetPlayerAchievements {
             sleepThread(GRAY + "You have not defeated this monster yet" + RESET);
             chillForASecond(1000);
         }
-        pressEnter();
+        sc.pressEnter();
     }
 
-    private void sirensStats(Player player, ACharacters monster) {
+    private void sirensStats(Player player, ACharacters monster, Scanners sc) {
 
         if (player.sirensSlayed >= 1) {
             System.out.println(BLACK_BACKGROUND + "            " + CYAN_BOLD_BRIGHT + CYAN_UNDERLINED + "Siren" + RESET + BLACK_BACKGROUND + "            " + RESET
@@ -172,9 +173,10 @@ public class GetPlayerAchievements {
 
             sleepThread(YELLOW + "Would you like to read more about " + monster.getName() + "?" + RESET);
 
-            if (Objects.equals(scannerYesOrNo(), "yes")) {
+            if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
                 sirenBackstory();
                 chillForASecond(1000);
+                sc.pressEnter();
             } else {
                 chillForASecond(1000);
             }
@@ -183,11 +185,11 @@ public class GetPlayerAchievements {
             sleepThread(GRAY + "You have not defeated this monster yet" + RESET);
             chillForASecond(1000);
         }
-        pressEnter();
+        sc.pressEnter();
     }
 
 
-    private void medusaStats(Player player, ACharacters monster) {
+    private void medusaStats(Player player, ACharacters monster, Scanners sc) {
         if (player.medusaSlayed >= 1) {
             System.out.println(BLACK_BACKGROUND + "            " + GREEN_DARK + BOLD + UNDERLINED + "Medusa" + RESET + BLACK_BACKGROUND + "            " + RESET
                     + GREEN_DARK + ITALIC + "\nMedusa's killed: " + player.medusaSlayed + RESET
@@ -201,9 +203,10 @@ public class GetPlayerAchievements {
 
             sleepThread(YELLOW + "Would you like to read more about " + monster.getName() + "?" + RESET);
 
-            if (Objects.equals(scannerYesOrNo(), "yes")) {
+            if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
                 medusaBackstory();
                 chillForASecond(1000);
+                sc.pressEnter();
             } else {
                 chillForASecond(1000);
             }
@@ -212,10 +215,10 @@ public class GetPlayerAchievements {
             sleepThread(GRAY + "You have not defeated this monster yet" + RESET);
             chillForASecond(1000);
         }
-        pressEnter();
+        sc.pressEnter();
     }
 
-    private void minotaurStats(Player player, ACharacters monster) {
+    private void minotaurStats(Player player, ACharacters monster, Scanners sc) {
         if (player.minotaurSlayed >= 1) {
             System.out.println(BLACK_BACKGROUND + "           " + ORANGE + BOLD + UNDERLINED + "Minotaur" + RESET + BLACK_BACKGROUND + "           " + RESET
                     + ORANGE + ITALIC + "\nMinotaur's killed: " + player.minotaurSlayed + RESET
@@ -229,9 +232,10 @@ public class GetPlayerAchievements {
 
             sleepThread(YELLOW + "Would you like to read more about " + monster.getName() + "?" + RESET);
 
-            if (Objects.equals(scannerYesOrNo(), "yes")) {
+            if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
                 minotaurBackstory();
                 chillForASecond(1000);
+                sc.pressEnter();
             } else {
                 chillForASecond(1000);
             }
@@ -240,10 +244,10 @@ public class GetPlayerAchievements {
             sleepThread(GRAY + "You have not defeated this monster yet" + RESET);
             chillForASecond(1000);
         }
-        pressEnter();
+        sc.pressEnter();
     }
 
-    private void cerberusStats(Player player, ACharacters monster) {
+    private void cerberusStats(Player player, ACharacters monster, Scanners sc) {
         if (player.cerberusSlayed >= 1) {
             System.out.println(BLACK_BACKGROUND + "           " + RED + BOLD + UNDERLINED + "Cerberus" + RESET + BLACK_BACKGROUND + "           " + RESET
                     + RED_LILDARKER + ITALIC + "\nCerberus killed: " + player.cerberusSlayed + RESET
@@ -257,9 +261,10 @@ public class GetPlayerAchievements {
 
             sleepThread(YELLOW + "Would you like to read more about " + monster.getName() + "?" + RESET);
 
-            if (Objects.equals(scannerYesOrNo(), "yes")) {
+            if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
                 cerberusBackstory();
                 chillForASecond(1000);
+                sc.pressEnter();
             } else {
                 chillForASecond(1000);
             }
@@ -268,10 +273,10 @@ public class GetPlayerAchievements {
             sleepThread(GRAY + "You have not defeated this monster yet" + RESET);
             chillForASecond(1000);
         }
-        pressEnter();
+        sc.pressEnter();
     }
 
-    private void typhonStats(Player player, ACharacters monster) {
+    private void typhonStats(Player player, ACharacters monster, Scanners sc) {
         if (player.typhonSlayed >= 1) {
             System.out.println(BLACK_BACKGROUND + "           " + RED + BOLD + UNDERLINED + "Typhon" + RESET + BLACK_BACKGROUND + "           " + RESET
                     + RED_LILDARKER + ITALIC + "\nTyphon's killed: " + player.typhonSlayed + RESET
@@ -285,9 +290,10 @@ public class GetPlayerAchievements {
 
             sleepThread(YELLOW + "Would you like to read more about " + monster.getName() + "?" + RESET);
 
-            if (Objects.equals(scannerYesOrNo(), "yes")) {
+            if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
                 typhonBackstory();
                 chillForASecond(1000);
+                sc.pressEnter();
             } else {
                 chillForASecond(1000);
             }
@@ -296,7 +302,7 @@ public class GetPlayerAchievements {
             sleepThread(GRAY + "You have not defeated this monster yet" + RESET);
             chillForASecond(1000);
         }
-        pressEnter();
+        sc.pressEnter();
     }
 
 

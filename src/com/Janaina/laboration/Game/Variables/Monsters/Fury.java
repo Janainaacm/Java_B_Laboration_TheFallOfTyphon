@@ -1,6 +1,7 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
 import com.Janaina.laboration.Game.Variables.ACharacters;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.Random;
 
@@ -18,7 +19,7 @@ public class Fury extends ACharacters {
 
 
     @Override
-    public void attack(ACharacters player) {
+    public void attack(ACharacters player,  Scanners sc) {
         System.out.println(RED + BOLD + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(RED + "ﮩ٨ـﮩﮩ٨ـﮩ٨ـﮩﮩ٨" + "\n" + RESET );
         chillForASecond(200);

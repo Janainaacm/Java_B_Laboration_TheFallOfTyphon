@@ -2,13 +2,13 @@ package com.Janaina.laboration.Game.GameMenu.Levels;
 
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
+import com.Janaina.laboration.Resources.Scanners;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
-import static com.Janaina.laboration.Resources.Scanners.scannerNumber;
 
 public class LevelMenu {
-    public void levelMenu(Player player, Inventory Inventory) {
+    public void levelMenu(Player player, Inventory Inventory, Scanners sc) {
         LevelOne LevelOne = new LevelOne();
         LevelTwo LevelTwo = new LevelTwo();
         LevelThree LevelThree = new LevelThree();
@@ -57,39 +57,39 @@ public class LevelMenu {
             printCyan("0. Go back");
 
 
-            switch (scannerNumber()) {
-                case 1 -> LevelOne.playLevelOne(player, Inventory);
+            switch (sc.chooseFromLevelMenu()) {
+                case 1 -> LevelOne.playLevelOne(player, Inventory, sc);
                 case 2 -> {
                     if (player.getAvailableLevels() > 1) {
-                        LevelTwo.playLevelTwo(player, Inventory);
+                        LevelTwo.playLevelTwo(player, Inventory, sc);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }
                 }
                 case 3 -> {
                     if (player.getAvailableLevels() > 2) {
-                        LevelThree.playLevelThree(player, Inventory);
+                        LevelThree.playLevelThree(player, Inventory, sc);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }
                 }
                 case 4 -> {
                     if (player.getAvailableLevels() > 3) {
-                        LevelFour.playLevelFour(player, Inventory);
+                        LevelFour.playLevelFour(player, Inventory, sc);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }
                 }
                 case 5 -> {
                     if (player.getAvailableLevels() > 4) {
-                        LevelFive.playLevelFive(player, Inventory);
+                        LevelFive.playLevelFive(player, Inventory, sc);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }
                 }
                 case 6 -> {
                     if (player.getAvailableLevels() > 5) {
-                        LevelSix.playLevelSix(player, Inventory);
+                        LevelSix.playLevelSix(player, Inventory, sc);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }

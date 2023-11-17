@@ -3,12 +3,10 @@ package com.Janaina.laboration.Game.Variables.Hero;
 public class Attacks {
     private String name;
     private int damage;
-    private boolean isAcquired;
 
-    public Attacks(String name, int damage, boolean isAcquired) {
+    public Attacks(String name, int damage) {
         this.name = name;
         this.damage = damage;
-        this.isAcquired = isAcquired;
     }
 
     public String getName() {
@@ -27,11 +25,4 @@ public class Attacks {
         this.damage = damage;
     }
 
-    public boolean isAcquired() {
-        return isAcquired;
-    }
-
-    public void setAcquired(boolean acquired) {
-        isAcquired = acquired;
-    }
 }

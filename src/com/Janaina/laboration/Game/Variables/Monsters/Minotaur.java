@@ -1,6 +1,7 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
 import com.Janaina.laboration.Game.Variables.ACharacters;
+import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.Random;
 
@@ -17,7 +18,7 @@ public class Minotaur extends ACharacters {
 
 
     @Override
-    public void attack(ACharacters target) {
+    public void attack(ACharacters target,  Scanners sc) {
         System.out.println(BLUE + BOLD + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(BLUE + "炎炎炎炎炎炎" + "\n" + RESET);
         chillForASecond(200);

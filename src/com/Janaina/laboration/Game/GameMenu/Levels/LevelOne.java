@@ -3,19 +3,20 @@ package com.Janaina.laboration.Game.GameMenu.Levels;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
+import com.Janaina.laboration.Resources.Scanners;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.furySpeaking;
 import static com.Janaina.laboration.Resources.PrintHandler.playerSpeaking;
-import static com.Janaina.laboration.Resources.Scanners.pressEnter;
+
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelOne {
 
-    public void playLevelOne(Player player, Inventory inventory) {
+    public void playLevelOne(Player player, Inventory inventory, Scanners sc) {
         Fury fury = new Fury();
 
-
+/*
         sleepThread(YELLOW + "In the heart of ancient Greece, our hero " + player.getName() + " stands ready to embark on a perilous journey. His beloved sister Althea, has been captured by the monstrous Typhon. \n" +
                 "With unwavering determination, he sets forth to rescue her from the clutches of darkness. But as night's chilling embrace tightens, \nthe faint sound of heavy breathing slowly emerges from the shadows.\n" + RESET);
 
@@ -32,11 +33,13 @@ public class LevelOne {
 
 
 
+ */
+
         while (true) {
 
             int fightFuries = 0;
             while (fightFuries < 3){
-                player.act(fury, inventory);
+                player.act(fury, inventory, sc);
                 if (fury.isAlive()) {
                     break;
                 }
@@ -82,7 +85,7 @@ public class LevelOne {
             suspensefulDots(GRAY + "." + RESET);
             chillForASecond(500);
             sleepThread(GRAY + "You have completed level one." + RESET);
-            pressEnter();
+            sc.pressEnter();
 
 
             player.unlockNewLevel();
