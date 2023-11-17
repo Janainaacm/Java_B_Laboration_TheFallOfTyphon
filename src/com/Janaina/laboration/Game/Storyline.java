@@ -21,11 +21,11 @@ public class Storyline {
     public void mainGameMenu(Player player) {
 
         Introduction intro = new Introduction();
-        PlayTheGame PlayTheGame = new PlayTheGame();
-        StoreFront StoreFront = new StoreFront();
+        PlayTheGame playTheGame = new PlayTheGame();
+        StoreFront storeFront = new StoreFront();
         LevelMenu mn = new LevelMenu();
-        GetPlayerStats PlayerStats = new GetPlayerStats();
-        LevelMenu LevelMenu = new LevelMenu();
+        GetPlayerStats playerStats = new GetPlayerStats();
+        LevelMenu levelMenu = new LevelMenu();
         GetPlayerAchievements playerAchievements = new GetPlayerAchievements();
         Inventory inventory = new Inventory();
         Fury fury = new Fury();
@@ -34,7 +34,8 @@ public class Storyline {
         LevelThree ltt = new LevelThree();
         LevelFive lff = new LevelFive();
         LevelSix ls = new LevelSix();
-        playerAchievements.playerAchievements(player);
+        //playerAchievements.playerAchievements(player);
+        //playerStats.currentStats(player);
         //lt.playLevelTwo(player, inventory);
         //player.setGold(200);
         //StoreFront.mainStoreFront(player, inventory);
@@ -47,6 +48,7 @@ public class Storyline {
         //intro.createPlayer(player);
 
         boolean mainGameMenuSwitch = true;
+
         do {
 
             println(BLACK_BACKGROUND + "     " + CYAN_BOLD + CYAN_UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
@@ -55,8 +57,8 @@ public class Storyline {
                     "1. Play\n2. Shop\n3. Read Game Lore\n4. View Tour\n0. Quit Game" + RESET);
 
             switch (scannerNumber()) {
-                case 1 -> PlayTheGame.gameMenu(player, PlayerStats, LevelMenu, playerAchievements, inventory);
-                case 2 -> StoreFront.mainStoreFront(player, inventory);
+                case 1 -> playTheGame.gameMenu(player, playerStats, levelMenu, playerAchievements, inventory);
+                case 2 -> storeFront.mainStoreFront(player, inventory);
                 case 3 -> readGameLore();
                 case 4 -> intro.initialTourOfGame();
                 case 0 -> {

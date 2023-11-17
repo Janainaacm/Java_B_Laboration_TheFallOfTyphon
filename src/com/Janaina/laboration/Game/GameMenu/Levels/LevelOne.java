@@ -35,7 +35,7 @@ public class LevelOne {
         while (true) {
 
             int fightFuries = 0;
-            while (fightFuries <= 3){
+            while (fightFuries < 3){
                 player.act(fury, inventory);
                 if (fury.isAlive()) {
                     break;

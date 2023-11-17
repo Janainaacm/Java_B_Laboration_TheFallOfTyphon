@@ -13,10 +13,10 @@ public class Player extends ACharacters {
 
     public List<Attacks> specialAttackList;
     public ShopProducts equippedWeapon;
-    private int availableLevels = 3;
+    private int availableLevels = 5;
 
-    public int furiesSlayed = 1;
-    public int sirensSlayed = 1;
+    public int furiesSlayed = 0;
+    public int sirensSlayed = 0;
     public int medusaSlayed = 0;
     public int minotaurSlayed = 0;
     public int cerberusSlayed = 0;
@@ -93,6 +93,7 @@ public class Player extends ACharacters {
             System.out.println(PURPLE_BOLD_BRIGHT + "You managed to slay " + monster.getName() + "!" + RESET);
             chillForASecond(1000);
             System.out.println(YELLOW_BOLD + "+ " + monster.getGold() + " Gold");
+            setGold(getGold() + monster.getGold());
             chillForASecond(1000);
             System.out.println("+ " + monster.getExperience() + " XP" + RESET);
             chillForASecond(1000);

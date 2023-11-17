@@ -50,13 +50,25 @@ public class TheFallOfTyphonTest {
     public void testIfFightEndsWhenMonsterDies(){
         Player player1 = new Player();
         Fury fury1 = new Fury();
-        Inventory Inventory = new Inventory();
 
-        fury1.setHealth(0);
+        assertEquals(!fury1.isAlive(), player1.playerWins(fury1));
 
+    }
+
+    @Test
+    public void playerGetsRewardAfterFight(){
+        Player player1 = new Player();
+        Fury fury1 = new Fury();
+        Inventory inventory = new Inventory();
+
+        //Player stats before
+        int goldBefore = player1.getGold();
+        int xpBefore = player1.getExperience();
 
 
     }
+
+
 
 
 

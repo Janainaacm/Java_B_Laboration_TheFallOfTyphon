@@ -17,6 +17,7 @@ public class LevelThree {
     public void playLevelThree(Player player, Inventory inventory) {
         Medusa medusa = new Medusa();
         Random random = new Random();
+        player.setStrength(100);
 
         sleepThread(YELLOW + """
                 The garden exuded an eerie aura, its moonlit stone statues seemingly coming to life, their watchful eyes unsettling but alluring. The hero marveled at the artistry\s
