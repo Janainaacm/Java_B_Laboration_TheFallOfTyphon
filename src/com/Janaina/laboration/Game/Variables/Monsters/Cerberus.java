@@ -12,7 +12,7 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Cerberus extends ACharacters {
     public Cerberus() {
-        super("Cerberus", 5, 100, 10, 10, 40, 200, 70, 0, "Underworld Carnage", 150);
+        super("Cerberus", 5, 150, 10, 10, 40, 200, 70, 0, "Underworld Carnage", 150);
     }
     //Level 5
 

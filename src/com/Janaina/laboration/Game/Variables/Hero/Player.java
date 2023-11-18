@@ -2,6 +2,7 @@ package com.Janaina.laboration.Game.Variables.Hero;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.ACharacters;
+import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.*;
@@ -23,7 +24,7 @@ public class Player extends ACharacters {
     public int typhonSlayed = 0;
 
     public Player() {
-        super("name", 2, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
+        super("name", 1, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
         specialAttackList = new ArrayList<>();
         this.equippedWeapon = new ShopProducts("knife", "Lethal Lunge", "▬ι=ﺤ", 0, 1, 0, 0, 0);
 
@@ -39,8 +40,21 @@ public class Player extends ACharacters {
     }
 
 
-    public void addSpecialAttack(Attacks attack) {
+    private void addSpecialAttack(Attacks attack) {
         specialAttackList.add(attack);
+    }
+
+    public void specialAttackSirens(){
+        addSpecialAttack(new Attacks("Sirens Song", 20));
+
+    }
+
+    public void specialAttackMedusa(){
+        addSpecialAttack(new Attacks("Medusa's head", 30));
+
+    }
+    public void specialAttackCerberus(){
+        addSpecialAttack(new Attacks("Poisonous Fang", 30));
     }
 
 
@@ -177,7 +191,7 @@ public class Player extends ACharacters {
             Attacks selectedAttack = specialAttackList.get(choice - 1);
             System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + selectedAttack.getName() + "!" + RESET);
             sc.pressEnterToAttack();
-            sleepThread(YELLOW + "▭▭ι═══════ﺤ\n" + RESET);
+            sleepThread(YELLOW + "⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆\n" + RESET);
             return selectedAttack.getDamage();
         }
 
@@ -203,7 +217,7 @@ public class Player extends ACharacters {
 
     public boolean canPlayerFlee(ACharacters monster) {
         Random random = new Random();
-        int escapeChance = getAgility() - monster.getIntelligence();
+        int escapeChance = getIntelligence() - monster.getIntelligence();
         int randomValue = random.nextInt(1, 100);
 
 
@@ -213,13 +227,12 @@ public class Player extends ACharacters {
 
     @Override
     public String getStats() {
-        String stats = LILAC + BOLD + UNDERLINED + getName().toUpperCase() + RESET +
+
+        return LILAC + BOLD + UNDERLINED + getName().toUpperCase() + RESET +
                 LILAC + ITALIC + "\n✧ Health: " + GREEN_LIGHT + getHealth() + LILAC + ITALIC +
                 "\n✧ Equipped Weapon: " + ORANGE + equippedWeapon.getName() + LILAC + ITALIC +
                 "\n✧ Min Damage: " + RED + getBaseDamage() + LILAC + ITALIC +
                 "\n✧ Max Damage: " + RED + getBaseDamage() * getStrength() * equippedWeapon.getStrength() + RESET;
-
-        return stats;
 
     }
 

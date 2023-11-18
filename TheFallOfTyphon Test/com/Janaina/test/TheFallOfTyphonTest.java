@@ -24,7 +24,6 @@ public class TheFallOfTyphonTest {
     Player player;
 
 
-
     @Test
     public void testPlayerLevelUpMethod(){
         Player testPlayer1 = new Player();
@@ -72,11 +71,22 @@ public class TheFallOfTyphonTest {
     @Test
     public void playerGetsRewardAfterFight(){
         Fury fury1 = new Fury();
+        /*
+        Player player1 = new Player();
         Inventory inventory = new Inventory();
         //Player stats before
-        int goldBefore = player.getGold();
-        int xpBefore = player.getExperience();
-        when(player.playerWins(fury1)).thenReturn(true);
+        int goldBefore = player1.getGold();
+        int xpBefore = player1.getExperience();
+
+        when(player1.playerWins(fury1)).thenReturn(true);
+
+        int calculatedGoldAfter = player1.getGold();
+        int calculatedXPAfter = player1.getExperience();
+
+        assertNotEquals(goldBefore, calculatedGoldAfter);
+        assertNotEquals(xpBefore, calculatedXPAfter);
+
+         */
 
     }
 

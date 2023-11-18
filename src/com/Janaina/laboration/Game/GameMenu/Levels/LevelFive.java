@@ -79,6 +79,11 @@ public class LevelFive {
 
             }
 
+            chillForASecond(1500);
+            sleepThread(PURPLE_ISH + "You have unlocked a new special attack." + RESET);
+            player.specialAttackCerberus();
+            chillForASecond(1500);
+
             suspensefulDots(GRAY + "." + RESET);
 
             sleepThread(YELLOW + """

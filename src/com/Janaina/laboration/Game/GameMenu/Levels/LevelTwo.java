@@ -98,7 +98,11 @@ public class LevelTwo {
             if (siren.isAlive()) {
                 break;
             }
-            siren.revive();
+
+            chillForASecond(1500);
+            sleepThread(PURPLE_ISH + "You have unlocked a new special attack." + RESET);
+            player.specialAttackSirens();
+            chillForASecond(1500);
 
             sc.pressEnter();
             sleepThread(YELLOW + """

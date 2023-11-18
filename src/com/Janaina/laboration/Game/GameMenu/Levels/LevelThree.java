@@ -7,7 +7,6 @@ import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.Random;
 
-import static com.Janaina.laboration.Game.Variables.Hero.SpecialAttacks.specialAttackMedusa;
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
@@ -230,7 +229,7 @@ public class LevelThree {
                             chillForASecond(1500);
 
                             sleepThread(PURPLE_ISH + "You have unlocked a new special attack." + RESET);
-                            specialAttackMedusa(player);
+                            player.specialAttackMedusa();
                             chillForASecond(1500);
 
                             keyFound = true;

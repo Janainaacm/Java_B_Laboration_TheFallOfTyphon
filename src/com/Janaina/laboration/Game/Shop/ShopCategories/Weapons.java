@@ -17,12 +17,12 @@ public class Weapons {
     public void shopWeapons(ACharacters player, Inventory Inventory, Scanners sc) {
         //String name, int price, int strength, int health, int agility, int intelligence
         List<ShopProducts> productList = new ArrayList<>();
-        productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", "+—⟪═════>", 120, 10, 0,0,0));
-        productList.add(new ShopProducts("Shadowfang Blade", "Dark Eclipse", "▭▭ι═══════ﺤ", 140, 11, 0,0,0));
-        productList.add(new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 150, 12, 0,0,0));
-        productList.add(new ShopProducts("Oceanic Trident", "Abyssal Torrent", "——————∈ ࿐ ࿔", 180, 15, 0, 0, 0));
-        productList.add(new ShopProducts("Phoenix Bow","Flaming Arrow Barrage", "ˎ-·˚ ༘₊· ͟͟͞͞➳", 200,18,0,0,0));
-        productList.add(new ShopProducts("Thunderstrike Hammer", "Lightning Hammerblow", "⌁˚⊹｡ﾟϟﾟ.｡⊹˚⌁", 220,20,0,0,0));
+        productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", "+—⟪═════>", 150, 6, 0,0,0));
+        productList.add(new ShopProducts("Shadowfang Blade", "Dark Eclipse", "▭▭ι═══════ﺤ", 160, 8, 0,0,0));
+        productList.add(new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 170, 10, 0,0,0));
+        productList.add(new ShopProducts("Oceanic Trident", "Abyssal Torrent", "——————∈ ࿐ ࿔", 200, 12, 0, 0, 0));
+        productList.add(new ShopProducts("Phoenix Bow","Flaming Arrow Barrage", "ˎ-·˚ ༘₊· ͟͟͞͞➳", 250,15,0,0,0));
+        productList.add(new ShopProducts("Thunderstrike Hammer", "Lightning Hammerblow", "⌁˚⊹｡ﾟϟﾟ.｡⊹˚⌁", 300,18,0,0,0));
 
         if (player.getLevel() >= 10){
             productList.add(new ShopProducts("Glock-19", "Kurdiska räven", "ᡕᠵ᠊ᡃ࡚ࠢ࠘ ⸝່ࠡࠣ᠊߯᠆ࠣ࠘ᡁࠣ࠘᠊᠊ࠢ࠘\uD802\uDC4F  \uD81A\uDCD3 \uD81A\uDCE8", 1000, 100, 0, 0, 0));

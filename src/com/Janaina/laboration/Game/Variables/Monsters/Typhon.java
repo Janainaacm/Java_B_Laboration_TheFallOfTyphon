@@ -11,7 +11,7 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Typhon extends ACharacters {
     public Typhon() {
-        super("Typhon", 7, 100, 10, 20, 60, 300, 100, 0, "Apocalyptic Surge", 200);
+        super("Typhon", 7, 200, 10, 20, 60, 300, 100, 0, "Apocalyptic Surge", 200);
     }
 
     //Final boss

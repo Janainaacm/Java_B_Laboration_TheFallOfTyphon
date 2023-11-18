@@ -14,10 +14,11 @@ public class GetPlayerStats {
                 "\n" + BLACK_BACKGROUND + LILAC + ITALIC + " Level " + player.getLevel() + "        " + RESET + "\n");
         System.out.println(LILAC + ITALIC + "✧ Health: " + GREEN_LIGHT + player.getHealth() + LILAC +
                 "\n✧ Equipped Weapon: " + ORANGE + player.equippedWeapon.getName() + LILAC +
-                "\n✧ Min Damage: " + RED + player.getBaseDamage() + LILAC +
-                "\n✧ Max Damage: " + RED + player.getBaseDamage() * player.getStrength() * player.equippedWeapon.getStrength() + LILAC +
+                "\n✧ Base Damage: " + RED + player.getBaseDamage() + LILAC +
+                "\n✧ Strength: " + RED + player.getStrength() +  LILAC + " + " + ORANGE +  player.equippedWeapon.getStrength() + LILAC +
                 "\n✧ Agility: " + ORANGE + player.getAgility() + LILAC +
-                "\n✧ Gold: " + YELLOW_LIGHT +  player.getGold() + RESET);
+                "\n✧ Gold: " + YELLOW_LIGHT +  player.getGold() + LILAC +
+                "\n✧ XP: " + CYAN + player.getExperience() + " / " + player.getLevel() * 100 + RESET);
 
         if (player.specialAttackList.isEmpty()){
             System.out.println(GRAY + ITALIC + "✧ Special Attacks:");
@@ -29,9 +30,8 @@ public class GetPlayerStats {
             }
         }
 
-        System.out.println("\n");
         chillForASecond(2000);
-        sleepThread(GRAY + "Press enter to go back" + RESET);
+        sleepThread(GRAY + "\nPress enter to go back" + RESET);
         sc.pressEnterToAttack();
 
     }

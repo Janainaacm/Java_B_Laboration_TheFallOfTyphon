@@ -52,6 +52,7 @@ public class Storyteller {
                 as a fierce and formidable creature, and he plays a significant role in the mythology surrounding the Underworld. Cerberus is the offspring of Echidna, a monstrous \s
                 serpent-like creature, and Typhon. Cerberus's siblings include other famous monsters like the Chimera and the Hydra.\s
                 """);
+        yellowSuspensefulDots();
 
     }
     public static void furyBackstory(){
@@ -64,6 +65,7 @@ public class Storyteller {
                 
                 In this particular game they serve as Typhon's minions, though that's not all they are.\s
                 """);
+        yellowSuspensefulDots();
     }
     public static void medusaBackstory(){
         printYellow("""
@@ -76,6 +78,7 @@ public class Storyteller {
                 sandals from Hermes, and a sword from Zeus, Perseus managed to slay Medusa without directly looking into her eyes. After her death, Medusa's blood gave rise \s
                 to the winged horse Pegasus and the giant Chrysaor. Perseus later used Medusa's head as a weapon, turning enemies into stone.
                 """);
+        yellowSuspensefulDots();
 
     }
     public static void minotaurBackstory(){
@@ -92,6 +95,7 @@ public class Storyteller {
                 who fell in love with him. Ariadne provided Theseus with a sword and a ball of thread to navigate the labyrinth. Theseus successfully slew the Minotaur, and he, \s
                 along with Ariadne and the other Athenian youths, escaped Crete.\s
                 """);
+        yellowSuspensefulDots();
 
     }
     public static void sirenBackstory(){
@@ -108,6 +112,7 @@ public class Storyteller {
                 The myth of the Sirens serves as a cautionary tale about the allure of temptation and the dangers that can be encountered on perilous journeys, \s
                 both literal and metaphorical.
                 """);
+        yellowSuspensefulDots();
     }
     public static void typhonBackstory(){
         printYellow("""
@@ -119,6 +124,7 @@ public class Storyteller {
                 conflict. In fear, the gods fled to Egypt and transformed into animals to hide from Typhon's wrath. However, Zeus, the king of the gods, confronted Typhon. \s
                 In a mighty battle, Zeus used his thunderbolts to defeat Typhon and cast him into the depths of Tartarus, imprisoning him beneath Mount Etna.
                 """);
+        yellowSuspensefulDots();
     }
 
 }

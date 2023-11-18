@@ -33,8 +33,8 @@ public class Storyline {
         LevelThree ltt = new LevelThree();
         LevelFive lff = new LevelFive();
         LevelSix ls = new LevelSix();
-        //playerAchievements.playerAchievements(player);
-        //playerStats.currentStats(player);
+        //playerAchievements.playerAchievements(player, sc);
+        playerStats.currentStats(player, sc);
         //lt.playLevelTwo(player, inventory);
         //player.setGold(200);
         //StoreFront.mainStoreFront(player, inventory);
@@ -42,7 +42,7 @@ public class Storyline {
        // mn.levelMenu(player, inventory);
         //ltt.playLevelThree(player, inventory);
         //lff.playLevelFive(player, inventory);
-        //ls.playLevelSix(player, inventory);
+        //ls.playLevelSix(player, inventory, sc);
 
         //intro.createPlayer(player, sc);
 

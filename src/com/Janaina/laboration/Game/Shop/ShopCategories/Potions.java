@@ -22,8 +22,10 @@ public class Potions {
         //String name, int price, int strength, int health, int agility, int intelligence
         productList.add(new ShopProducts("Small Health Potion", "", "⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆", 30, 0, 50, 0, 0));
         productList.add(new ShopProducts("Large Health Potion", "", "⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆", 50, 0, 100, 0, 0));
-        productList.add(new ShopProducts("Flexibility potion", "", "❥⁺⋆༺.*₊˚࿐༅", 50, 0, 0, 5, 0));
-        productList.add(new ShopProducts("Strength potion", "", "❥⁺⋆༺.*₊˚࿐༅", 50, 5, 0, 0, 0));
+        productList.add(new ShopProducts("Flexibility Potion", "", "❥⁺⋆༺.*₊˚࿐༅", 50, 0, 0, 2, 0));
+        productList.add(new ShopProducts("Strength Potion", "", "❥⁺⋆༺.*₊˚࿐༅", 50, 1, 0, 0, 0));
+        productList.add(new ShopProducts("Intelligence Potion", "", "❥⁺⋆༺.*₊˚࿐༅", 50, 0, 0, 0, 5));
+
 
 
         while (true) {
@@ -39,7 +41,9 @@ public class Potions {
                     System.out.println(GRAY + ITALIC + "Strength: " + product.getStrength() + RESET);
                 } else if (product.getAgility() > 0) {
                     System.out.println(GRAY + ITALIC + "Agility: " + product.getAgility() + RESET);
-                }
+                } else if (product.getIntelligence() > 0) {
+                System.out.println(GRAY + ITALIC + "Intelligence: " + product.getAgility() + RESET);
+            }
 
             }
             System.out.println(BLACK_BACKGROUND + PINK_DARK + BOLD + "0. Go back" + RESET);
