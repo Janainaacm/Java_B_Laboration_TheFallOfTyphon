@@ -39,7 +39,7 @@ public class LevelThree {
             sleepThread(GREEN_DARK + ITALIC + "Do you like them?" + RESET);
             chillForASecond(1000);
             System.out.println(YELLOW + BOLD + "Turn around." + RESET);
-            sc.pressEnterToAttack();
+            sc.pressEnterNoText();
             chillForASecond(1000);
             medusaSpeaking("Well? What do you think of my beloved collection " + player.getName() + "?");
             playerSpeaking("How do you know my name?", player);
@@ -77,7 +77,7 @@ public class LevelThree {
 
             do {
 
-                System.out.println(PURPLE_LIGHT + BOLD + "Pick where to search:\n" + RESET + PURPLE_DARK +
+                System.out.println(PURPLE_LIGHT + BOLD + "Pick where to search:\n" + RESET + PURPLE_DARK + ITALIC +
                         "1. In the plants\n2. In the conservatory\n3. By the fountain\n4. Medusa's dead body\n\n" +
                         "0. Give up" + RESET);
 
@@ -103,7 +103,7 @@ public class LevelThree {
                         boolean insideConservatory = true;
 
                         do {
-                            System.out.println(PURPLE_LIGHT + BOLD + "Pick where to search:\n" + PURPLE_DARK +
+                            System.out.println(BLUE + BOLD + "Pick where to search:\n" + RESET + BLUE_LIGHT + ITALIC +
                                     "1. In the desk\n2. In the supply closet\n3. Beneath the loose floorboard\n4. By the window\n\n0. Go back" + RESET);
 
                             switch (sc.scannerNumber()) {
@@ -137,7 +137,7 @@ public class LevelThree {
                                 case 3 -> {
                                     if (keyFound) {
                                         System.out.println(GRAY + "Press enter to use key." + RESET);
-                                        sc.pressEnterToAttack();
+                                        sc.pressEnterNoText();
 
                                         suspensefulDots(PURPLE_ISH + "." + RESET);
                                         System.out.println(PURPLE_LIGHT + BOLD + "You found the map!" + RESET);
@@ -149,7 +149,7 @@ public class LevelThree {
 
                                         suspensefulDots(GRAY + "." + RESET);
                                         sleepThread(GRAY + "Level three complete." + RESET);
-                                        player.unlockNewLevel();
+                                        player.setAvailableLevels(4);
                                         chillForASecond(1000);
                                         sc.pressEnter();
                                         insideConservatory = false;

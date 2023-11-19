@@ -16,7 +16,7 @@ public class LevelOne {
     public void playLevelOne(Player player, Inventory inventory, Scanners sc) {
         Fury fury = new Fury();
 
-/*
+
         sleepThread(YELLOW + "In the heart of ancient Greece, our hero " + player.getName() + " stands ready to embark on a perilous journey. His beloved sister Althea, has been captured by the monstrous Typhon. \n" +
                 "With unwavering determination, he sets forth to rescue her from the clutches of darkness. But as night's chilling embrace tightens, \nthe faint sound of heavy breathing slowly emerges from the shadows.\n" + RESET);
 
@@ -33,18 +33,17 @@ public class LevelOne {
 
 
 
- */
-
         while (true) {
 
             int fightFuries = 0;
             while (fightFuries < 3){
+                fightFuries ++;
+                System.out.println(GRAY + ITALIC + "Fury " + fightFuries + "/3" + RESET);
                 player.act(fury, inventory, sc);
                 if (fury.isAlive()) {
                     break;
                 }
                 fury.revive();
-                fightFuries ++;
 
                 if (fightFuries == 1){
                     playerSpeaking("Is that all you've got?", player);
@@ -88,7 +87,7 @@ public class LevelOne {
             sc.pressEnter();
 
 
-            player.unlockNewLevel();
+            player.setAvailableLevels(2);
             break;
 
         }

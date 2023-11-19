@@ -8,7 +8,7 @@ import static com.Janaina.laboration.Resources.Colors.*;
 
 public class Scanners {
 
-    static Scanner sc = new Scanner(System.in);
+    //Scanner sc = new Scanner(System.in);
 
     public int chooseFromGameMenu(){
         return scannerNumber();
@@ -36,6 +36,8 @@ public class Scanners {
     }
 
     public int scannerNumber() {
+        Scanner sc = new Scanner(System.in);
+
         if (sc.hasNextInt()) {
             return sc.nextInt();
         }
@@ -44,6 +46,8 @@ public class Scanners {
     }
 
     public String scannerText() {
+        Scanner sc = new Scanner(System.in);
+
         if (sc.hasNextInt()) {
             System.out.println("Invalid input, try again!");
             return scannerText();
@@ -54,6 +58,8 @@ public class Scanners {
     }
 
     public String scannerYesOrNo() {
+        Scanner sc = new Scanner(System.in);
+
         String input = sc.nextLine().toLowerCase(Locale.ROOT);
         if (Objects.equals(input, "yes") || Objects.equals(input, "no")) {
             return input;
@@ -65,6 +71,8 @@ public class Scanners {
     }
 
     public String pressEnter() {
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("\u001B[37m" + "Press enter to continue." + RESET);
 
         String readString = sc.nextLine();
@@ -79,7 +87,9 @@ public class Scanners {
         return pressEnter();
     }
 
-    public String pressEnterToAttack() {
+    public String pressEnterNoText() {
+        Scanner sc = new Scanner(System.in);
+
         String readString = sc.nextLine();
         while(readString!=null) {
 
@@ -89,7 +99,7 @@ public class Scanners {
                 break;
             }
         }
-        return pressEnterToAttack();
+        return pressEnterNoText();
     }
 
     public int scannerOnlyOneNumber() {

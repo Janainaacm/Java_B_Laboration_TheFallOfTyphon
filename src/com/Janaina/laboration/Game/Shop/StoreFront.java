@@ -27,21 +27,12 @@ public class StoreFront {
             switch (sc.chooseFromShopMenu()) {
                 case 1 -> Weapons.shopWeapons(player, Inventory, sc);
                 case 2 -> Potions.shopPotions(player, Inventory, sc);
-                case 0 -> { isShopping = false;
-                }
+                case 0 -> isShopping = false;
                 default -> printRed("Invalid input, please chose from the presented options");
 
             }
-
         }
-
-
     }
-
-
-
-
-
 }
 
 

@@ -1,8 +1,8 @@
 package com.Janaina.laboration.Game.Shop.ShopCategories;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
-import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
+import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 
 public class Weapons {
 
-    public int total = 0;
-    public void shopWeapons(ACharacters player, Inventory Inventory, Scanners sc) {
+    private int total = 0;
+    public void shopWeapons(Player player, Inventory Inventory, Scanners sc) {
         //String name, int price, int strength, int health, int agility, int intelligence
         List<ShopProducts> productList = new ArrayList<>();
         productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", "+—⟪═════>", 150, 6, 0,0,0));
@@ -24,7 +24,7 @@ public class Weapons {
         productList.add(new ShopProducts("Phoenix Bow","Flaming Arrow Barrage", "ˎ-·˚ ༘₊· ͟͟͞͞➳", 250,15,0,0,0));
         productList.add(new ShopProducts("Thunderstrike Hammer", "Lightning Hammerblow", "⌁˚⊹｡ﾟϟﾟ.｡⊹˚⌁", 300,18,0,0,0));
 
-        if (player.getLevel() >= 10){
+        if (player.getAvailableLevels() >= 7){
             productList.add(new ShopProducts("Glock-19", "Kurdiska räven", "ᡕᠵ᠊ᡃ࡚ࠢ࠘ ⸝່ࠡࠣ᠊߯᠆ࠣ࠘ᡁࠣ࠘᠊᠊ࠢ࠘\uD802\uDC4F  \uD81A\uDCD3 \uD81A\uDCE8", 1000, 100, 0, 0, 0));
 
         }

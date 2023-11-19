@@ -1,8 +1,8 @@
 package com.Janaina.laboration.Game.Shop.ShopCategories;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
-import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
+import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 
 public class Potions {
 
-    public int total = 0;
+    private int total = 0;
     public List<ShopProducts> productList = new ArrayList<>();
 
-    public void shopPotions(ACharacters player, Inventory Inventory, Scanners sc) {
+    public void shopPotions(Player player, Inventory Inventory, Scanners sc) {
 
         //String name, int price, int strength, int health, int agility, int intelligence
         productList.add(new ShopProducts("Small Health Potion", "", "⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆", 30, 0, 50, 0, 0));

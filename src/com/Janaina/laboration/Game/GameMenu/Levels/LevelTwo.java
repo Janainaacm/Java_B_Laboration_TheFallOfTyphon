@@ -26,7 +26,7 @@ public class LevelTwo {
         sleepThread(GREEN_DARK + "Ahoy adventurer, I'm Krille! Well you could always try to build a raft, \nthough I would consider allowing you passage across the waters on my boat in exchange for your help with something" + RESET);
         playerSpeaking("What is it you need help with, fisherman?", player);
         System.out.println(GREEN_DARK + BOLD + UNDERLINED + "Krille:" + RESET);
-        sleepThread(GREEN_DARK + "32 years ago, I buried my wedding ring somewhere on this beach");
+        sleepThread(GREEN_DARK + "32 years ago, My father buried my mothers old wedding ring somewhere on this \nbeach after her passing. Now I need to find it in order to ask the love of my life for her hand");
         suspensefulDots(".");
         sleepThread("Though i can't quite seem to remember the exact location");
         suspensefulDots(".");
@@ -41,17 +41,17 @@ public class LevelTwo {
 
             helpKrille(sc);
             System.out.println(GREEN_DARK + BOLD + UNDERLINED + "Krille:" + RESET);
-            sleepThread(GREEN_DARK + "My ring! You found it!" + RESET);
+            sleepThread(GREEN_DARK + "My mothers ring! You found it! Now I can be with my love forever!" + RESET);
             chillForASecond(1000);
             sleepThread(GREEN_DARK + "As promised, here is my boat" + RESET);
-            playerSpeaking("Thank you, I shall return it after finishing my quest of defeating Thyron!", player);
+            playerSpeaking("Thank you, I shall return it after finishing my quest of defeating Typhon!", player);
             suspensefulDots(GREEN_DARK + ".");
             System.out.println(GREEN_DARK + BOLD + UNDERLINED + "Krille:" + RESET);
             sleepThread(GREEN_DARK + "Defeating who now-" + RESET);
             suspensefulDots(GREEN_DARK + ".");
             sleepThread(GREEN_DARK + "Yeah I wont hold my breath" + RESET);
             chillForASecond(500);
-            sleepThread(GREEN_DARK + "Good luck with that kid\nI must insist that you continue your travels before this weather gets worse, may we meet again adventurer" + RESET);
+            sleepThread(GREEN_DARK + "Good luck with that bud\nI must insist that you continue your travels before this weather gets worse, may we meet again adventurer" + RESET);
             playerSpeaking("May we meet again fisherman", player);
             suspensefulDots(GRAY + "." + RESET);
 
@@ -114,7 +114,7 @@ public class LevelTwo {
             chillForASecond(1000);
             sc.pressEnter();
 
-            player.unlockNewLevel();
+            player.setAvailableLevels(3);
             break;
 
         }
@@ -211,7 +211,7 @@ public class LevelTwo {
         int materialsCollected = 0;
 
         while (materialsCollected < requiredMaterials) {
-            sc.pressEnterToAttack();
+            sc.pressEnterNoText();
             materialsCollected++;
 
             if (materialsCollected == 2){

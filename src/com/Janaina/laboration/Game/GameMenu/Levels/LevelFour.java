@@ -80,7 +80,7 @@ public class LevelFour {
 
                         System.out.println(PURPLE_ISH + "Dead end...");
                         sleepThread(GRAY + "Press enter to go back." + RESET);
-                        sc.pressEnterToAttack();
+                        sc.pressEnterNoText();
 
                     }
 
@@ -140,7 +140,7 @@ public class LevelFour {
                     suspensefulDots(GRAY + "." + RESET);
                     chillForASecond(1000);
                     sleepThread(GRAY + "Level four complete." + RESET);
-                    player.unlockNewLevel();
+                    player.setAvailableLevels(5);
                     chillForASecond(1000);
                     sc.pressEnter();
 
@@ -191,7 +191,7 @@ public class LevelFour {
         } else {
             System.out.println(PURPLE_ISH + "Dead end...");
             sleepThread(GRAY + "Press enter to go back." + RESET);
-            sc.pressEnterToAttack();
+            sc.pressEnterNoText();
         }
         return true;
 
@@ -208,7 +208,7 @@ public class LevelFour {
                 System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
                 chillForASecond(1000);
                 System.out.println(GRAY + "Press enter to open." + RESET);
-                sc.pressEnterToAttack();
+                sc.pressEnterNoText();
                 ShopProducts potionFound = potions.productList.get(random.nextInt(0, potions.productList.size()));
                 System.out.println(WHITE + "You found a " + potionFound.getName() + " inside the chest!");
                 sleepThread(GRAY + potionFound.getName() + " has been added to your inventory." + RESET);
@@ -219,7 +219,7 @@ public class LevelFour {
                 System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
                 chillForASecond(1000);
                 System.out.println(GRAY + "Press enter to open." + RESET);
-                sc.pressEnterToAttack();
+                sc.pressEnterNoText();
                 int amount = random.nextInt(10, 20);
                 System.out.println(WHITE + "You found " + amount + " gold coins inside the chest!\n" + YELLOW + BOLD + "+ " + amount + " Gold");
                 player.setGold(player.getGold() + amount);
@@ -230,7 +230,7 @@ public class LevelFour {
                 System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
                 chillForASecond(1000);
                 System.out.println(GRAY + "Press enter to open." + RESET);
-                sc.pressEnterToAttack();
+                sc.pressEnterNoText();
                 int amount = random.nextInt(20, 30);
                 System.out.println("You found " + amount + " gold coins!\n" + YELLOW + BOLD + "+ " + amount + " Gold");
                 player.setGold(player.getGold() + amount);

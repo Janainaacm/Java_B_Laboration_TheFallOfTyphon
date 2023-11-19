@@ -14,12 +14,11 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class LevelSix {
 
-    public void playLevelSix(Player player, Inventory inventory, Scanners sc){
+    public void playLevelSix(Player player, Inventory inventory, Scanners sc) {
         int originalAgility = player.getAgility();
-        int originalStrength = player.getStrength();
+        int originalDamage = player.getMaxDamage();
         Typhon typhon = new Typhon();
         Fury fury = new Fury();
-        Siren siren = new Siren();
 
         sleepThread(YELLOW + """
                 As the hero crosses the threshold into the underworld, an oppressive darkness envelopes him, seeping into the very core of his \s
@@ -32,7 +31,7 @@ public class LevelSix {
                 In the distance, a lone figure stands – the boatman, a spectral silhouette against the dimly lit shores.\s
                 """ + RESET);
 
-        System.out.println(BLACK + BOLD + UNDERLINED +"Boatman:" + RESET);
+        System.out.println(BLACK + BOLD + UNDERLINED + "Boatman:" + RESET);
         sleepThread(BLACK + "I can offer you safe passage across the lake... For a price of course." + RESET);
         sleepThread(YELLOW_LIGHT + "200 " + BLACK + "gold coins." + RESET);
         chillForASecond(1500);
@@ -41,11 +40,13 @@ public class LevelSix {
                 YELLOW + "1. Safely cross the lake with the boatman\n2. Take your chances with the rowing boat" + RESET);
 
         boolean isChoosingBoatman = true;
+        boolean didGoWithBoatMan = false;
         while (isChoosingBoatman) {
             switch (sc.scannerNumber()) {
                 case 1 -> {
-                    if (player.getGold() >= 200){
-                        System.out.println("cross");
+                    if (player.getGold() >= 200) {
+                        didGoWithBoatMan = goWithBoatMan(player, inventory, sc);
+                        player.setGold(player.getGold() - 200);
                         isChoosingBoatman = false;
                     } else {
                         sleepThread(RED + ITALIC + "You do not have the capacity for that big man" + RESET);
@@ -55,7 +56,7 @@ public class LevelSix {
                 }
 
                 case 2 -> {
-                    System.out.println("rowing boat");
+                    rowingBoat(player, inventory, sc);
                     isChoosingBoatman = false;
                 }
 
@@ -63,63 +64,176 @@ public class LevelSix {
             }
         }
 
-        /*
-        When the player reaches the underworld he comes to a lake, and face to face with the man with the boat,
-        he says he can take him past the river in exchange for 200 gold, if yes: skip scene, else. cross river and fight
-        sirens.
+        castleGates(player, inventory, sc);
 
-        something more
+        player.actTyphon(typhon, inventory, sc);
 
-        He arrives just in time to see his sister chained to the altar, the beast that is his target grinning next to her
-        he starts fighting Typhon but when his health reaches 150, he flees and 2 furies attacks
+        //Runs to his castle
+        System.out.println(YELLOW_LIGHT + "Press enter to follow inside castle!" + RESET);
 
-        Quee entering his castle, choose the correct path to find him:
-        Fight him again (full health) but when he reaches 100 health he runs again.
+        //The hallways are playing games with his head, he is trapped in a maze. Find the way out
+        if (didGoWithBoatMan) {
+            sleepThread(GRAY + ITALIC + "Did you pay attention to what the boatman said?" + RESET);
+        }
+        trappedInsideCastle(player, inventory, sc);
 
-        You think he's given up, you take Althea and you start making your way out of the castle, but just as
-        you're about to leave he attacks you.
+        //found him
+        player.actTyphon(typhon, inventory, sc);
 
-        You fight till the death, and you finally manage to defeat him. Rescuing your sister and leaving hell
+        //Omg you think you won bc he fled! Talk to Althea, run outside and SIKE
 
-         */
+        //Lore ahaha you rlly thought
 
-        Fury fury1 = new Fury();
+        //Oh no Typhon bewitched something your strength and agility are divided by 2
 
-        while (true){
-            player.act(fury, inventory, sc);
-            if (fury.isAlive()) {
-                break;
+        player.setAgility(player.getAgility() / 2);
+        player.setMaxDamage(player.getMaxDamage() / 2);
+
+        player.actTyphon(fury, inventory, sc);
+
+        player.actTyphon(fury, inventory, sc);
+
+        player.actTyphon(fury, inventory, sc);
+
+        //Oh you think you bad huh?
+
+        player.actTyphon(typhon, inventory, sc);
+
+            /*
+            You manage to rescue Althea, and together you go home. but PLOT TWIST
+            when you get home Krille is waiting to propose to Althea lmfao
+             */
+
+        player.setMaxDamage(originalDamage);
+        player.setAgility(originalAgility);
+        player.setAvailableLevels(7);
+        sleepThread(GRAY + ITALIC + "I would highly recommend visiting the weapons shop" + RESET);
+
+    }
+
+
+    private boolean goWithBoatMan(Player player, Inventory inventory, Scanners sc) {
+    /*
+    Accepting the boatman's offer, the hero boards the boat, eager to cross the river swiftly. Attempting conversation, his questions linger unanswered in the air. Mysterious splashes in the water catch his attention, yet an unseen barrier shields the boat from the source. Harmonizing sounds attempt to enchant, but the protective shield keeps the hero unaffected.
+    ksk lägg olika alternativ på vad han kan fråga, en fråga får han att sluta svara men en av frågorna ger han rätt väg i slottet
+Upon reaching the shore, the hero steps onto what appears to be a beach, only to discover it's not sand beneath his feet but a haunting landscape littered with skeletal remains, silent witnesses to the underworld's eternal suffering.
+
+     han säger 1132
+
+     */
+        return true;
+    }
+
+    private void rowingBoat(Player player, Inventory inventory, Scanners sc) {
+        Siren siren = new Siren();
+               /*
+               Refusing the boatman's offer, the hero finds a small rowboat by the shore. Determined, he starts rowing across the desolate river, navigating the eerie waters. As he progresses, haunting melodies fill the air – the enchanting song of sirens seeking to lure him into the depths. The hero battles the hypnotic pull, gripping the oars with newfound determination as the sirens' haunting voices crescendo in the underworld's solemn symphony.
+
+                */
+        int rowing = 0;
+        int rowsNeeded = 20;
+
+        while (rowing < rowsNeeded) {
+            sc.pressEnterNoText();
+            rowing++;
+        }
+
+        //Lore you hit something
+
+
+        player.actTyphon(siren, inventory, sc);
+
+        player.actTyphon(siren, inventory, sc);
+
+        player.actTyphon(siren, inventory, sc);
+
+
+        //sirens.
+    }
+
+    private void castleGates(Player player, Inventory inventory, Scanners sc) {
+        //Fight furies & ksk nån gåta? ksk är det man kan få ur boatman
+        //All lore, fight typhon direkt efter
+
+
+        Fury fury = new Fury();
+
+        player.actTyphon(fury, inventory, sc);
+
+        player.actTyphon(fury, inventory, sc);
+
+        //Divide player agility by 2
+
+        player.actTyphon(fury, inventory, sc);
+
+        //Write lore
+        //He arrives just in time to see his sister chained to the altar, the beast that is his target grinning next to her
+        //next is fighting typhon
+
+    }
+
+    private void trappedInsideCastle(Player player, Inventory inventory, Scanners sc) {
+        boolean inMaze = true;
+        int correctPathsChosen = 0;
+
+        while (inMaze) {
+
+            sleepThread(ORANGE + BOLD + " Choose which path to follow:" + RESET);
+            chillForASecond(700);
+            System.out.println(YELLOW_DARK + """
+                                 ↟
+                    ↞ Left     Middle     Right ↠
+                       1         2          3
+                    """ + RESET);
+
+            switch (correctPathsChosen) {
+                case 0 -> {
+                    switch (sc.scannerNumber()) {
+                        case 1 -> correctPathsChosen++;
+                        case 2 -> System.out.println("no");
+                        case 3 -> System.out.println("noo");
+                        default -> printRed("Invalid input");
+                    }
+                }
+                case 1 -> {
+                    switch (sc.scannerNumber()) {
+                        case 1 -> correctPathsChosen++;
+                        case 2 -> System.out.println("noo");
+                        case 3 -> System.out.println("no0o");
+                        default -> printRed("Invalid input");
+                    }
+                }
+
+                case 2 -> {
+                    switch (sc.scannerNumber()) {
+                        case 1 -> System.out.println("noo");
+                        case 2 -> System.out.println("no");
+                        case 3 -> correctPathsChosen++;
+                        default -> printRed("Invalid input");
+                    }
+                }
+
+                case 3 -> {
+                    switch (sc.scannerNumber()) {
+                        case 1 -> System.out.println("noo");
+                        case 2 -> {
+                            correctPathsChosen++;
+                            inMaze = false;
+                        }
+                        case 3 -> System.out.println("no");
+                        default -> printRed("Invalid input");
+                    }
+                }
+
             }
-            fury.revive();
-
-            player.act(fury, inventory, sc);
-            if (fury.isAlive()) {
-                break;
-            }
-            fury.revive();
-
-            //Divide player agility by 2
-
-            player.act(fury, inventory, sc);
-            if (fury.isAlive()) {
-                break;
-            }
-            fury.revive();
-
-
-
 
 
         }
+
+        //found him, Lore, next thing is fight
+
+
     }
 
-
-    private void goWithBoatMan(){
-
-    }
-
-    private void rowingBoat(){
-
-    }
 
 }

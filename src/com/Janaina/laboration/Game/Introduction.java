@@ -7,10 +7,8 @@ import java.util.Objects;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
-import static com.Janaina.laboration.Resources.Scanners.*;
 import static com.Janaina.laboration.Resources.Storyteller.pythiaBackstory;
-import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
-import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
+import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Introduction {
 
@@ -48,7 +46,7 @@ public class Introduction {
 
         if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
 
-            initialTourOfGame(sc);
+            initialTourOfGame(sc, player);
             PythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fifth option of repeating this tour to the main menu.\n");
 
         } else {
@@ -64,7 +62,7 @@ public class Introduction {
 
     }
 
-    public void initialTourOfGame(Scanners sc) {
+    public void initialTourOfGame(Scanners sc, Player player) {
         println(BLACK_BACKGROUND + "     " + CYAN_BOLD + CYAN_UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
                 + "\n" + BLACK_BACKGROUND + "          " + CYAN_BOLD + "Main Menu" + RESET + BLACK_BACKGROUND + "          " + RESET
                 + "\n" + CYAN_BOLD +
@@ -86,6 +84,29 @@ public class Introduction {
         while (true) {
             if (sc.scannerNumber() == 1) {
                 //Show Game menu
+
+                println(BLACK_BACKGROUND + "          " + PURPLE_BOLD_BRIGHT + "Game Menu" + RESET + BLACK_BACKGROUND + "          " + RESET
+                        + "\n" + PURPLE_DARK + BOLD +
+                        "1. Levels\n2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
+
+                PythiaSpeaking("This is the game menu:");
+
+                println(PURPLE_DARK + BOLD + "1. Levels\n" + RESET + "2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
+
+                PythiaSpeaking("There are six levels to this game, some are harder than others, each with it's own monster.\nYou will not be able to play a level if you have not completed the level previous.");
+                sc.pressEnter();
+
+                println("1. Levels\n" + PURPLE_DARK + BOLD + "2. Player stats\n" + RESET + "3. Achievements\n4. Inventory\n0. Back" + RESET);
+                PythiaSpeaking("Here you can see your stats, including how much xp you need to reach the next level, your special attacks and equipped weapon");
+                sc.pressEnter();
+
+                println("1. Levels\n2. Player stats\n" + PURPLE_DARK + BOLD + "3. Achievements\n" + RESET + "4. Inventory\n0. Back" + RESET);
+                PythiaSpeaking("In your achievements you will be able to view all the games monsters, if you have defeated them, their stats\nand backstory will be visible to you.");
+                sc.pressEnter();
+                println("1. Levels\n2. Player stats\n3. Achievements\n" + PURPLE_DARK + BOLD + "4. Inventory\n" + RESET + "0. Back");
+                PythiaSpeaking("In your inventory you will find all your potions and weapons. In your inventory you can pick which weapon you want to equip\nor which potion you would like to drink. Your inventory is also available to you during fights.");
+                sc.pressEnter();
+
                 break;
             } else {
                 PythiaSpeaking("You need to type '1'");
@@ -101,6 +122,21 @@ public class Introduction {
         while (true) {
             if (sc.scannerNumber() == 2) {
                 //Show shop
+                System.out.println(BLACK_BACKGROUND + "       " + YELLOW_BOLD_BRIGHT + YELLOW_UNDERLINED + "SHOP" + RESET + BLACK_BACKGROUND + "        " + RESET +
+                        "\n" + YELLOW_DARK + "Gold: " + WHITE + player.getGold() + RESET +
+                        YELLOW_DARK + "\nCategories:" + RESET +
+                        "\n" + WHITE + "1. Weapons\n2. Potions\n0. Go back" + RESET);
+
+                PythiaSpeaking("This is the shop. Here you can use the gold you win from slaying monsters to buy either potions or weapons");
+                sc.pressEnter();
+
+                System.out.println(WHITE + "1. Weapons\n" + RESET + "2. Potions\n0. Go back");
+                PythiaSpeaking("All weapons increase your strength, which multiplied with your base damage determines how much damage you do.");
+
+                System.out.println("1. Weapons\n" + WHITE +  "2. Potions\n" + RESET + "0. Go back");
+                PythiaSpeaking("Potions on the other hand can increase your intelligence: making it easier to flee a fight, your \nagility: giving you more time to dodge an attack, or restore your health.");
+                sc.pressEnter();
+
                 break;
             } else {
                 PythiaSpeaking("You need to type '2'");

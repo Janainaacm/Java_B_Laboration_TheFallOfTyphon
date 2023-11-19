@@ -52,9 +52,9 @@ public class Inventory {
         System.out.println(BLACK_BACKGROUND + RED + BOLD + "       Weapons:       " + RESET);
         while (true) {
 
-            System.out.println(RED_DARK + "Equipped weapon: " + player.equippedWeapon.getName() + RESET);
+            System.out.println(RED_DARK + "Equipped weapon: " + player.getEquippedWeapon().getName() + RESET);
 
-            ShopProducts currentWeapon = player.equippedWeapon;
+            ShopProducts currentWeapon = player.getEquippedWeapon();
             
             if (weaponsList.isEmpty()){
                 System.out.println(GRAY + ITALIC + "This inventory is empty" + RESET);
@@ -77,13 +77,13 @@ public class Inventory {
                 continue;
             }
 
-            player.equippedWeapon = weaponsList.get(choice - 1);
+            player.setEquippedWeapon(weaponsList.get(choice - 1));
             weaponsList.add(currentWeapon);
-            weaponsList.remove(player.equippedWeapon);
-            System.out.println(player.getName() + " equipped " + player.equippedWeapon.getName() + "!");
-            player.setStrength(player.getStrength() + player.equippedWeapon.getStrength());
-            player.setDefaultAttack(player.equippedWeapon.getAttackName());
-            System.out.println("Strength +" + player.equippedWeapon.getStrength());
+            weaponsList.remove(player.getEquippedWeapon());
+            System.out.println(player.getName() + " equipped " + player.getEquippedWeapon().getName() + "!");
+            player.setStrength(player.getStrength() + player.getEquippedWeapon().getStrength());
+            player.setDefaultAttack(player.getEquippedWeapon().getAttackName());
+            System.out.println("Strength +" + player.getEquippedWeapon().getStrength());
             sc.pressEnter();
             break;
 

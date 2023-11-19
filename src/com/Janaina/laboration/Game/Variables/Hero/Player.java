@@ -2,34 +2,44 @@ package com.Janaina.laboration.Game.Variables.Hero;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.ACharacters;
-import com.Janaina.laboration.Game.Variables.Monsters.Fury;
+import com.Janaina.laboration.Game.Variables.Monsters.Typhon;
 import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.*;
 
 import static com.Janaina.laboration.Resources.Colors.*;
+import static com.Janaina.laboration.Resources.PrintHandler.printRed;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Player extends ACharacters {
 
     public List<Attacks> specialAttackList;
     public ShopProducts equippedWeapon;
-    private int availableLevels = 5;
-
+    private int availableLevels;
     public int furiesSlayed = 0;
     public int sirensSlayed = 0;
     public int medusaSlayed = 0;
     public int minotaurSlayed = 0;
     public int cerberusSlayed = 0;
     public int typhonSlayed = 0;
+    private int roundsFightingTyphon = 0;
+    private int maxDamage;
 
     public Player() {
         super("name", 1, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
         specialAttackList = new ArrayList<>();
         this.equippedWeapon = new ShopProducts("knife", "Lethal Lunge", "▬ι=ﺤ", 0, 1, 0, 0, 0);
-
+        this.maxDamage = (getStrength() + equippedWeapon.getStrength()) * 10;
+        this.availableLevels = 1;
     }
 
+    public int getMaxDamage() {
+        return maxDamage;
+    }
+
+    public void setMaxDamage(int maxDamage) {
+        this.maxDamage = maxDamage;
+    }
 
     public ShopProducts getEquippedWeapon() {
         return equippedWeapon;
@@ -83,10 +93,73 @@ public class Player extends ACharacters {
                     sc.pressEnter();
                 }
                 case 4 -> inventory.playerInventory(this, sc);
+                default -> printRed("Invalid input");
 
             }
 
             if (playerWins(monster)) {
+                monsterEncounter = false;
+            }
+
+            if (!isAlive()) {
+                sleepThread(RED + ITALIC + "You were killed by " + monster.getName() + RESET);
+                suspensefulDots(RED + "." + RESET);
+                System.out.println(RED + BOLD + "Game Over." + RESET);
+                System.exit(0);
+                monsterEncounter = false;
+            }
+
+        } while (monsterEncounter);
+
+    }
+
+    public void actTyphon(ACharacters monster, Inventory inventory, Scanners sc) {
+
+        boolean monsterEncounter = true;
+        if (Objects.equals(monster.getName(), "Typhon")){
+            roundsFightingTyphon ++;
+        }
+
+        do {
+            System.out.println(monster.getStats());
+            System.out.println(WHITE + BOLD + "1. Attack\n" +
+                    GRAY + "2. Flee\n" +
+                    WHITE + BOLD + "3. Get Stats\n4. inventory" + RESET);
+
+            switch (sc.scannerNumber()) {
+
+                case 1 -> attack(monster, sc);
+                case 2 -> {
+                    System.out.println(WHITE + "Sike" + RESET);
+                    sleepThread(GRAY + ITALIC + "Such a pussy" + RESET);
+                    chillForASecond(1000);
+                }
+                case 3 -> {
+                    System.out.println(getStats());
+                    sc.pressEnter();
+                }
+                case 4 -> inventory.playerInventory(this, sc);
+                default -> printRed("Invalid input");
+
+
+            }
+
+            if (roundsFightingTyphon == 1 && monster.getHealth() <= 150){
+                System.out.println("health at 150, flee");
+                monster.revive();
+                monsterEncounter = false;
+
+            } else if (roundsFightingTyphon == 2 && monster.getHealth() <= 100){
+                System.out.println("round 2, health at 100, flee");
+                monster.revive();
+                monsterEncounter = false;
+
+            }
+
+
+            if (playerWins(monster)) {
+                roundsFightingTyphon = 0;
+                monster.revive();
                 monsterEncounter = false;
             }
 
@@ -158,18 +231,18 @@ public class Player extends ACharacters {
 
     }
 
-    public int attackWeapon(Scanners sc) {
+    private int attackWeapon(Scanners sc) {
         System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeapon.getAttackName() + "!" + RESET);
-        sc.pressEnterToAttack();
+        sc.pressEnterNoText();
         sleepThread(YELLOW + equippedWeapon.getAnimation() + RESET);
         Random random = new Random();
 
-        return random.nextInt(getBaseDamage(), ((getStrength() + equippedWeapon.getStrength()) * 10));
+        return random.nextInt(getBaseDamage(), getMaxDamage());
 
     }
 
 
-    public int chosenAttack(Scanners sc) {
+    private int chosenAttack(Scanners sc) {
         System.out.println(YELLOW + ITALIC + "0. Use " + equippedWeapon.getName() + RESET);
         System.out.println(ORANGE + BOLD + "Special Attacks:" + RESET);
         for (int i = 0; i < specialAttackList.size(); i++) {
@@ -190,7 +263,7 @@ public class Player extends ACharacters {
 
             Attacks selectedAttack = specialAttackList.get(choice - 1);
             System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + selectedAttack.getName() + "!" + RESET);
-            sc.pressEnterToAttack();
+            sc.pressEnterNoText();
             sleepThread(YELLOW + "⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆\n" + RESET);
             return selectedAttack.getDamage();
         }
@@ -232,7 +305,7 @@ public class Player extends ACharacters {
                 LILAC + ITALIC + "\n✧ Health: " + GREEN_LIGHT + getHealth() + LILAC + ITALIC +
                 "\n✧ Equipped Weapon: " + ORANGE + equippedWeapon.getName() + LILAC + ITALIC +
                 "\n✧ Min Damage: " + RED + getBaseDamage() + LILAC + ITALIC +
-                "\n✧ Max Damage: " + RED + getBaseDamage() * getStrength() * equippedWeapon.getStrength() + RESET;
+                "\n✧ Max Damage: " + RED + getBaseDamage() * getMaxDamage() + RESET;
 
     }
 
@@ -347,10 +420,9 @@ public class Player extends ACharacters {
         setExperience(getExperience() - ((getLevel() - 1) * 100));
         setAgility(getAgility() + 10);
         setIntelligence(getIntelligence() + 10);
-        setStrength(getStrength() + 10);
-        setHealth(100 + (((getLevel() - 1) * 100) / 5));
+        setStrength(getStrength() + 1);
 
-        System.out.println(PURPLE + "Health: + 20\nAgility: + 10\nStrength: + 10\nIntelligence: + 10");
+        System.out.println(PURPLE + "Agility: + 10\nStrength: + 10\nBase Damage: + 10\nIntelligence: + 10");
     }
 
     private int calculateExperienceRequiredForNextLevel() {
@@ -362,12 +434,12 @@ public class Player extends ACharacters {
     }
 
     public void setAvailableLevels(int availableLevels) {
-        this.availableLevels = availableLevels;
+        if (availableLevels > this.availableLevels) {
+            this.availableLevels = availableLevels;
+        }
     }
 
-    public void unlockNewLevel() {
-        setAvailableLevels(getAvailableLevels() + 1);
-    }
+
 
 
 }

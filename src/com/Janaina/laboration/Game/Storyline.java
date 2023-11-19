@@ -34,7 +34,7 @@ public class Storyline {
         LevelFive lff = new LevelFive();
         LevelSix ls = new LevelSix();
         //playerAchievements.playerAchievements(player, sc);
-        playerStats.currentStats(player, sc);
+        //playerStats.currentStats(player, sc);
         //lt.playLevelTwo(player, inventory);
         //player.setGold(200);
         //StoreFront.mainStoreFront(player, inventory);
@@ -42,6 +42,7 @@ public class Storyline {
        // mn.levelMenu(player, inventory);
         //ltt.playLevelThree(player, inventory);
         //lff.playLevelFive(player, inventory);
+        player.setStrength(15);
         //ls.playLevelSix(player, inventory, sc);
 
         //intro.createPlayer(player, sc);
@@ -59,7 +60,7 @@ public class Storyline {
                 case 1 -> playTheGame.gameMenu(player, playerStats, levelMenu, playerAchievements, inventory, sc);
                 case 2 -> storeFront.mainStoreFront(player, inventory, sc);
                 case 3 -> readGameLore(sc);
-                case 4 -> intro.initialTourOfGame(sc);
+                case 4 -> intro.initialTourOfGame(sc, player);
                 case 0 -> {
                     PythiaSpeaking("Goodbye " + player.getName() + ", may we meet again");
                     suspensefulDots(PURPLE + "." + RESET);

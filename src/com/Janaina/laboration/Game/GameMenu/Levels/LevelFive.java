@@ -103,7 +103,7 @@ public class LevelFive {
 
             suspensefulDots(GRAY + ".");
             sleepThread("You have completed level five." + RESET);
-            player.unlockNewLevel();
+            player.setAvailableLevels(6);
             sc.pressEnter();
             break;
         }
