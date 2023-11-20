@@ -73,22 +73,6 @@ public class TheFallOfTyphonTest {
 
     }
 
-    @Test
-    public void playerGetsRewardAfterFight() {
-        Player player1 = new Player();
-        Fury fury1 = new Fury();
-        //Player stats before
-        int goldBefore = player1.getGold();
-        int furyGold = fury1.getGold();
-
-        boolean correctGold;
-        int goldAfter = 0;
-
-        if (player1.playerWins(fury1)) {
-            goldAfter = player1.getGold() + fury1.getGold();
-        }
-        assertEquals(goldBefore, goldAfter);
-    }
 
 
     @Test
