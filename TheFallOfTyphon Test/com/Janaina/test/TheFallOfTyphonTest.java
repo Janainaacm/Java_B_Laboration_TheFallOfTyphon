@@ -1,17 +1,21 @@
 package com.Janaina.test;
 
+import com.Janaina.laboration.Game.Shop.ShopProducts;
+import com.Janaina.laboration.Game.Storyline;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Game.Variables.Monsters.Medusa;
 import com.Janaina.laboration.Resources.Scanners;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -20,12 +24,13 @@ public class TheFallOfTyphonTest {
     @Mock
     Scanners scanners;
 
-    @Mock
-    Player player;
-
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
-    public void testPlayerLevelUpMethod(){
+    public void testPlayerLevelUpMethod() {
         Player testPlayer1 = new Player();
         Medusa medusa = new Medusa();
         Fury fury1 = new Fury();
@@ -44,7 +49,7 @@ public class TheFallOfTyphonTest {
     }
 
     @Test
-    public void testPlayerTakeDamage(){
+    public void testPlayerTakeDamage() {
         Player testPlayer1 = new Player();
         Fury fury1 = new Fury();
 
@@ -60,7 +65,7 @@ public class TheFallOfTyphonTest {
     }
 
     @Test
-    public void testIfFightEndsWhenMonsterDies(){
+    public void testIfFightEndsWhenMonsterDies() {
         Player player1 = new Player();
         Fury fury1 = new Fury();
 
@@ -69,32 +74,46 @@ public class TheFallOfTyphonTest {
     }
 
     @Test
-    public void playerGetsRewardAfterFight(){
-        Fury fury1 = new Fury();
-        /*
+    public void playerGetsRewardAfterFight() {
         Player player1 = new Player();
-        Inventory inventory = new Inventory();
+        Fury fury1 = new Fury();
         //Player stats before
         int goldBefore = player1.getGold();
-        int xpBefore = player1.getExperience();
+        int furyGold = fury1.getGold();
 
-        when(player1.playerWins(fury1)).thenReturn(true);
+        boolean correctGold;
+        int goldAfter = 0;
 
-        int calculatedGoldAfter = player1.getGold();
-        int calculatedXPAfter = player1.getExperience();
-
-        assertNotEquals(goldBefore, calculatedGoldAfter);
-        assertNotEquals(xpBefore, calculatedXPAfter);
-
-         */
-
+        if (player1.playerWins(fury1)) {
+            goldAfter = player1.getGold() + fury1.getGold();
+        }
+        assertEquals(goldBefore, goldAfter);
     }
 
 
     @Test
-    public void setShopWeaponsMenu() {
-        when(scanners.chooseFromMainMenu()).thenReturn(2);
-        when(scanners.chooseFromShopMenu()).thenReturn(2);
+    public void buyWeapon() {
+        Player player = new Player();
+        Inventory inventory = new Inventory();
+        ShopProducts expectedWeapon = new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 170, 10, 0, 0, 0);
+        player.setGold(170);
+        Storyline storyline = new Storyline();
+        setShopWeaponBehave();
+        storyline.mainGameMenu(player, scanners, inventory);
+
+        Assert.assertEquals(inventory.weaponsList.size(), 1);
+        Assert.assertEquals(inventory.weaponsList.get(0).getName(), expectedWeapon.getName());
+        Assert.assertEquals(inventory.weaponsList.get(0).getStrength(), expectedWeapon.getStrength());
+        Assert.assertEquals(inventory.weaponsList.get(0).getPrice(), expectedWeapon.getPrice());
+        Assert.assertEquals(inventory.weaponsList.get(0).getAttackName(), expectedWeapon.getAttackName());
 
     }
+
+    public void setShopWeaponBehave() {
+        when(scanners.chooseFromMainMenu()).thenReturn(2, 0);
+        when(scanners.chooseFromShopMenu()).thenReturn(1, 0);
+        when(scanners.chooseFromWeapons()).thenReturn(3, 0);
+    }
+
+
 }

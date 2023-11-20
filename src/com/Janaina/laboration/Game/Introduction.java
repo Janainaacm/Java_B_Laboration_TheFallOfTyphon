@@ -24,14 +24,14 @@ public class Introduction {
         sc.pressEnter();
 
 
-        PythiaSpeaking("""
+        pythiaSpeaking("""
                 Hello player,\s
                 My name is Pythia, but you might formally know me as The Oracle of Delphi.\s
                 What is your name?""");
 
         player.setName(sc.scannerText());
 
-        PythiaSpeaking("Welcome to the land of Elathriya " + player.getName() + ", I will be your guide on this journey");
+        pythiaSpeaking("Welcome to the land of Elathriya " + player.getName() + ", I will be your guide on this journey");
         suspensefulDots(PURPLE + "." + RESET);
 
         printYellow("Do you wish to know more about Pythia? yes or no");
@@ -41,16 +41,16 @@ public class Introduction {
             pythiaBackstory();
         }
 
-        PythiaSpeaking("Would you like a little tour of the game?");
+        pythiaSpeaking("Would you like a little tour of the game?");
         System.out.println("yes or no");
 
         if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
 
             initialTourOfGame(sc, player);
-            PythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fifth option of repeating this tour to the main menu.\n");
+            pythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fifth option of repeating this tour to the main menu.\n");
 
         } else {
-            PythiaSpeaking("In case you change your mind, there is an option to view tour in the main menu.\n");
+            pythiaSpeaking("In case you change your mind, there is an option to view tour in the main menu.\n");
         }
 
         sleepThread("Here are 50 gold coins for you to start with");
@@ -68,18 +68,18 @@ public class Introduction {
                 + "\n" + CYAN_BOLD +
                 "1. Play\n2. Shop\n3. Read game lore\n0. Quit Game" + RESET);
 
-        PythiaSpeaking("This is the main game menu");
+        pythiaSpeaking("This is the main game menu");
         suspensefulDots(PURPLE + "." + RESET);
         sleepThread(PURPLE + "Let's explore it a bit deeper:" + RESET);
 
         //Show Game Lore
         println("1. Play\n2. Shop\n" + CYAN_BOLD + "3. Read game lore\n" + RESET + "0. Quit Game");
-        PythiaSpeaking("If you press 3, the storyteller will tell you the tale of this battle. Though it is a most \nfascinating tale, it is not mandatory, therefore reading it will remain your choice.");
+        pythiaSpeaking("If you press 3, the storyteller will tell you the tale of this battle. Though it is a most \nfascinating tale, it is not mandatory, therefore reading it will remain your choice.");
         suspensefulDots(PURPLE + "." + RESET);
 
         //Show Play the Game
         println(CYAN_BOLD + "1. Play\n" + RESET + "2. Shop\n3. Read game lore\n0. Quit Game");
-        PythiaSpeaking("Type 1 to enter the game");
+        pythiaSpeaking("Type 1 to enter the game");
 
         while (true) {
             if (sc.scannerNumber() == 1) {
@@ -89,27 +89,27 @@ public class Introduction {
                         + "\n" + PURPLE_DARK + BOLD +
                         "1. Levels\n2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
 
-                PythiaSpeaking("This is the game menu:");
+                pythiaSpeaking("This is the game menu:");
 
                 println(PURPLE_DARK + BOLD + "1. Levels\n" + RESET + "2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
 
-                PythiaSpeaking("There are six levels to this game, some are harder than others, each with it's own monster.\nYou will not be able to play a level if you have not completed the level previous.");
+                pythiaSpeaking("There are six levels to this game, some are harder than others, each with it's own monster.\nYou will not be able to play a level if you have not completed the level previous.");
                 sc.pressEnter();
 
                 println("1. Levels\n" + PURPLE_DARK + BOLD + "2. Player stats\n" + RESET + "3. Achievements\n4. Inventory\n0. Back" + RESET);
-                PythiaSpeaking("Here you can see your stats, including how much xp you need to reach the next level, your special attacks and equipped weapon");
+                pythiaSpeaking("Here you can see your stats, including how much xp you need to reach the next level, your special attacks and equipped weapon");
                 sc.pressEnter();
 
                 println("1. Levels\n2. Player stats\n" + PURPLE_DARK + BOLD + "3. Achievements\n" + RESET + "4. Inventory\n0. Back" + RESET);
-                PythiaSpeaking("In your achievements you will be able to view all the games monsters, if you have defeated them, their stats\nand backstory will be visible to you.");
+                pythiaSpeaking("In your achievements you will be able to view all the games monsters, if you have defeated them, their stats\nand backstory will be visible to you.");
                 sc.pressEnter();
                 println("1. Levels\n2. Player stats\n3. Achievements\n" + PURPLE_DARK + BOLD + "4. Inventory\n" + RESET + "0. Back");
-                PythiaSpeaking("In your inventory you will find all your potions and weapons. In your inventory you can pick which weapon you want to equip\nor which potion you would like to drink. Your inventory is also available to you during fights.");
+                pythiaSpeaking("In your inventory you will find all your potions and weapons. In your inventory you can pick which weapon you want to equip\nor which potion you would like to drink. Your inventory is also available to you during fights.");
                 sc.pressEnter();
 
                 break;
             } else {
-                PythiaSpeaking("You need to type '1'");
+                pythiaSpeaking("You need to type '1'");
             }
         }
 
@@ -117,7 +117,7 @@ public class Introduction {
         //Show Shop
         println("1. Play\n" + CYAN_BOLD + "2. Shop\n" + RESET + "3. Read game lore\n0. Quit Game");
 
-        PythiaSpeaking("Type 2 to enter the shop");
+        pythiaSpeaking("Type 2 to enter the shop");
 
         while (true) {
             if (sc.scannerNumber() == 2) {
@@ -127,24 +127,24 @@ public class Introduction {
                         YELLOW_DARK + "\nCategories:" + RESET +
                         "\n" + WHITE + "1. Weapons\n2. Potions\n0. Go back" + RESET);
 
-                PythiaSpeaking("This is the shop. Here you can use the gold you win from slaying monsters to buy either potions or weapons");
+                pythiaSpeaking("This is the shop. Here you can use the gold you win from slaying monsters to buy either potions or weapons");
                 sc.pressEnter();
 
                 System.out.println(WHITE + "1. Weapons\n" + RESET + "2. Potions\n0. Go back");
-                PythiaSpeaking("All weapons increase your strength, which multiplied with your base damage determines how much damage you do.");
+                pythiaSpeaking("All weapons increase your strength, which multiplied with your base damage determines how much damage you do.");
 
                 System.out.println("1. Weapons\n" + WHITE +  "2. Potions\n" + RESET + "0. Go back");
-                PythiaSpeaking("Potions on the other hand can increase your intelligence: making it easier to flee a fight, your \nagility: giving you more time to dodge an attack, or restore your health.");
+                pythiaSpeaking("Potions on the other hand can increase your intelligence: making it easier to flee a fight, your \nagility: giving you more time to dodge an attack, or restore your health.");
                 sc.pressEnter();
 
                 break;
             } else {
-                PythiaSpeaking("You need to type '2'");
+                pythiaSpeaking("You need to type '2'");
             }
         }
 
         println("1. Play\n2. Shop\n3. Read game lore\n" + CYAN_BOLD + "0. Quit Game" + RESET);
-        PythiaSpeaking("Lastly, you type '0' in order to quit game");
+        pythiaSpeaking("Lastly, you type '0' in order to quit game");
         suspensefulDots(PURPLE + "." + RESET);
 
 

@@ -7,7 +7,6 @@ import com.Janaina.laboration.Game.GameMenu.PlayerStats.GetPlayerStats;
 import com.Janaina.laboration.Game.Shop.StoreFront;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
-import com.Janaina.laboration.Game.Variables.Monsters.Fury;
 import com.Janaina.laboration.Resources.Scanners;
 
 import static com.Janaina.laboration.Resources.Colors.*;
@@ -17,35 +16,14 @@ import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
 
 public class Storyline {
 
-    public void mainGameMenu(Player player, Scanners sc) {
+    public void mainGameMenu(Player player, Scanners sc, Inventory inventory) {
 
         Introduction intro = new Introduction();
         PlayTheGame playTheGame = new PlayTheGame();
         StoreFront storeFront = new StoreFront();
-        LevelMenu mn = new LevelMenu();
         GetPlayerStats playerStats = new GetPlayerStats();
         LevelMenu levelMenu = new LevelMenu();
         GetPlayerAchievements playerAchievements = new GetPlayerAchievements();
-        Inventory inventory = new Inventory();
-        Fury fury = new Fury();
-        LevelFour lf = new LevelFour();
-        LevelTwo lt = new LevelTwo();
-        LevelThree ltt = new LevelThree();
-        LevelFive lff = new LevelFive();
-        LevelSix ls = new LevelSix();
-        //playerAchievements.playerAchievements(player, sc);
-        //playerStats.currentStats(player, sc);
-        //lt.playLevelTwo(player, inventory);
-        //player.setGold(200);
-        //StoreFront.mainStoreFront(player, inventory);
-        //lf.playLevelFour(player, inventory);
-       // mn.levelMenu(player, inventory);
-        //ltt.playLevelThree(player, inventory);
-        //lff.playLevelFive(player, inventory);
-        player.setStrength(15);
-        ls.playLevelSix(player, inventory, sc);
-
-        //intro.createPlayer(player, sc);
 
         boolean mainGameMenuSwitch = true;
 
@@ -62,7 +40,7 @@ public class Storyline {
                 case 3 -> readGameLore(sc);
                 case 4 -> intro.initialTourOfGame(sc, player);
                 case 0 -> {
-                    PythiaSpeaking("Goodbye " + player.getName() + ", may we meet again");
+                    pythiaSpeaking("Goodbye " + player.getName() + ", may we meet again");
                     suspensefulDots(PURPLE + "." + RESET);
                     mainGameMenuSwitch = false;
                 }

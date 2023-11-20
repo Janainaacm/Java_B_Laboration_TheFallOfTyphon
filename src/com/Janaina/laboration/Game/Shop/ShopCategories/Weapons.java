@@ -14,7 +14,7 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 public class Weapons {
 
     private int total = 0;
-    public void shopWeapons(Player player, Inventory Inventory, Scanners sc) {
+    public void shopWeapons(Player player, Inventory inventory, Scanners sc) {
         //String name, int price, int strength, int health, int agility, int intelligence
         List<ShopProducts> productList = new ArrayList<>();
         productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", "+—⟪═════>", 150, 6, 0,0,0));
@@ -60,8 +60,8 @@ public class Weapons {
                 total += selectedProduct.getPrice();
                 player.setGold(player.getGold() - selectedProduct.getPrice());
                 System.out.println(RED_DARK + BOLD + "Gold: -" + selectedProduct.getPrice());
-                System.out.println(WHITE + selectedProduct.getName() + " has been added to your Inventory." + RESET);
-                Inventory.addToWeaponsInventory(selectedProduct);
+                System.out.println(WHITE + selectedProduct.getName() + " has been added to your inventory." + RESET);
+                inventory.addToWeaponsInventory(selectedProduct);
                 productList.remove(selectedProduct);
                 sc.pressEnter();
             } else {

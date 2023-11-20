@@ -42,7 +42,7 @@ public class Potions {
                 } else if (product.getAgility() > 0) {
                     System.out.println(GRAY + ITALIC + "Agility: " + product.getAgility() + RESET);
                 } else if (product.getIntelligence() > 0) {
-                System.out.println(GRAY + ITALIC + "Intelligence: " + product.getAgility() + RESET);
+                System.out.println(GRAY + ITALIC + "Intelligence: " + product.getIntelligence() + RESET);
             }
 
             }

@@ -24,7 +24,7 @@ public class PrintHandler {
     }
 
 
-    public static void PythiaSpeaking(String text){
+    public static void pythiaSpeaking(String text){
         System.out.println(PURPLE_UNDERLINED + PURPLE_BOLD_BRIGHT +"Pythia:" + RESET);
         for (int i = 0; i < text.length(); i++) {
             System.out.print(PURPLE + text.charAt(i) + RESET);
