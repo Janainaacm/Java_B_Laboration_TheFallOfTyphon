@@ -43,7 +43,7 @@ public class Storyline {
         //ltt.playLevelThree(player, inventory);
         //lff.playLevelFive(player, inventory);
         player.setStrength(15);
-        //ls.playLevelSix(player, inventory, sc);
+        ls.playLevelSix(player, inventory, sc);
 
         //intro.createPlayer(player, sc);
 

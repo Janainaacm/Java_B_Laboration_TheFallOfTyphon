@@ -2,7 +2,6 @@ package com.Janaina.laboration.Game.Variables.Hero;
 
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.ACharacters;
-import com.Janaina.laboration.Game.Variables.Monsters.Typhon;
 import com.Janaina.laboration.Resources.Scanners;
 
 import java.util.*;
@@ -23,23 +22,14 @@ public class Player extends ACharacters {
     public int cerberusSlayed = 0;
     public int typhonSlayed = 0;
     private int roundsFightingTyphon = 0;
-    private int maxDamage;
 
     public Player() {
         super("name", 1, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
         specialAttackList = new ArrayList<>();
         this.equippedWeapon = new ShopProducts("knife", "Lethal Lunge", "▬ι=ﺤ", 0, 1, 0, 0, 0);
-        this.maxDamage = (getStrength() + equippedWeapon.getStrength()) * 10;
         this.availableLevels = 1;
     }
 
-    public int getMaxDamage() {
-        return maxDamage;
-    }
-
-    public void setMaxDamage(int maxDamage) {
-        this.maxDamage = maxDamage;
-    }
 
     public ShopProducts getEquippedWeapon() {
         return equippedWeapon;
@@ -116,8 +106,10 @@ public class Player extends ACharacters {
     public void actTyphon(ACharacters monster, Inventory inventory, Scanners sc) {
 
         boolean monsterEncounter = true;
-        if (Objects.equals(monster.getName(), "Typhon")){
-            roundsFightingTyphon ++;
+        if (Objects.equals(monster.getName(), "Typhon")) {
+
+            roundsFightingTyphon++;
+            System.out.println("plus");
         }
 
         do {
@@ -144,21 +136,30 @@ public class Player extends ACharacters {
 
             }
 
-            if (roundsFightingTyphon == 1 && monster.getHealth() <= 150){
-                System.out.println("health at 150, flee");
-                monster.revive();
-                monsterEncounter = false;
+            if (Objects.equals(monster.getName(), "Typhon")){
 
-            } else if (roundsFightingTyphon == 2 && monster.getHealth() <= 100){
-                System.out.println("round 2, health at 100, flee");
-                monster.revive();
-                monsterEncounter = false;
+                if (roundsFightingTyphon == 1){
+                    if (monster.getHealth() <= 150){
+                        System.out.println("1");
+                        monster.revive();
+                        monsterEncounter = false;
+                    }
+                }
 
+                if (roundsFightingTyphon == 2){
+                    if (monster.getHealth() <= 100){
+                        System.out.println("2");
+                        monster.revive();
+                        monsterEncounter = false;
+                    }
+                }
             }
 
 
             if (playerWins(monster)) {
-                roundsFightingTyphon = 0;
+                if (Objects.equals(monster.getName(), "Typhon")) {
+                    roundsFightingTyphon = 0;
+                }
                 monster.revive();
                 monsterEncounter = false;
             }
@@ -237,7 +238,7 @@ public class Player extends ACharacters {
         sleepThread(YELLOW + equippedWeapon.getAnimation() + RESET);
         Random random = new Random();
 
-        return random.nextInt(getBaseDamage(), getMaxDamage());
+        return random.nextInt(getBaseDamage(), (getStrength() + equippedWeapon.getStrength()) * 10);
 
     }
 
@@ -305,7 +306,7 @@ public class Player extends ACharacters {
                 LILAC + ITALIC + "\n✧ Health: " + GREEN_LIGHT + getHealth() + LILAC + ITALIC +
                 "\n✧ Equipped Weapon: " + ORANGE + equippedWeapon.getName() + LILAC + ITALIC +
                 "\n✧ Min Damage: " + RED + getBaseDamage() + LILAC + ITALIC +
-                "\n✧ Max Damage: " + RED + getBaseDamage() * getMaxDamage() + RESET;
+                "\n✧ Max Damage: " + RED + getBaseDamage() * (getStrength() + equippedWeapon.getStrength()) + RESET;
 
     }
 
@@ -422,7 +423,7 @@ public class Player extends ACharacters {
         setIntelligence(getIntelligence() + 10);
         setStrength(getStrength() + 1);
 
-        System.out.println(PURPLE + "Agility: + 10\nStrength: + 10\nBase Damage: + 10\nIntelligence: + 10");
+        System.out.println(PURPLE + "Agility: + 10\nStrength: + 1\nBase Damage: + 10\nIntelligence: + 10");
     }
 
     private int calculateExperienceRequiredForNextLevel() {

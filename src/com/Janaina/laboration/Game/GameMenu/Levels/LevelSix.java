@@ -15,9 +15,12 @@ public class LevelSix {
 
     public void playLevelSix(Player player, Inventory inventory, Scanners sc) {
         int originalAgility = player.getAgility();
-        int originalDamage = player.getMaxDamage();
+        int originalStrength = player.getStrength();
+        int weaponOriginalStrength = player.equippedWeapon.getStrength();
+
         Typhon typhon = new Typhon();
         Fury fury = new Fury();
+        player.setGold(200);
 
         sleepThread(YELLOW + """
                 As the hero crosses the threshold into the underworld, an oppressive darkness envelopes him, seeping into the very core of his \s
@@ -30,13 +33,14 @@ public class LevelSix {
                 In the distance, a lone figure stands – the boatman, a spectral silhouette against the dimly lit shores.\s
                 """ + RESET);
 
+
         System.out.println(BLACK + BOLD + UNDERLINED + "Boatman:" + RESET);
         sleepThread(BLACK + "I can offer you safe passage across the lake... For a price of course." + RESET);
         sleepThread(YELLOW_LIGHT + "200 " + BLACK + "gold coins." + RESET);
-        chillForASecond(1500);
+        chillForASecond(1000);
         sleepThread(GRAY + ITALIC + "What do you want to do?" + RESET);
         System.out.println(YELLOW_LIGHT + ITALIC + "Gold: " + player.getGold() + RESET +
-                YELLOW + "1. Safely cross the lake with the boatman\n2. Take your chances with the rowing boat" + RESET);
+                YELLOW + "\n1. Safely cross the lake with the boatman\n2. Take your chances with the rowing boat" + RESET);
 
         boolean isChoosing = true;
         boolean didGoWithBoatMan = false;
@@ -62,6 +66,11 @@ public class LevelSix {
             }
         }
 
+        sleepThread(YELLOW + """
+                Upon reaching the shore, the hero steps onto what appears to be a beach, only to discover it's not sand beneath his feet \s
+                but a haunting landscape littered with skeletal remains, silent witnesses to the underworld's eternal suffering.\s
+                """);
+
         castleGates(player, inventory, sc);
 
         player.actTyphon(typhon, inventory, sc);
@@ -69,9 +78,9 @@ public class LevelSix {
         System.out.println(ORANGE + "Typhon fled to the castle with Althea!" + RESET);
         chillForASecond(1000);
         System.out.println(YELLOW_LIGHT + "Press enter to follow inside castle!" + RESET);
-        sc.pressEnter();
+        sc.pressEnterNoText();
         sleepThread(YELLOW + """
-                Little does he know that the castle itself is a labyrinth of the mind, a place where reality intertwines with illusion. \s
+                Little does he know that the castle itself is a maze of the mind, a place where reality intertwines with illusion. \s
                 As he pursues Typhon through the winding corridors, the very architecture of the castle seems to play tricks on his senses. \s
                 Whispers of doubt and shadows of the past assail his mind, creating a psychological battleground where discerning reality \s
                 from illusion becomes increasingly challenging.\s
@@ -81,7 +90,7 @@ public class LevelSix {
         if (didGoWithBoatMan) {
             sleepThread(GRAY + ITALIC + "Did you pay attention to what the boatman said?" + RESET);
         }
-        trappedInsideCastle(player, inventory, sc);
+        trappedInsideCastle(sc);
 
         sleepThread(YELLOW + """
                 As the hero navigates the convoluted corridors of the castle, he manages to discern the elusive path leading to the heart of \s
@@ -92,12 +101,12 @@ public class LevelSix {
         playerSpeaking("Come face me then!", player);
         player.actTyphon(typhon, inventory, sc);
 
-        sleepThread(YELLOW + "Typhon has once again fled the fight! The hero seizes the opportunity to rush to Althea's side and free her\nfrom the chains that bound her to the altar.");
+        sleepThread(YELLOW + "Typhon has once again fled the fight! The hero seizes the opportunity to rush to Althea's side and free her\nfrom the chains that bound her to the altar.\n");
         chillForASecond(500);
         System.out.println(PINK + BOLD + UNDERLINED + "Althea:" + RESET);
-        sleepThread(PINK + player.getName() + "! My beloved brother! You came to my rescue!" + RESET);
+        sleepThread(PINK + player.getName() + "! My beloved brother! You came to my rescue!\n" + RESET);
         chillForASecond(500);
-        playerSpeaking("I would never leave you with that beast. Come now, we must make haste", player);
+        playerSpeaking("I would never leave you with that beast. Come now, we must make haste\n", player);
         chillForASecond(1000);
 
         sleepThread(YELLOW + """
@@ -106,22 +115,23 @@ public class LevelSix {
                 sinister anticipation, flanked by his loyal minions. It becomes apparent that this confrontation is far from over.\s
                 """);
         chillForASecond(1000);
-        typhonSpeaking("Did you really think I would let you take my betrothed without a battle?");
+        typhonSpeaking("Did you really think I would let you take my betrothed without a battle?\n");
         chillForASecond(500);
-        playerSpeaking("You do not frighten me Typhon!", player);
+        playerSpeaking("You do not frighten me Typhon!\n", player);
         chillForASecond(500);
         typhonSpeaking("You will learn to fear my name, " + player.getName());
         chillForASecond(500);
-        sleepThread(YELLOW + "And with that, the air filled with a magical mist");
+        sleepThread(YELLOW + "\nAnd with that, the air filled with a magical mist\n");
         playerSpeaking("What is going on?", player);
         suspensefulDots(".");
         sleepThread(GRAY + ITALIC + "Your agility and strength have been reduced by half." + RESET);
 
         player.setAgility(player.getAgility() / 2);
-        player.setMaxDamage(player.getMaxDamage() / 2);
+        player.setStrength(player.getStrength() / 2);
+        player.equippedWeapon.setStrength(player.equippedWeapon.getStrength() / 2);
 
         chillForASecond(1000);
-        furySpeaking("Not so tough now are we?");
+        furySpeaking("\nNot so tough now are we?");
 
         player.actTyphon(fury, inventory, sc);
 
@@ -143,8 +153,10 @@ public class LevelSix {
         chillForASecond(1000);
 
         player.actTyphon(typhon, inventory, sc);
-        player.setMaxDamage(originalDamage);
+        player.setStrength(originalStrength);
         player.setAgility(originalAgility);
+        player.equippedWeapon.setStrength(weaponOriginalStrength);
+
 
         suspensefulDots(".");
         sleepThread(YELLOW + """
@@ -171,7 +183,11 @@ public class LevelSix {
 
 
         player.setAvailableLevels(7);
+        sleepThread(GRAY + ITALIC + "You have completed level six");
+        suspensefulDots(".");
+        chillForASecond(1000);
         sleepThread(GRAY + ITALIC + "I would highly recommend visiting the weapons shop" + RESET);
+        chillForASecond(1000);
 
     }
 
@@ -180,7 +196,7 @@ public class LevelSix {
 
         sleepThread(YELLOW + """
                 Accepting the boatman's offer, the hero boards the boat, eager to cross the river swiftly. Attempting conversation, his \s
-                questions linger unanswered in the air. Mysterious splashes in the water catch his attention, yet an unseen barrier \s
+                questions linger in the air. Mysterious splashes in the water catch his attention, yet an unseen barrier \s
                 shields the boat from the source. Harmonizing sounds attempt to enchant, but the protective shield keeps the hero unaffected.\s
                 """);
         suspensefulDots(GRAY + ".");
@@ -224,38 +240,35 @@ public class LevelSix {
 
         }
 
-        sleepThread(YELLOW + """
-                Upon reaching the shore, the hero steps onto what appears to be a beach, only to discover it's not sand beneath his feet \s
-                but a haunting landscape littered with skeletal remains, silent witnesses to the underworld's eternal suffering.\s
-                """);
-
     }
 
     private void rowingBoat(Player player, Inventory inventory, Scanners sc) {
         Siren siren = new Siren();
-               /*
-               Refusing the boatman's offer, the hero finds a small rowboat by the shore. Determined, he starts rowing across the desolate river, navigating the eerie waters. As he progresses, haunting melodies fill the air – the enchanting song of sirens seeking to lure him into the depths. The hero battles the hypnotic pull, gripping the oars with newfound determination as the sirens' haunting voices crescendo in the underworld's solemn symphony.
+        sleepThread(YELLOW + """
+                Refusing the boatman's offer, the hero finds a small rowboat by the shore. Determined, he starts rowing across the \s
+                desolate river, navigating the eerie waters. As he progresses, haunting melodies fill the air – the enchanting song \s
+                of sirens seeking to lure him into the depths. The hero battles the hypnotic pull, gripping the oars with newfound \s
+                determination as the sirens' haunting voices crescendo in the underworld's solemn symphony.\s
+                """);
 
-                */
         int rowing = 0;
         int rowsNeeded = 20;
 
+        System.out.println(GRAY + "Press enter to row" + RESET);
         while (rowing < rowsNeeded) {
             sc.pressEnterNoText();
             rowing++;
         }
 
-        //Lore you hit something
-
-
-        player.actTyphon(siren, inventory, sc);
+        System.out.println(GRAY + "Thud");
+        suspensefulDots(".");
 
         player.actTyphon(siren, inventory, sc);
-
+        player.actTyphon(siren, inventory, sc);
         player.actTyphon(siren, inventory, sc);
 
+        suspensefulDots(".");
 
-        //sirens.
     }
 
     private void castleGates(Player player, Inventory inventory, Scanners sc) {
@@ -271,6 +284,7 @@ public class LevelSix {
         furySpeaking(player.getName() + "! Finally, we've been waiting for your arrival");
         chillForASecond(1500);
         playerSpeaking("I mustn't keep you waiting then", player);
+        chillForASecond(500);
 
         player.actTyphon(fury, inventory, sc);
         player.actTyphon(fury, inventory, sc);
@@ -295,7 +309,7 @@ public class LevelSix {
 
     }
 
-    private void trappedInsideCastle(Player player, Inventory inventory, Scanners sc) {
+    private void trappedInsideCastle(Scanners sc) {
         boolean inMaze = true;
         int correctPathsChosen = 0;
 
@@ -310,28 +324,24 @@ public class LevelSix {
                     """ + RESET);
 
             switch (correctPathsChosen) {
-                case 0 -> {
+                case 0, 1 -> {
                     switch (sc.scannerNumber()) {
-                        case 1 -> correctPathsChosen++;
-                        case 2 -> System.out.println("no");
-                        case 3 -> System.out.println("noo");
-                        default -> printRed("Invalid input");
-                    }
-                }
-                case 1 -> {
-                    switch (sc.scannerNumber()) {
-                        case 1 -> correctPathsChosen++;
-                        case 2 -> System.out.println("noo");
-                        case 3 -> System.out.println("no0o");
+                        case 1 -> {
+                            System.out.println(PINK_LIGHT + ITALIC + "slay queen" + RESET);
+                            correctPathsChosen++;
+                        }
+                        case 2, 3 -> System.out.println("no lol");
                         default -> printRed("Invalid input");
                     }
                 }
 
                 case 2 -> {
                     switch (sc.scannerNumber()) {
-                        case 1 -> System.out.println("noo");
-                        case 2 -> System.out.println("no");
-                        case 3 -> correctPathsChosen++;
+                        case 1, 2 -> System.out.println("no lol");
+                        case 3 -> {
+                            System.out.println(PINK_LIGHT + ITALIC + "slay queen" + RESET);
+                            correctPathsChosen++;
+                        }
                         default -> printRed("Invalid input");
                     }
                 }
@@ -340,6 +350,7 @@ public class LevelSix {
                     switch (sc.scannerNumber()) {
                         case 1 -> System.out.println("noo");
                         case 2 -> {
+                            System.out.println(PINK_LIGHT + ITALIC + "slay queen" + RESET);
                             correctPathsChosen++;
                             inMaze = false;
                         }
