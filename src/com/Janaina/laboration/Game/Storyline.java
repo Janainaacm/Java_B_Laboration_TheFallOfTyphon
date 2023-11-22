@@ -27,6 +27,8 @@ public class Storyline {
 
         boolean mainGameMenuSwitch = true;
 
+        intro.createPlayer(player, sc);
+
         do {
 
             println(BLACK_BACKGROUND + "     " + CYAN_BOLD + CYAN_UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
