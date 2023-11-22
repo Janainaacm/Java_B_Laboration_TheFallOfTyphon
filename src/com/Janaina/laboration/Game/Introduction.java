@@ -47,7 +47,7 @@ public class Introduction {
         if (Objects.equals(sc.scannerYesOrNo(), "yes")) {
 
             initialTourOfGame(sc, player);
-            pythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fifth option of repeating this tour to the main menu.\n");
+            pythiaSpeaking("That concludes our tour. In case you would need a rerun, i have added a fourth option of repeating this tour to the main menu.\n");
 
         } else {
             pythiaSpeaking("In case you change your mind, there is an option to view tour in the main menu.\n");

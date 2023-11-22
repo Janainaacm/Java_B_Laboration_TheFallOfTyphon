@@ -48,14 +48,11 @@ public class Medusa extends ACharacters {
 
     @Override
     public void receiveDamage(ACharacters player, int damage) {
-        Random random = new Random();
-        int acquiredStrength = random.nextInt(1, player.getStrength());
-        int damageFromAttack = acquiredStrength * player.getBaseDamage();
 
-        setHealth(getHealth() - damageFromAttack);
-        System.out.println(YELLOW + "Your attack did " + damageFromAttack + " damage!" + RESET);
+        setHealth(getHealth() - damage);
+        System.out.println(YELLOW + "Your attack did " + damage + " damage!" + RESET);
 
-        chillForASecond(200);
+        chillForASecond(500);
 
     }
 }

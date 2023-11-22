@@ -20,7 +20,7 @@ public class Cerberus extends ACharacters {
     @Override
     public void attack(ACharacters target, Scanners sc) {
         System.out.println(RED_BOLD_BRIGHT + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
-        sleepThread(RED + "⋆꙳•̩̩͙❅*̩̩͙‧͙ ‧͙*̩̩͙❆ ͙͛ ˚₊⋆" + "\n" + RESET );
+        sleepThread(RED + "⋆꙳•̩̩͙❅*̩̩͙‧͙ ‧͙*̩̩͙❆ ͙͛ ˚₊⋆" + "\n" + RESET);
         chillForASecond(200);
 
     }
@@ -47,17 +47,13 @@ public class Cerberus extends ACharacters {
     }
 
 
-
-        @Override
+    @Override
     public void receiveDamage(ACharacters player, int damage) {
-        Random random = new Random();
-        int acquiredStrength = random.nextInt(1, player.getStrength());
-        int damageFromAttack = acquiredStrength * player.getBaseDamage();
 
-        setHealth(getHealth() - damageFromAttack);
-        System.out.println(YELLOW + "Your attack did " + damageFromAttack + " damage!" + RESET);
+        setHealth(getHealth() - damage);
+        System.out.println(YELLOW + "Your attack did " + damage + " damage!" + RESET);
 
-        chillForASecond(200);
+        chillForASecond(500);
 
     }
 }
