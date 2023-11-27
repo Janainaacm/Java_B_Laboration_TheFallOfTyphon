@@ -6,12 +6,14 @@ import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 
+import java.util.List;
+
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.printRed;
 
 public class StoreFront {
 
-    public void mainStoreFront(Player player, Inventory Inventory, Scanners sc) {
+    public void mainStoreFront(Player player, Inventory Inventory, Scanners sc, List<ShopProducts> potionsProductList, List<ShopProducts> weaponsProductList) {
         Weapons Weapons = new Weapons();
         Potions Potions = new Potions();
 
@@ -25,8 +27,8 @@ public class StoreFront {
             System.out.println(WHITE + "0. Go back" + RESET);
 
             switch (sc.chooseFromShopMenu()) {
-                case 1 -> Weapons.shopWeapons(player, Inventory, sc);
-                case 2 -> Potions.shopPotions(player, Inventory, sc);
+                case 1 -> Weapons.shopWeapons(player, Inventory, sc, weaponsProductList);
+                case 2 -> Potions.shopPotions(player, Inventory, sc, potionsProductList);
                 case 0 -> isShopping = false;
                 default -> printRed("Invalid input, please chose from the presented options");
 

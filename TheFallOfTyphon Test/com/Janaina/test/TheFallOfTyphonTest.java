@@ -15,6 +15,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
@@ -79,11 +82,13 @@ public class TheFallOfTyphonTest {
     public void buyWeapon() {
         Player player = new Player();
         Inventory inventory = new Inventory();
+        List<ShopProducts> potionsProductList = new ArrayList<>();
+        List<ShopProducts> weaponsProductList = new ArrayList<>();
         ShopProducts expectedWeapon = new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 170, 10, 0, 0, 0);
         player.setGold(170);
         Storyline storyline = new Storyline();
         setShopWeaponBehave();
-        storyline.mainGameMenu(player, scanners, inventory);
+        storyline.mainGameMenu(player, scanners, inventory, potionsProductList, weaponsProductList);
 
         Assert.assertEquals(inventory.weaponsList.size(), 1);
         Assert.assertEquals(inventory.weaponsList.get(0).getName(), expectedWeapon.getName());

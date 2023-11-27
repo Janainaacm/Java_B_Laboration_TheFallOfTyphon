@@ -1,12 +1,13 @@
 package com.Janaina.laboration;
 
+import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Storyline;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 
-import static com.Janaina.laboration.Resources.Colors.*;
-import static com.Janaina.laboration.Resources.Colors.RESET;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -15,8 +16,12 @@ public class Main {
         Inventory inventory = new Inventory();
         Storyline storyline = new Storyline();
         Scanners sc = new Scanners();
+        List<ShopProducts> potionsProductList = new ArrayList<>();
+        List<ShopProducts> weaponsProductList = new ArrayList<>();
 
-        storyline.mainGameMenu(player, sc, inventory);
+        player.setAvailableLevels(2);
+
+        storyline.mainGameMenu(player, sc, inventory, potionsProductList, weaponsProductList);
 
     }
 }

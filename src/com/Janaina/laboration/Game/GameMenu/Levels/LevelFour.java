@@ -1,6 +1,5 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
-import com.Janaina.laboration.Game.Shop.ShopCategories.Potions;
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
@@ -18,7 +17,7 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 public class LevelFour {
     private boolean foughtMinotaur = false;
 
-    public void playLevelFour(Player player, Inventory inventory, Scanners sc) {
+    public void playLevelFour(Player player, Inventory inventory, Scanners sc, List<ShopProducts> potionsProductList) {
 
         sleepThread(GRAY + "Level Four." + RESET);
         chillForASecond(1500);
@@ -71,7 +70,7 @@ public class LevelFour {
                     chillForASecond(1500);
 
                     if (treasuresFound <= 5) {
-                        boolean didFind = findTreasureChest(player, inventory, sc);
+                        boolean didFind = findTreasureChest(player, inventory, sc, potionsProductList);
                         if (didFind) {
                             treasuresFound++;
                         }
@@ -198,8 +197,7 @@ public class LevelFour {
     }
 
 
-    private boolean findTreasureChest(Player player, Inventory Inventory, Scanners sc) {
-        Potions potions = new Potions();
+    private boolean findTreasureChest(Player player, Inventory Inventory, Scanners sc, List<ShopProducts> potionsProductList) {
         Random random = new Random();
         int randomValue = random.nextInt(1, 10);
 
@@ -209,7 +207,7 @@ public class LevelFour {
                 chillForASecond(1000);
                 System.out.println(GRAY + "Press enter to open." + RESET);
                 sc.pressEnterNoText();
-                ShopProducts potionFound = potions.productList.get(random.nextInt(0, potions.productList.size()));
+                ShopProducts potionFound = potionsProductList.get(random.nextInt(0, potionsProductList.size()));
                 System.out.println(WHITE + "You found a " + potionFound.getName() + " inside the chest!");
                 sleepThread(GRAY + potionFound.getName() + " has been added to your inventory." + RESET);
                 Inventory.addToPotionsInventory(potionFound);

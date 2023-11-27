@@ -7,6 +7,7 @@ import com.Janaina.laboration.Resources.Scanners;
 import java.util.*;
 
 import static com.Janaina.laboration.Resources.Colors.*;
+import static com.Janaina.laboration.Resources.PrintHandler.playerSpeaking;
 import static com.Janaina.laboration.Resources.PrintHandler.printRed;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
@@ -215,7 +216,10 @@ public class Player extends ACharacters {
             attack = attackWeapon(sc);
         }
 
-        if (monster.dodge(this)) {
+        if (Objects.equals(equippedWeapon.getName(), "Glock-19")){
+            playerSpeaking("Ingen rör Strängnäs. Strängnäs är MITT område.", this);
+            monster.receiveDamage(this, attack);
+        } else if (monster.dodge(this)) {
             System.out.println(RED + monster.getName() + " dodged your attack!");
             chillForASecond(1000);
         } else {
@@ -238,7 +242,11 @@ public class Player extends ACharacters {
         sleepThread(YELLOW + equippedWeapon.getAnimation() + RESET);
         Random random = new Random();
 
-        return random.nextInt(getBaseDamage(), (getStrength() + equippedWeapon.getStrength()) * 10);
+        if (Objects.equals(equippedWeapon.getName(), "Glock-19")){
+            return getStrength() + equippedWeapon.getStrength() * 10;
+        } else {
+            return random.nextInt(getBaseDamage(), (getStrength() + equippedWeapon.getStrength()) * 10);
+        }
 
     }
 

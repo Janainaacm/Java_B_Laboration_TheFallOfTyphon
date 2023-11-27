@@ -78,10 +78,6 @@ public abstract class ACharacters implements Combat {
         return baseDamage;
     }
 
-    public void setBaseDamage(int baseDamage) {
-        this.baseDamage = baseDamage;
-    }
-
     public int getAgility() {
         return agility;
     }

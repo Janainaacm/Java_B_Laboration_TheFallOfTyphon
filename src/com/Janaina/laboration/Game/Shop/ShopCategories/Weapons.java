@@ -5,8 +5,8 @@ import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
@@ -14,31 +14,28 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 public class Weapons {
 
     private int total = 0;
-    public void shopWeapons(Player player, Inventory inventory, Scanners sc) {
-        //String name, int price, int strength, int health, int agility, int intelligence
-        List<ShopProducts> productList = new ArrayList<>();
-        productList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", "+—⟪═════>", 150, 6, 0,0,0));
-        productList.add(new ShopProducts("Shadowfang Blade", "Dark Eclipse", "▭▭ι═══════ﺤ", 160, 8, 0,0,0));
-        productList.add(new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 170, 10, 0,0,0));
-        productList.add(new ShopProducts("Oceanic Trident", "Abyssal Torrent", "——————∈ ࿐ ࿔", 200, 12, 0, 0, 0));
-        productList.add(new ShopProducts("Phoenix Bow","Flaming Arrow Barrage", "ˎ-·˚ ༘₊· ͟͟͞͞➳", 250,15,0,0,0));
-        productList.add(new ShopProducts("Thunderstrike Hammer", "Lightning Hammerblow", "⌁˚⊹｡ﾟϟﾟ.｡⊹˚⌁", 300,18,0,0,0));
-
-        if (player.getAvailableLevels() >= 7){
-            productList.add(new ShopProducts("Glock-19", "Kurdiska räven", "ᡕᠵ᠊ᡃ࡚ࠢ࠘ ⸝່ࠡࠣ᠊߯᠆ࠣ࠘ᡁࠣ࠘᠊᠊ࠢ࠘\uD802\uDC4F  \uD81A\uDCD3 \uD81A\uDCE8", 1000, 100, 0, 0, 0));
-
-        }
+    public void shopWeapons(Player player, Inventory inventory, Scanners sc, List<ShopProducts> weaponsProductList) {
 
         while (true) {
             System.out.println(BLACK_BACKGROUND + BOLD + RED + " Available weapons: " + RESET + "\n"
                                 + RED + "Gold: " + YELLOW_DARK + player.getGold() + RESET);
 
-            for (int i = 0; i < productList.size(); i++) {
-                ShopProducts product = productList.get(i);
-                System.out.println(RED + BOLD + (i + 1) + ". " + product.getName() + YELLOW_DARK + " - $" + product.getPrice() + RESET +
-                                    "\n" + BLACK + ITALIC + "Strength: +" + product.getStrength() + RESET);
+            for (int i = 0; i < weaponsProductList.size(); i++) {
+                ShopProducts product = weaponsProductList.get(i);
+
+                if (Objects.equals(product.getName(), "Glock-19")) {
+                    if (player.getAvailableLevels() >= 7){
+                        System.out.println(RED + BOLD + (i + 1) + ". " + product.getName() + YELLOW_LIGHT + " - $" + product.getPrice() + RESET +
+                                "\n" + BLACK + ITALIC + "Strength: +" + product.getStrength() + RESET);
+                    }
+
+                }else {
+                    System.out.println(RED_LILDARKER + BOLD + (i + 1) + ". " + product.getName() + YELLOW_DARK + " - $" + product.getPrice() + RESET +
+                            "\n" + BLACK + ITALIC + "Strength: +" + product.getStrength() + RESET);
+                }
 
             }
+
             System.out.println(BLACK_BACKGROUND + RED_DARK + BOLD + "0. Go back" + RESET);
 
             chillForASecond(1000);
@@ -49,12 +46,12 @@ public class Weapons {
                 break;
             }
 
-            if (choice < 1 || choice > productList.size()){
+            if (choice < 1 || choice > weaponsProductList.size()){
                 System.out.println(BLACK + "Invalid choice, please try again" + RESET);
                 continue;
             }
 
-            ShopProducts selectedProduct = productList.get(choice - 1);
+            ShopProducts selectedProduct = weaponsProductList.get(choice - 1);
 
             if (total + selectedProduct.getPrice() <= player.getGold()){
                 total += selectedProduct.getPrice();
@@ -62,29 +59,14 @@ public class Weapons {
                 System.out.println(RED_DARK + BOLD + "Gold: -" + selectedProduct.getPrice());
                 System.out.println(WHITE + selectedProduct.getName() + " has been added to your inventory." + RESET);
                 inventory.addToWeaponsInventory(selectedProduct);
-                productList.remove(selectedProduct);
+                weaponsProductList.remove(selectedProduct);
                 sc.pressEnter();
             } else {
                 System.out.println(RED + "Insufficient funds to buy " + selectedProduct.getName() + RESET);
                 sc.pressEnter();
             }
 
-
-
         }
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
 
 }

@@ -1,14 +1,17 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
+
+import java.util.List;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
 
 public class LevelMenu {
-    public void levelMenu(Player player, Inventory Inventory, Scanners sc) {
+    public void levelMenu(Player player, Inventory Inventory, Scanners sc, List<ShopProducts> potionsProductList) {
         LevelOne LevelOne = new LevelOne();
         LevelTwo LevelTwo = new LevelTwo();
         LevelThree LevelThree = new LevelThree();
@@ -75,7 +78,7 @@ public class LevelMenu {
                 }
                 case 4 -> {
                     if (player.getAvailableLevels() > 3) {
-                        LevelFour.playLevelFour(player, Inventory, sc);
+                        LevelFour.playLevelFour(player, Inventory, sc, potionsProductList);
                     } else {
                         printRed("Invalid input, please chose from the presented options");
                     }
