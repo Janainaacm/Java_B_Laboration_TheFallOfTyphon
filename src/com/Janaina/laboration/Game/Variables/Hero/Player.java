@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Hero;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Resources.Scanners;
@@ -93,10 +94,6 @@ public class Player extends ACharacters {
         return equippedWeapon;
     }
 
-    public void setEquippedWeapon(ShopProducts equippedWeapon) {
-        this.equippedWeapon = equippedWeapon;
-    }
-
 
     private void addSpecialAttack(Attacks attack) {
         specialAttackList.add(attack);
@@ -117,6 +114,7 @@ public class Player extends ACharacters {
 
 
     public void act(ACharacters monster, Inventory inventory, Scanners sc) {
+        DBConnection db = new DBConnection();
 
         boolean monsterEncounter = true;
 
@@ -140,7 +138,7 @@ public class Player extends ACharacters {
                     System.out.println(getStats());
                     sc.pressEnter();
                 }
-                case 4 -> inventory.playerInventory(this, sc);
+                case 4 -> inventory.playerInventory(this, sc, db);
                 default -> printRed("Invalid input");
 
             }
@@ -162,6 +160,7 @@ public class Player extends ACharacters {
     }
 
     public void actTyphon(ACharacters monster, Inventory inventory, Scanners sc) {
+        DBConnection db = new DBConnection();
 
         boolean monsterEncounter = true;
         if (Objects.equals(monster.getName(), "Typhon")) {
@@ -188,7 +187,7 @@ public class Player extends ACharacters {
                     System.out.println(getStats());
                     sc.pressEnter();
                 }
-                case 4 -> inventory.playerInventory(this, sc);
+                case 4 -> inventory.playerInventory(this, sc, db);
                 default -> printRed("Invalid input");
 
 

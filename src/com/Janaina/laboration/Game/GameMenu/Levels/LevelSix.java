@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
@@ -13,7 +14,7 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelSix {
 
-    public void playLevelSix(Player player, Inventory inventory, Scanners sc) {
+    public void playLevelSix(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         int originalAgility = player.getAgility();
         int originalStrength = player.getStrength();
         int weaponOriginalStrength = player.equippedWeapon.getStrength();
@@ -183,6 +184,7 @@ public class LevelSix {
 
 
         player.setAvailableLevels(7);
+        db.unlockGlock();
         sleepThread(GRAY + ITALIC + "You have completed level six");
         suspensefulDots(".");
         chillForASecond(1000);

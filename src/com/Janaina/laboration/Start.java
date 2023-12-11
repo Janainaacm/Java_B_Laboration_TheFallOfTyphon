@@ -24,8 +24,6 @@ public class Start {
         MainGameMenu mainGameMenu = new MainGameMenu();
         Introduction intro = new Introduction();
         Scanners sc = new Scanners();
-        List<ShopProducts> potionsProductList = new ArrayList<>();
-        List<ShopProducts> weaponsProductList = new ArrayList<>();
         DBConnection db = new DBConnection();
         db.openConnection();
         db.createTables();
@@ -44,7 +42,7 @@ public class Start {
                 + "\n" + BLACK_BACKGROUND + "                             " + RESET + "\n");
 
         intro.createPlayer(player, sc);
-        mainGameMenu.mainGameMenu(player, sc, inventory, potionsProductList, weaponsProductList);
+        mainGameMenu.mainGameMenu(player, sc, inventory, db);
 
         db.closeConnection();
 

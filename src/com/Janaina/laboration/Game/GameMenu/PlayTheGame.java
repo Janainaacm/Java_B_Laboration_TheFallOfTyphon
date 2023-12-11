@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.GameMenu.Levels.LevelMenu;
 import com.Janaina.laboration.Game.GameMenu.PlayerAchievements.GetPlayerAchievements;
 import com.Janaina.laboration.Game.GameMenu.PlayerStats.GetPlayerStats;
@@ -17,7 +18,7 @@ import static com.Janaina.laboration.Resources.PrintHandler.println;
 
 public class PlayTheGame {
 
-    public void gameMenu(Player player, GetPlayerStats PlayerStats, LevelMenu LevelMenu, GetPlayerAchievements GetPlayerAchievements, Inventory Inventory, Scanners sc, List<ShopProducts> potionsProductList, List<ShopProducts> weaponsProductList){
+    public void gameMenu(Player player, GetPlayerStats PlayerStats, LevelMenu LevelMenu, GetPlayerAchievements GetPlayerAchievements, Inventory Inventory, Scanners sc, DBConnection db){
 
         boolean isChoosingFromGameMenu = true;
         do {
@@ -27,10 +28,10 @@ public class PlayTheGame {
                     "1. Levels\n2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
 
             switch (sc.chooseFromGameMenu()) {
-                case 1 -> LevelMenu.levelMenu(player, Inventory, sc, potionsProductList);
+                case 1 -> LevelMenu.levelMenu(player, Inventory, sc, db);
                 case 2 -> PlayerStats.currentStats(player, sc);
                 case 3 -> GetPlayerAchievements.playerAchievements(player, sc);
-                case 4 -> Inventory.playerInventory(player, sc);
+                case 4 -> Inventory.playerInventory(player, sc, db);
                 case 0 -> isChoosingFromGameMenu = false;
                 default -> printRed("Invalid input, please chose from the presented options");
             }

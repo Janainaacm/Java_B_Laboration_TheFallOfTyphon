@@ -1,5 +1,6 @@
 package com.Janaina.test;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.MainGameMenu;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
@@ -82,13 +83,12 @@ public class TheFallOfTyphonTest {
     public void buyWeapon() {
         Player player = new Player();
         Inventory inventory = new Inventory();
-        List<ShopProducts> potionsProductList = new ArrayList<>();
-        List<ShopProducts> weaponsProductList = new ArrayList<>();
+        DBConnection db = new DBConnection();
         ShopProducts expectedWeapon = new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 170, 10, 0, 0, 0);
         player.setGold(170);
         MainGameMenu mainGameMenu = new MainGameMenu();
         setShopWeaponBehave();
-        mainGameMenu.mainGameMenu(player, scanners, inventory, potionsProductList, weaponsProductList);
+        mainGameMenu.mainGameMenu(player, scanners, inventory, db);
 
         Assert.assertEquals(inventory.weaponsList.size(), 1);
         Assert.assertEquals(inventory.weaponsList.get(0).getName(), expectedWeapon.getName());
