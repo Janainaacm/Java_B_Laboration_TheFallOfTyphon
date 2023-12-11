@@ -4,7 +4,6 @@ import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 
 import java.sql.*;
-import java.util.Scanner;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 
@@ -38,28 +37,6 @@ public class DBConnection {
         }
     }
 
-    public void executeQuery(String query) {
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            System.out.println("Select artist you want to play as:");
-            int columnCount = resultSet.getMetaData().getColumnCount();
-            while (resultSet.next()) {
-                StringBuilder row = new StringBuilder();
-                for (int i = 1; i <= columnCount; i++) {
-                    if (i > 1) {
-                        row.append(". ");
-                    }
-                    row.append(resultSet.getString(i));
-                }
-                System.out.println(row);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public void createTables() {
         String query = """
                 CREATE TABLE IF NOT EXISTS player (
@@ -86,37 +63,34 @@ public class DBConnection {
                       			ON DELETE CASCADE ON UPDATE RESTRICT
                 );
                                 
-                CREATE TABLE IF NOT EXISTS inventory (
+                CREATE TABLE IF NOT EXISTS weaponsInventory (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     name TEXT NOT NULL,
-                    attackName TEXT,
+                    attackName TEXT NOT NULL,
                     animation TEXT NOT NULL,
                     strength TINYINT,
-                    health TINYINT,
-                    agility TINYINT,
-                    intelligence TINYINT,
                     equipped BIT,
                     playerId INT NOT NULL,
-                    CONSTRAINT 'fk_playerInventory'
+                    CONSTRAINT 'fk_playerWeaponsInventory'
                         FOREIGN KEY (playerId) REFERENCES player (id)
                             ON DELETE CASCADE ON UPDATE RESTRICT
                 );
                                 
-                CREATE TABLE IF NOT EXISTS shop (
+                CREATE TABLE IF NOT EXISTS potionsInventory (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     name TEXT NOT NULL,
-                    attackName TEXT,
                     animation TEXT NOT NULL,
-                    price SMALLINT NOT NULL,
                     strength TINYINT,
                     health TINYINT,
                     agility TINYINT,
                     intelligence TINYINT,
+                    amountBought INT NOT NULL,
                     playerId INT NOT NULL,
-                    CONSTRAINT 'fk_playerShop'
+                    CONSTRAINT 'fk_playerPotionsInventory'
                         FOREIGN KEY (playerId) REFERENCES player (id)
                             ON DELETE CASCADE ON UPDATE RESTRICT
                 );
+                             
                                 
                 CREATE TABLE IF NOT EXISTS weapons (
                     id INT AUTO_INCREMENT,
@@ -125,6 +99,11 @@ public class DBConnection {
                     animation TEXT NOT NULL,
                     price SMALLINT NOT NULL,
                     strength TINYINT NOT NULL,
+                    bought BIT NOT NULL,
+                    inventoryId INT NOT NULL,
+                    CONSTRAINT 'fk_gameWeapons'
+                        FOREIGN KEY (inventoryId) REFERENCES inventory (id)
+                            ON DELETE CASCADE ON UPDATE RESTRICT
                 );
                                 
                 CREATE TABLE IF NOT EXISTS potions (
@@ -136,6 +115,10 @@ public class DBConnection {
                     health TINYINT,
                     agility TINYINT,
                     intelligence TINYINT,
+                    inventoryId INT NOT NULL,
+                    CONSTRAINT 'fk_gamePotions'
+                        FOREIGN KEY (inventoryId) REFERENCES inventory (id)
+                            ON DELETE CASCADE ON UPDATE RESTRICT
                 );
                                 
                 CREATE TABLE IF NOT EXISTS specialAttacks (
@@ -171,48 +154,108 @@ public class DBConnection {
                             ON DELETE CASCADE ON UPDATE RESTRICT
                 );
                                 
-                                
-                
-                
-                
-                
-                
                 """;
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            System.out.println("Select artist you want to play as:");
-            int columnCount = resultSet.getMetaData().getColumnCount();
-            while (resultSet.next()) {
-                StringBuilder row = new StringBuilder();
-                for (int i = 1; i <= columnCount; i++) {
-                    if (i > 1) {
-                        row.append(". ");
-                    }
-                    row.append(resultSet.getString(i));
-                }
-                System.out.println(row);
-            }
+            statement.executeQuery(query);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
+        addItemsToTables();
 
     }
 
+    private void addItemsToTables() {
+        String query = """
+                BEGIN
+                   IF NOT EXISTS (SELECT name FROM weapons
+                        WHERE name IN ('Frostbite Dagger', 'Shadowfang Blade', 'Cursed Scythe', 'Oceanic Trident', 'Phoenix Bow', 'Thunderstrike Hammer', 'Glock-19'))
+                    
+                   BEGIN
+                       INSERT INTO weapons (name, attackName, animation, price, strength, bought)
+                       VALUES ('Frostbite Dagger', 'Frostbite Strike', '+—⟪═════>', 150, 2, 0);
+                       
+                       INSERT INTO weapons (name, attackName, animation, price, strength, bought)
+                       VALUES ('Shadowfang Blade', 'Dark Eclipse', '▭▭ι═══════>', 160, 3, 0);
+                       
+                       INSERT INTO weapons (name, attackName, animation, price, strength, bought)
+                       VALUES ('Cursed Scythe', 'Reaper's Grasp', '▬ι══════>', 170, 4, 0);
+                       
+                       INSERT INTO weapons (name, attackName, animation, price, strength, bought)
+                       VALUES ('Oceanic Trident', 'Abyssal Torrent', '——————∈ ࿐ ࿔', 200, 5, 0);
+                       
+                       INSERT INTO weapons (name, attackName, animation, price, strength, bought)
+                       VALUES ('Phoenix Bow','Flaming Arrow Barrage', 'ˎ-·˚ ༘₊· ͟͟͞͞➳', 250, 7, 0);
+                       
+                       INSERT INTO weapons (name, attackName, animation, price, strength, bought)
+                       VALUES ("Thunderstrike Hammer", 'Lightning Hammerblow', '⌁˚⊹｡ﾟϟﾟ.｡⊹˚⌁', 300,8, 0);
+                       
+                       INSERT INTO weapons (name, attackName, animation, price, strength, bought)
+                       VALUES ('Glock-19', 'Kurdiska räven', 'ᡕᠵ᠊ᡃ࡚ࠢ࠘ ⸝່ࠡࠣ᠊߯᠆ࠣ࠘ᡁࠣ࠘᠊᠊ࠢ࠘𐡏  𖣓 𖣨', 1000, 100, 0);
+                   END
+                END
+                                
+                BEGIN
+                   IF NOT EXISTS (SELECT name FROM potions
+                        WHERE name IN ('Small Health Potion', 'Large Health Potion', 'Flexibility Potion', 'Strength Potion', 'Intelligence Potion'))
+                    
+                   BEGIN
+                       INSERT INTO potions (name, animation, price, health)
+                       VALUES ('Small Health Potion', '⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆', 30, 50);
+                       
+                       INSERT INTO potions (name, animation, price, health)
+                       VALUES ('Large Health Potion', '⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆', 50, 100);
+                       
+                       INSERT INTO potions (name, animation, price, agility)
+                       VALUES ('Flexibility Potion', '❥⁺⋆༺.*₊˚࿐༅', 50, 2);
+                       
+                       INSERT INTO potions (name, animation, price, strength)
+                       VALUES ('Strength Potion', '❥⁺⋆༺.*₊˚࿐༅', 50, 1);
+                       
+                       INSERT INTO potions (name, animation, price, intelligence)
+                       VALUES ('Intelligence Potion', '❥⁺⋆༺.*₊˚࿐༅', 50, 5);
+                   END
+                END
+                                
+                BEGIN
+                   IF NOT EXISTS (SELECT name FROM inventory
+                        WHERE name = 'knife'
+                   BEGIN
+                       INSERT INTO weaponsInventory (name, attackName, animation, price, strength, equipped)
+                       VALUES ('knife', 'Lethal Lunge', '▬ι=>', 0, 1, 1);
+                   END
+                END
+                """;
 
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-    public int getIdFromTable(String table, Scanners sc) {
-        int playerId = 0;
+    public void executeQuery(String query) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public Player choosePlayer(Scanners sc) {
+        Player player = null;
+
         try {
             Statement statement = connection.createStatement();
 
-            String query = "select id, name from" + table;
+            String query = "select id, name from player";
             ResultSet resultSet = statement.executeQuery(query);
 
-            System.out.println(PURPLE_LIGHT + "Select your " + table + ":" + RESET);
+            System.out.println(PURPLE_LIGHT + "Select your player:" + RESET);
             int columnCount = resultSet.getMetaData().getColumnCount();
             while (resultSet.next()) {
                 StringBuilder row = new StringBuilder();
@@ -223,21 +266,88 @@ public class DBConnection {
                     row.append(resultSet.getString(i));
                 }
                 System.out.println(PURPLE + row + "\n0. New Player" + RESET);
-                playerId = sc.scannerNumber();
+                int choice = sc.scannerNumber();
 
-                if (playerId > (columnCount + 1) && playerId < 1) {
+                if (choice > (columnCount + 1) && choice < 1) {
                     System.out.println(BLACK + "Invalid choice, please try again" + RESET);
+                } else if (choice == 0){
+                    return createNewPlayer();
                 } else {
+                    return chosenPlayer(choice);
+                }
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        return player;
+    }
+
+
+    public String showcaseFromTable(String table, Scanners sc) {
+        String selectedName = null;
+
+        try {
+            Statement statement = connection.createStatement();
+
+            String query = "select id, name from " + table;
+            ResultSet resultSet = statement.executeQuery(query);
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            while (resultSet.next()) {
+                StringBuilder row = new StringBuilder();
+                for (int i = 1; i <= columnCount; i++) {
+                    if (i > 1) {
+                        row.append(i).append(". ");
+                    }
+                    row.append(resultSet.getString(i)).append(" ");
+                }
+                System.out.println(PURPLE + row + "\n0. Go back" + RESET);
+                int choice = sc.scannerNumber();
+
+                if (choice == 0) {
+                    return null;
+                } else if (choice > 0 && choice <= columnCount) {
+                    selectedName = resultSet.getString("name");
                     break;
+                } else {
+                    System.out.println(BLACK + "Invalid choice, please try again" + RESET);
                 }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return playerId;
+
+        return selectedName;
     }
 
-    public Player createNewPlayer() {
+
+    public int getIdFromChoice(String table, Scanners sc) {
+        String name = showcaseFromTable(table, sc);
+        int id = 0;
+
+        try {
+            Statement statement = connection.createStatement();
+
+            String query = "SELECT id FROM " + table + " WHERE name = '" + name + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (resultSet.next()) {
+                id = resultSet.getInt("id");
+            } else {
+                System.out.println("No matching record found for name: " + name);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return id;
+    }
+
+
+    private Player createNewPlayer() {
         Player player = new Player();
         try {
             String query = "INSERT INTO player (name, lvl, experience, gold, health, agility, strength, intelligence, availableLevels, furiesSlayed, sirensSlayed, medusasSlayed, minotaursSlayed, cerberusSlayed, typhonsSlayed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -258,15 +368,17 @@ public class DBConnection {
             preparedStatement.setInt(14, player.getCerberusSlayed());
             preparedStatement.setInt(15, player.getTyphonSlayed());
 
+
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-
         return player;
     }
 
-    public Player chosenPlayer(int playerId) {
+    private Player chosenPlayer(int playerId) {
         Player player = new Player();
         try {
             String query = "SELECT * FROM player WHERE id = ?";

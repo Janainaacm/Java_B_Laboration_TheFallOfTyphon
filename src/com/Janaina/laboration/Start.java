@@ -20,7 +20,6 @@ import static com.Janaina.laboration.Resources.PrintHandler.println;
 public class Start {
 
     public void startGame() {
-        Player player;
         Inventory inventory = new Inventory();
         MainGameMenu mainGameMenu = new MainGameMenu();
         Introduction intro = new Introduction();
@@ -31,13 +30,7 @@ public class Start {
         db.openConnection();
         db.createTables();
 
-        int selectedCharacter = db.getIdFromTable("player", sc);
-
-        if (selectedCharacter == 0){
-            player = db.createNewPlayer();
-        }else {
-            player = db.chosenPlayer(selectedCharacter);
-        }
+        Player player = db.choosePlayer(sc);
 
 
 
