@@ -28,49 +28,49 @@ public class GetPlayerAchievements {
 
             System.out.println(PINK + BLACK_BACKGROUND + BOLD + "       " + UNDERLINED + "Achievements" + RESET + BLACK_BACKGROUND + "       " + RESET);
 
-            if (player.furiesSlayed >= 1) {
+            if (player.getFuriesSlayed() >= 1) {
                 System.out.println(PINK_LIGHT + ITALIC + "1. Fury" + RESET);
-            } else if (player.furiesSlayed == 0 && player.getAvailableLevels() >= 2) {
+            } else if (player.getFuriesSlayed() == 0 && player.getAvailableLevels() >= 2) {
                 System.out.println(GRAY + ITALIC + "1. Fury" + RESET);
             } else {
                 System.out.println(GRAY + "???" + RESET);
             }
 
-            if (player.sirensSlayed >= 1) {
+            if (player.getSirensSlayed() >= 1) {
                 System.out.println(PINK_LIGHT + ITALIC + "2. Siren" + RESET);
-            } else if (player.sirensSlayed == 0 && player.getAvailableLevels() >= 2) {
+            } else if (player.getSirensSlayed() == 0 && player.getAvailableLevels() >= 2) {
                 System.out.println(GRAY + ITALIC + "2. Siren" + RESET);
             } else {
                 System.out.println(GRAY + "???" + RESET);
             }
 
-            if (player.medusaSlayed >= 1) {
+            if (player.getMedusasSlayed() >= 1) {
                 System.out.println(PINK_LIGHT + ITALIC + "3. Medusa" + RESET);
-            } else if (player.medusaSlayed == 0 && player.getAvailableLevels() >= 3) {
+            } else if (player.getMedusasSlayed() == 0 && player.getAvailableLevels() >= 3) {
                 System.out.println(GRAY + ITALIC + "3. Medusa" + RESET);
             } else {
                 System.out.println(GRAY + "???" + RESET);
             }
 
-            if (player.minotaurSlayed >= 1) {
+            if (player.getMinotaursSlayed() >= 1) {
                 System.out.println(PINK_LIGHT + ITALIC + "4. Minotaur" + RESET);
-            } else if (player.minotaurSlayed == 0 && player.getAvailableLevels() >= 4) {
+            } else if (player.getMinotaursSlayed() == 0 && player.getAvailableLevels() >= 4) {
                 System.out.println(GRAY + ITALIC + "4. Minotaur" + RESET);
             } else {
                 System.out.println(GRAY + "???" + RESET);
             }
 
-            if (player.cerberusSlayed >= 1) {
+            if (player.getCerberusSlayed() >= 1) {
                 System.out.println(PINK_LIGHT + ITALIC + "5. Cerberus" + RESET);
-            } else if (player.cerberusSlayed == 0 && player.getAvailableLevels() >= 5) {
+            } else if (player.getCerberusSlayed() == 0 && player.getAvailableLevels() >= 5) {
                 System.out.println(GRAY + ITALIC + "5. Cerberus" + RESET);
             } else {
                 System.out.println(GRAY + "???" + RESET);
             }
 
-            if (player.typhonSlayed >= 1) {
+            if (player.getTyphonSlayed() >= 1) {
                 System.out.println(PINK_LIGHT + ITALIC + "6. Typhon" + RESET);
-            } else if (player.typhonSlayed == 0 && player.getAvailableLevels() >= 6) {
+            } else if (player.getTyphonSlayed() == 0 && player.getAvailableLevels() >= 6) {
                 System.out.println(GRAY + ITALIC + "6. Typhon" + RESET);
             } else {
                 System.out.println(GRAY + "???" + RESET);
@@ -80,42 +80,42 @@ public class GetPlayerAchievements {
 
             switch (sc.scannerNumber()) {
                 case 1 -> {
-                    if (player.furiesSlayed >= 1 || player.getAvailableLevels() >= 2) {
+                    if (player.getFuriesSlayed() >= 1 || player.getAvailableLevels() >= 2) {
                         furyStats(player, fury, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 2 -> {
-                    if (player.sirensSlayed >= 1 || player.getAvailableLevels() >= 2) {
+                    if (player.getSirensSlayed() >= 1 || player.getAvailableLevels() >= 2) {
                         sirensStats(player, siren, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 3 -> {
-                    if (player.medusaSlayed >= 1 || player.getAvailableLevels() >= 3) {
+                    if (player.getMedusasSlayed() >= 1 || player.getAvailableLevels() >= 3) {
                         medusaStats(player, medusa, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 4 -> {
-                    if (player.minotaurSlayed >= 1 || player.getAvailableLevels() >= 4) {
+                    if (player.getMinotaursSlayed() >= 1 || player.getAvailableLevels() >= 4) {
                         minotaurStats(player, minotaur, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 5 -> {
-                    if (player.cerberusSlayed >= 1 || player.getAvailableLevels() >= 5) {
+                    if (player.getCerberusSlayed() >= 1 || player.getAvailableLevels() >= 5) {
                         cerberusStats(player, cerberus, sc);
                     } else {
                         printRed("Invalid input");
                     }
                 }
                 case 6 -> {
-                    if (player.typhonSlayed >= 1 || player.getAvailableLevels() >= 6) {
+                    if (player.getTyphonSlayed() >= 1 || player.getAvailableLevels() >= 6) {
                         typhonStats(player, typhon, sc);
                     } else {
                         printRed("Invalid input");
@@ -130,9 +130,9 @@ public class GetPlayerAchievements {
 
     private void furyStats(Player player, ACharacters monster, Scanners sc) {
 
-        if (player.furiesSlayed >= 1) {
+        if (player.getFuriesSlayed() >= 1) {
             System.out.println(BLACK_BACKGROUND + "            " + RED + BOLD + UNDERLINED + "Fury" + RESET + BLACK_BACKGROUND + "            " + RESET
-                    + RED + ITALIC + "\nFuries killed: " + player.furiesSlayed + RESET
+                    + RED + ITALIC + "\nFuries killed: " + player.getFuriesSlayed() + RESET
                     + RED_LILDARKER + "\nHealth: " + monster.getHealth()
                     + "\nMin Damage: " + monster.getBaseDamage()
                     + "\nMax Damage: " + monster.getBaseDamage() * monster.getStrength()
@@ -160,9 +160,9 @@ public class GetPlayerAchievements {
 
     private void sirensStats(Player player, ACharacters monster, Scanners sc) {
 
-        if (player.sirensSlayed >= 1) {
+        if (player.getSirensSlayed() >= 1) {
             System.out.println(BLACK_BACKGROUND + "            " + CYAN_BOLD_BRIGHT + CYAN_UNDERLINED + "Siren" + RESET + BLACK_BACKGROUND + "            " + RESET
-                    + CYAN + ITALIC + "\nSirens killed: " + player.sirensSlayed + RESET
+                    + CYAN + ITALIC + "\nSirens killed: " + player.getSirensSlayed() + RESET
                     + CYAN + "\nHealth: " + monster.getHealth()
                     + "\nMin Damage: " + monster.getBaseDamage()
                     + "\nMax Damage: " + monster.getBaseDamage() * monster.getStrength()
@@ -190,9 +190,9 @@ public class GetPlayerAchievements {
 
 
     private void medusaStats(Player player, ACharacters monster, Scanners sc) {
-        if (player.medusaSlayed >= 1) {
+        if (player.getMedusasSlayed() >= 1) {
             System.out.println(BLACK_BACKGROUND + "            " + GREEN_DARK + BOLD + UNDERLINED + "Medusa" + RESET + BLACK_BACKGROUND + "            " + RESET
-                    + GREEN_DARK + ITALIC + "\nMedusa's killed: " + player.medusaSlayed + RESET
+                    + GREEN_DARK + ITALIC + "\nMedusa's killed: " + player.getMedusasSlayed() + RESET
                     + GREEN_DARK + "\nHealth: " + monster.getHealth()
                     + "\nMin Damage: " + monster.getBaseDamage()
                     + "\nMax Damage: " + monster.getBaseDamage() * monster.getStrength()
@@ -219,9 +219,9 @@ public class GetPlayerAchievements {
     }
 
     private void minotaurStats(Player player, ACharacters monster, Scanners sc) {
-        if (player.minotaurSlayed >= 1) {
+        if (player.getMinotaursSlayed() >= 1) {
             System.out.println(BLACK_BACKGROUND + "           " + ORANGE + BOLD + UNDERLINED + "Minotaur" + RESET + BLACK_BACKGROUND + "           " + RESET
-                    + ORANGE + ITALIC + "\nMinotaur's killed: " + player.minotaurSlayed + RESET
+                    + ORANGE + ITALIC + "\nMinotaur's killed: " + player.getMinotaursSlayed() + RESET
                     + ORANGE + "\nHealth: " + monster.getHealth()
                     + "\nMin Damage: " + monster.getBaseDamage()
                     + "\nMax Damage: " + monster.getBaseDamage() * monster.getStrength()
@@ -248,9 +248,9 @@ public class GetPlayerAchievements {
     }
 
     private void cerberusStats(Player player, ACharacters monster, Scanners sc) {
-        if (player.cerberusSlayed >= 1) {
+        if (player.getCerberusSlayed() >= 1) {
             System.out.println(BLACK_BACKGROUND + "           " + RED + BOLD + UNDERLINED + "Cerberus" + RESET + BLACK_BACKGROUND + "           " + RESET
-                    + RED_LILDARKER + ITALIC + "\nCerberus killed: " + player.cerberusSlayed + RESET
+                    + RED_LILDARKER + ITALIC + "\nCerberus killed: " + player.getCerberusSlayed() + RESET
                     + RED + "\nHealth: " + monster.getHealth()
                     + "\nMin Damage: " + monster.getBaseDamage()
                     + "\nMax Damage: " + monster.getBaseDamage() * monster.getStrength()
@@ -277,9 +277,9 @@ public class GetPlayerAchievements {
     }
 
     private void typhonStats(Player player, ACharacters monster, Scanners sc) {
-        if (player.typhonSlayed >= 1) {
+        if (player.getTyphonSlayed() >= 1) {
             System.out.println(BLACK_BACKGROUND + "           " + RED + BOLD + UNDERLINED + "Typhon" + RESET + BLACK_BACKGROUND + "           " + RESET
-                    + RED_LILDARKER + ITALIC + "\nTyphon's killed: " + player.typhonSlayed + RESET
+                    + RED_LILDARKER + ITALIC + "\nTyphon's killed: " + player.getTyphonSlayed() + RESET
                     + RED + "\nHealth: " + monster.getHealth()
                     + "\nMin Damage: " + monster.getBaseDamage()
                     + "\nMax Damage: " + monster.getBaseDamage() * monster.getStrength()

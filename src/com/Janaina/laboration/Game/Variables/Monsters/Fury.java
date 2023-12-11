@@ -10,13 +10,21 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Fury extends ACharacters {
+    private int id;
+
     public Fury() {
         super("Fury", 2, 50, 10, 10, 10, 15, 30, 0, "Rage of the Erinyes", 50);
     }
     //Level 1 monster
 
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public void attack(ACharacters player,  Scanners sc) {

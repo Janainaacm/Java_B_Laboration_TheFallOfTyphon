@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="navercorp.pinpoint.mariadb.jdbc.driver.plugin" type="repository">
+    <properties maven-id="com.navercorp.pinpoint:pinpoint-mariadb-jdbc-driver-plugin:2.5.3" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/pinpoint-mariadb-jdbc-driver-plugin-2.5.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

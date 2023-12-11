@@ -14,11 +14,6 @@ public class Introduction {
 
     public void createPlayer(Player player, Scanners sc) {
 
-        println(BLACK_BACKGROUND + "                             " + RESET
-                + "\n" + BLACK_BACKGROUND + "     " + PURPLE_LIGHT + BOLD + UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
-                + "\n" + BLACK_BACKGROUND + "    " + "\033[40;35m" + ITALIC + "A Quest for Vengeance" + RESET + BLACK_BACKGROUND + "    " + RESET
-                + "\n" + BLACK_BACKGROUND + "                             " + RESET + "\n");
-
         sleepThread(PURPLE_ISH + "(This game is inspired by and based on greek mythology, for every creature you encounter you will get the chance to learn more about them)");
         suspensefulDots(".");
         sc.pressEnter();

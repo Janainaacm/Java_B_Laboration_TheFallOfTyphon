@@ -17,7 +17,7 @@ import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.Storyteller.readGameLore;
 import static com.Janaina.laboration.Resources.TextDelay.suspensefulDots;
 
-public class Storyline {
+public class MainGameMenu {
 
     public void mainGameMenu(Player player, Scanners sc, Inventory inventory, List<ShopProducts> potionsProductList, List<ShopProducts> weaponsProductList) {
 
@@ -27,11 +27,8 @@ public class Storyline {
         GetPlayerStats playerStats = new GetPlayerStats();
         LevelMenu levelMenu = new LevelMenu();
         GetPlayerAchievements playerAchievements = new GetPlayerAchievements();
-
-
         addProductsToLists(potionsProductList, weaponsProductList);
 
-        intro.createPlayer(player, sc);
 
         boolean mainGameMenuSwitch = true;
 
@@ -59,10 +56,10 @@ public class Storyline {
     }
 
     private void addProductsToLists(List<ShopProducts> potionsProductList, List<ShopProducts> weaponsProductList){
-        weaponsProductList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", "+—⟪═════>", 150, 3, 0,0,0));
-        weaponsProductList.add(new ShopProducts("Shadowfang Blade", "Dark Eclipse", "▭▭ι═══════ﺤ", 160, 4, 0,0,0));
-        weaponsProductList.add(new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 170, 5, 0,0,0));
-        weaponsProductList.add(new ShopProducts("Oceanic Trident", "Abyssal Torrent", "——————∈ ࿐ ࿔", 200, 6, 0, 0, 0));
+        weaponsProductList.add(new ShopProducts("Frostbite Dagger", "Frostbite Strike", "+—⟪═════>", 150, 2, 0,0,0));
+        weaponsProductList.add(new ShopProducts("Shadowfang Blade", "Dark Eclipse", "▭▭ι═══════ﺤ", 160, 3, 0,0,0));
+        weaponsProductList.add(new ShopProducts("Cursed Scythe", "Reaper's Grasp", "▬ι══════ﺤ", 170, 4, 0,0,0));
+        weaponsProductList.add(new ShopProducts("Oceanic Trident", "Abyssal Torrent", "——————∈ ࿐ ࿔", 200, 5, 0, 0, 0));
         weaponsProductList.add(new ShopProducts("Phoenix Bow","Flaming Arrow Barrage", "ˎ-·˚ ༘₊· ͟͟͞͞➳", 250,7,0,0,0));
         weaponsProductList.add(new ShopProducts("Thunderstrike Hammer", "Lightning Hammerblow", "⌁˚⊹｡ﾟϟﾟ.｡⊹˚⌁", 300,8,0,0,0));
         weaponsProductList.add(new ShopProducts("Glock-19", "Kurdiska räven", "ᡕᠵ᠊ᡃ࡚ࠢ࠘ ⸝່ࠡࠣ᠊߯᠆ࠣ࠘ᡁࠣ࠘᠊᠊ࠢ࠘\uD802\uDC4F  \uD81A\uDCD3 \uD81A\uDCE8", 1000, 100, 0, 0, 0));

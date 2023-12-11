@@ -16,13 +16,15 @@ public class Player extends ACharacters {
     public List<Attacks> specialAttackList;
     public ShopProducts equippedWeapon;
     private int availableLevels;
-    public int furiesSlayed = 0;
-    public int sirensSlayed = 0;
-    public int medusaSlayed = 0;
-    public int minotaurSlayed = 0;
-    public int cerberusSlayed = 0;
-    public int typhonSlayed = 0;
+    private int furiesSlayed = 0;
+    private int sirensSlayed = 0;
+    private int medusasSlayed = 0;
+    private int minotaursSlayed = 0;
+    private int cerberusSlayed = 0;
+    private int typhonSlayed = 0;
     private int roundsFightingTyphon = 0;
+    private int id;
+
 
     public Player() {
         super("name", 1, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
@@ -31,6 +33,61 @@ public class Player extends ACharacters {
         this.availableLevels = 1;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getFuriesSlayed() {
+        return furiesSlayed;
+    }
+
+    public void setFuriesSlayed(int furiesSlayed) {
+        this.furiesSlayed = furiesSlayed;
+    }
+
+    public int getSirensSlayed() {
+        return sirensSlayed;
+    }
+
+    public void setSirensSlayed(int sirensSlayed) {
+        this.sirensSlayed = sirensSlayed;
+    }
+
+    public int getMedusasSlayed() {
+        return medusasSlayed;
+    }
+
+    public void setMedusasSlayed(int medusasSlayed) {
+        this.medusasSlayed = medusasSlayed;
+    }
+
+    public int getMinotaursSlayed() {
+        return minotaursSlayed;
+    }
+
+    public void setMinotaursSlayed(int minotaursSlayed) {
+        this.minotaursSlayed = minotaursSlayed;
+    }
+
+    public int getCerberusSlayed() {
+        return cerberusSlayed;
+    }
+
+    public void setCerberusSlayed(int cerberusSlayed) {
+        this.cerberusSlayed = cerberusSlayed;
+    }
+
+    public int getTyphonSlayed() {
+        return typhonSlayed;
+    }
+
+    public void setTyphonSlayed(int typhonSlayed) {
+        this.typhonSlayed = typhonSlayed;
+    }
 
     public ShopProducts getEquippedWeapon() {
         return equippedWeapon;
@@ -191,8 +248,8 @@ public class Player extends ACharacters {
             switch (monster.getName()){
                 case "Fury" -> furiesSlayed ++;
                 case "Siren" -> sirensSlayed ++;
-                case "Medusa" -> medusaSlayed ++;
-                case "Minotaur" -> minotaurSlayed ++;
+                case "Medusa" -> medusasSlayed++;
+                case "Minotaur" -> minotaursSlayed++;
                 case "Cerberus" -> cerberusSlayed ++;
                 case "Typhon" -> typhonSlayed++;
             }
@@ -217,7 +274,7 @@ public class Player extends ACharacters {
         }
 
         if (Objects.equals(equippedWeapon.getName(), "Glock-19")){
-            playerSpeaking("Ingen rör Strängnäs. Strängnäs är MITT område.", this);
+            playerSpeaking(ITALIC + BOLD + "INGEN rör Strängnäs. Strängnäs är MITT område!" + RESET, this);
             monster.receiveDamage(this, attack);
         } else if (monster.dodge(this)) {
             System.out.println(RED + monster.getName() + " dodged your attack!");

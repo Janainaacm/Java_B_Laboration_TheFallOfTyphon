@@ -9,12 +9,21 @@ import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Medusa extends ACharacters {
+    private int id;
+
     public Medusa() {
         super("Medusa", 3, 100, 10, 10, 30, 100, 60, 0, "Serpents Curse", 100);
     }
     //Level 3
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public void attack(ACharacters target,  Scanners sc) {

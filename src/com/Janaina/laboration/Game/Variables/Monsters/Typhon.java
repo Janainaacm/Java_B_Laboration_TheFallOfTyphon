@@ -10,6 +10,8 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Typhon extends ACharacters {
+    private int id;
+
     public Typhon() {
         super("Typhon", 7, 200, 10, 20, 60, 300, 100, 0, "Apocalyptic Surge", 200);
     }
@@ -17,6 +19,13 @@ public class Typhon extends ACharacters {
     //Final boss
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public void attack(ACharacters target,  Scanners sc) {

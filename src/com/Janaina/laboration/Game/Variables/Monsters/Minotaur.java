@@ -11,11 +11,21 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Minotaur extends ACharacters {
+    private int id;
+
     public Minotaur() {
         super("Minotaur", 3, 100, 10, 30, 30, 150, 70, 0, "Bestial Fury", 100);
     }
     //Level 4
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public void attack(ACharacters target,  Scanners sc) {

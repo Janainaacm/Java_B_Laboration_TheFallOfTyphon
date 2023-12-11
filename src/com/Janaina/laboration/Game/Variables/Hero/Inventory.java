@@ -17,7 +17,6 @@ public class Inventory {
     public Inventory() {
         weaponsList = new ArrayList<>();
         potionsList = new ArrayList<>();
-
     }
 
     public void playerInventory(Player player, Scanners sc){

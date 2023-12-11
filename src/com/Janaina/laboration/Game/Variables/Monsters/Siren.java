@@ -11,11 +11,21 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Siren extends ACharacters {
+    private int id;
+
     public Siren() {
         super("Siren", 2, 60, 10, 40, 15, 50, 40, 0, "Deadly Wail", 60);
     }
     //Level 2
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public void attack(ACharacters target,  Scanners sc) {

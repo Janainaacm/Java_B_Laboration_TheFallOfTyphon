@@ -21,6 +21,7 @@ public abstract class ACharacters implements Combat {
     private final int defaultHealth;
 
 
+
     public ACharacters(String name, int strength, int health, int baseDamage, int agility, int intelligence, int gold, int experience, int level, String defaultAttack, int defaultHealth) {
         this.name = name;
         this.strength = strength;

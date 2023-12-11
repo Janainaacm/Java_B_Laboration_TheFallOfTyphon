@@ -16,6 +16,7 @@ public class LevelThree {
     public void playLevelThree(Player player, Inventory inventory, Scanners sc) {
         Medusa medusa = new Medusa();
         Random random = new Random();
+        
 
         sleepThread(YELLOW + """
                 The garden exuded an eerie aura, its moonlit stone statues seemingly coming to life, their watchful eyes unsettling but alluring. The hero marveled at the artistry\s
@@ -25,7 +26,11 @@ public class LevelThree {
         suspensefulDots(GRAY + "." + RESET);
 
 
+
+
+
         while (true) {
+
             System.out.println(PURPLE_DARK + "Pick a location to search:\n1\n2\n3" + RESET);
 
             switch (sc.scannerNumber()) {
@@ -55,6 +60,10 @@ public class LevelThree {
 
             medusaSpeaking("Well, no matter. Your pretty face will make a lovely addition");
             suspensefulDots(GRAY + "." + RESET);
+
+
+
+
 
             player.act(medusa, inventory, sc);
             if (medusa.isAlive()) {

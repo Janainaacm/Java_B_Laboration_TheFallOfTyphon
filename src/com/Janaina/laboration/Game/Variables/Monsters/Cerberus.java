@@ -11,11 +11,21 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Cerberus extends ACharacters {
+    private int id;
+
     public Cerberus() {
         super("Cerberus", 5, 150, 10, 10, 40, 200, 70, 0, "Underworld Carnage", 150);
     }
     //Level 5
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public void attack(ACharacters target, Scanners sc) {
