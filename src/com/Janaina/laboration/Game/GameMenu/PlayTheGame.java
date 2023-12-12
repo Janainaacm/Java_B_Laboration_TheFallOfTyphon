@@ -4,12 +4,9 @@ import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.GameMenu.Levels.LevelMenu;
 import com.Janaina.laboration.Game.GameMenu.PlayerAchievements.GetPlayerAchievements;
 import com.Janaina.laboration.Game.GameMenu.PlayerStats.GetPlayerStats;
-import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
-
-import java.util.List;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.printRed;
@@ -30,7 +27,7 @@ public class PlayTheGame {
             switch (sc.chooseFromGameMenu()) {
                 case 1 -> LevelMenu.levelMenu(player, Inventory, sc, db);
                 case 2 -> PlayerStats.currentStats(player, sc);
-                case 3 -> GetPlayerAchievements.playerAchievements(player, sc);
+                case 3 -> GetPlayerAchievements.playerAchievements(player, sc, db);
                 case 4 -> Inventory.playerInventory(player, sc, db);
                 case 0 -> isChoosingFromGameMenu = false;
                 default -> printRed("Invalid input, please chose from the presented options");

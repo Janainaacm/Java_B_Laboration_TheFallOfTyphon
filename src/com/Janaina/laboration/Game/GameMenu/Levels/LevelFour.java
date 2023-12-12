@@ -1,7 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
 import com.Janaina.laboration.DBConnection;
-import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
@@ -208,12 +207,12 @@ public class LevelFour {
                 chillForASecond(1000);
                 System.out.println(GRAY + "Press enter to open." + RESET);
                 sc.pressEnterNoText();
-                int potionId = random.nextInt(0, db.getCount("name", "potions"));
-                String potionName = db.getStringFromDb("name", "potions", "id", potionId);
+                int potionId = random.nextInt(0, db.getCount("name", "potions", player));
+                String potionName = db.getStringFromDb("name", "potions", "id", potionId, player);
 
                 System.out.println(WHITE + "You found a " + potionName + " inside the chest!");
                 sleepThread(GRAY + potionName + " has been added to your inventory." + RESET);
-                db.addToPotionsInventory(potionId);
+                db.addToPotionsInventory(potionId, player);
 
                 return true;
             }

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.Janaina.laboration.Resources.Colors.*;
-import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 
 public class Inventory {
     public List<ShopProducts> weaponsList;
@@ -46,24 +45,24 @@ public class Inventory {
 
         while (true) {
 
-            String equippedWeaponName = db.getStringFromDb("name", "weaponsInventory", "equipped", 1);
-            int equippedWeaponId = db.getIdFromChoice("weaponsInventory", equippedWeaponName);
+            String equippedWeaponName = db.getStringFromDb("name", "weaponsInventory", "equipped", 1, player);
+            int equippedWeaponId = db.getIdFromName("weaponsInventory", equippedWeaponName, "playerId", player);
 
             System.out.println(RED_DARK + "Equipped weapon: " + equippedWeaponName + RESET);
 
-            int count = db.getCount("id", "weaponsInventory");
+            int count = db.getCount("id", "weaponsInventory", player);
 
             if (count == 0){
                 System.out.println(GRAY + ITALIC + "This inventory is empty" + RESET);
             }
 
-            String weaponName = db.selectFromWeaponsInventory(sc);
-            int weaponId = db.getIdFromChoice("weaponsInventory", weaponName);
-            int weaponStrength = db.getIntFromDb("strength", "weaponsInventory", "id", weaponId);
+            String weaponName = db.selectFromWeaponsInventory(sc, player);
+            int weaponId = db.getIdFromName("weaponsInventory", weaponName, "playerId", player);
+            int weaponStrength = db.getIntFromDb("strength", "weaponsInventory", "id", weaponId, player);
 
-            db.equipWeapon(equippedWeaponId, weaponId);
+            db.equipWeapon(equippedWeaponId, weaponId, player);
 
-            String defaultAttack = db.getStringFromDb("attackName", "weaponsInventory", "id", weaponId);
+            String defaultAttack = db.getStringFromDb("attackName", "weaponsInventory", "id", weaponId, player);
 
 
             player.setDefaultAttack(defaultAttack);
@@ -81,9 +80,9 @@ public class Inventory {
 
             System.out.println(BLACK_BACKGROUND + PINK_LIGHT + BOLD + "    Potions:    " + RESET);
 
-            String potionName = db.selectFromPotionsInventory(sc);
-            int potionId = db.getIdFromChoice("potionsInventory", potionName);
-            int count = db.getCount("id", "potionsInventory");
+            String potionName = db.selectFromPotionsInventory(sc, player);
+            int potionId = db.getIdFromName("potionsInventory", potionName, "playerId", player);
+            int count = db.getCount("id", "potionsInventory", player);
 
             if (count == 0){
                 System.out.println(GRAY + ITALIC + "This inventory is empty" + RESET);

@@ -5,7 +5,6 @@ import com.Janaina.laboration.Game.GameMenu.Levels.*;
 import com.Janaina.laboration.Game.GameMenu.PlayTheGame;
 import com.Janaina.laboration.Game.GameMenu.PlayerAchievements.GetPlayerAchievements;
 import com.Janaina.laboration.Game.GameMenu.PlayerStats.GetPlayerStats;
-import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Shop.StoreFront;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;

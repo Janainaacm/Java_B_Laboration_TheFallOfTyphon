@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 
@@ -12,19 +13,7 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Introduction {
 
-    public void createPlayer(Player player, Scanners sc) {
-
-        sleepThread(PURPLE_ISH + "(This game is inspired by and based on greek mythology, for every creature you encounter you will get the chance to learn more about them)");
-        suspensefulDots(".");
-        sc.pressEnter();
-
-
-        pythiaSpeaking("""
-                Hello player,\s
-                My name is Pythia, but you might formally know me as The Oracle of Delphi.\s
-                What is your name?""");
-
-        player.setName(sc.scannerText());
+    public void introduction(Player player, Scanners sc) {
 
         pythiaSpeaking("Welcome to the land of Elathriya " + player.getName() + ", I will be your guide on this journey");
         suspensefulDots(PURPLE + "." + RESET);

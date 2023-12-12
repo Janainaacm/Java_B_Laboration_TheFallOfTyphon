@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Resources.Scanners;
 
@@ -10,21 +11,16 @@ import static com.Janaina.laboration.Resources.TextDelay.chillForASecond;
 import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class Typhon extends ACharacters {
-    private int id;
 
     public Typhon() {
         super("Typhon", 7, 200, 10, 20, 60, 300, 100, 0, "Apocalyptic Surge", 200);
     }
 
     //Final boss
+    DBConnection db = new DBConnection();
 
+    public void addMonsterToDb(){
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Hero;
 
 import com.Janaina.laboration.DBConnection;
-import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Resources.Scanners;
 
@@ -15,7 +14,6 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 public class Player extends ACharacters {
 
     public List<Attacks> specialAttackList;
-    public ShopProducts equippedWeapon;
     private int availableLevels;
     private int furiesSlayed = 0;
     private int sirensSlayed = 0;
@@ -25,14 +23,37 @@ public class Player extends ACharacters {
     private int typhonSlayed = 0;
     private int roundsFightingTyphon = 0;
     private int id;
+    private int weaponsInventoryId;
+    private int potionsInventoryId;
+
+    DBConnection db = new DBConnection();
 
 
     public Player() {
         super("name", 1, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
         specialAttackList = new ArrayList<>();
-        this.equippedWeapon = new ShopProducts("knife", "Lethal Lunge", "▬ι=ﺤ", 0, 1, 0, 0, 0);
-        this.availableLevels = 1;
     }
+
+    public int getWeaponsInventoryId() {
+        return db.getIntFromDb("id", "weaponsInventory", "playerId", getId(), this);
+    }
+    public int getPotionsInventoryId() {
+        return db.getIntFromDb("id", "potionsInventory", "playerId", getId(), this);
+    }
+
+    public String equippedWeaponName(){
+        return db.getEquippedWeaponString("name", this);
+    }
+    public String equippedWeaponAttackName(){
+        return db.getEquippedWeaponString("attackName", this);
+    }
+    public String equippedWeaponAnimation(){
+        return db.getEquippedWeaponString("animation", this);
+    }
+    public int equippedWeaponStrength(){
+        return db.getEquippedWeaponStrength(this);
+    }
+
 
     public int getId() {
         return id;
@@ -88,10 +109,6 @@ public class Player extends ACharacters {
 
     public void setTyphonSlayed(int typhonSlayed) {
         this.typhonSlayed = typhonSlayed;
-    }
-
-    public ShopProducts getEquippedWeapon() {
-        return equippedWeapon;
     }
 
 
@@ -272,7 +289,7 @@ public class Player extends ACharacters {
             attack = attackWeapon(sc);
         }
 
-        if (Objects.equals(equippedWeapon.getName(), "Glock-19")){
+        if (Objects.equals(equippedWeaponName(), "Glock-19")){
             playerSpeaking(ITALIC + BOLD + "INGEN rör Strängnäs. Strängnäs är MITT område!" + RESET, this);
             monster.receiveDamage(this, attack);
         } else if (monster.dodge(this)) {
@@ -293,22 +310,22 @@ public class Player extends ACharacters {
     }
 
     private int attackWeapon(Scanners sc) {
-        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeapon.getAttackName() + "!" + RESET);
+        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeaponAttackName() + "!" + RESET);
         sc.pressEnterNoText();
-        sleepThread(YELLOW + equippedWeapon.getAnimation() + RESET);
+        sleepThread(YELLOW + equippedWeaponAnimation() + RESET);
         Random random = new Random();
 
-        if (Objects.equals(equippedWeapon.getName(), "Glock-19")){
-            return getStrength() + equippedWeapon.getStrength() * 10;
+        if (Objects.equals(equippedWeaponName(), "Glock-19")){
+            return getStrength() + equippedWeaponStrength() * 10;
         } else {
-            return random.nextInt(getBaseDamage(), (getStrength() + equippedWeapon.getStrength()) * 10);
+            return random.nextInt(getBaseDamage(), (getStrength() + equippedWeaponStrength()) * 10);
         }
 
     }
 
 
     private int chosenAttack(Scanners sc) {
-        System.out.println(YELLOW + ITALIC + "0. Use " + equippedWeapon.getName() + RESET);
+        System.out.println(YELLOW + ITALIC + "0. Use " + equippedWeaponName() + RESET);
         System.out.println(ORANGE + BOLD + "Special Attacks:" + RESET);
         for (int i = 0; i < specialAttackList.size(); i++) {
             System.out.println(ORANGE + ITALIC + (i + 1) + ". " + specialAttackList.get(i).getName() + GRAY + ITALIC + "\nDamage: " + RED + specialAttackList.get(i).getDamage() + RESET);
@@ -368,9 +385,9 @@ public class Player extends ACharacters {
 
         return LILAC + BOLD + UNDERLINED + getName().toUpperCase() + RESET +
                 LILAC + ITALIC + "\n✧ Health: " + GREEN_LIGHT + getHealth() + LILAC + ITALIC +
-                "\n✧ Equipped Weapon: " + ORANGE + equippedWeapon.getName() + LILAC + ITALIC +
+                "\n✧ Equipped Weapon: " + ORANGE + equippedWeaponName() + LILAC + ITALIC +
                 "\n✧ Min Damage: " + RED + getBaseDamage() + LILAC + ITALIC +
-                "\n✧ Max Damage: " + RED + getBaseDamage() * (getStrength() + equippedWeapon.getStrength()) + RESET;
+                "\n✧ Max Damage: " + RED + getBaseDamage() * (getStrength() + equippedWeaponStrength()) + RESET;
 
     }
 

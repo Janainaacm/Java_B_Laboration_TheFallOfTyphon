@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.PlayerAchievements;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.*;
@@ -15,7 +16,30 @@ import static com.Janaina.laboration.Resources.TextDelay.sleepThread;
 
 public class GetPlayerAchievements {
 
-    public void playerAchievements(Player player, Scanners sc) {
+    public void playerAchievements(Player player, Scanners sc, DBConnection db) {
+        boolean isChoosing = true;
+
+        while (isChoosing) {
+            System.out.println(BLUE + BLACK_BACKGROUND + BOLD + "       " + UNDERLINED + "Achievements" + RESET + BLACK_BACKGROUND + "       " + RESET);
+
+            System.out.println(BLUE_LIGHT + ITALIC + "1. Fight Log\n2. Kill log" + RESET + BLUE + "\n0. Go back");
+
+            switch (sc.scannerNumber()) {
+                case 1 -> fightLog(player, sc, db);
+                case 2 -> killLog(player, sc);
+                case 0 -> isChoosing = false;
+                default -> System.out.println(RED + BOLD + "Invalid input." + RESET);
+            }
+        }
+
+
+    }
+
+    private void fightLog(Player player, Scanners sc, DBConnection db){
+
+    }
+
+    private void killLog(Player player, Scanners sc) {
         Fury fury = new Fury();
         Siren siren = new Siren();
         Medusa medusa = new Medusa();
@@ -26,7 +50,7 @@ public class GetPlayerAchievements {
         boolean isChoosing = true;
         while (isChoosing) {
 
-            System.out.println(PINK + BLACK_BACKGROUND + BOLD + "       " + UNDERLINED + "Achievements" + RESET + BLACK_BACKGROUND + "       " + RESET);
+            System.out.println(PINK + BLACK_BACKGROUND + BOLD + "       " + UNDERLINED + "Kill log" + RESET + BLACK_BACKGROUND + "       " + RESET);
 
             if (player.getFuriesSlayed() >= 1) {
                 System.out.println(PINK_LIGHT + ITALIC + "1. Fury" + RESET);

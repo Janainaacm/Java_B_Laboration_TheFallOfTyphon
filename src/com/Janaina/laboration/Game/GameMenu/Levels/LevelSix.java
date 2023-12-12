@@ -156,7 +156,6 @@ public class LevelSix {
         player.actTyphon(typhon, inventory, sc);
         player.setStrength(originalStrength);
         player.setAgility(originalAgility);
-        player.equippedWeapon.setStrength(weaponOriginalStrength);
 
 
         suspensefulDots(".");
@@ -184,7 +183,7 @@ public class LevelSix {
 
 
         player.setAvailableLevels(7);
-        db.unlockGlock();
+        db.unlockGlock(player);
         sleepThread(GRAY + ITALIC + "You have completed level six");
         suspensefulDots(".");
         chillForASecond(1000);

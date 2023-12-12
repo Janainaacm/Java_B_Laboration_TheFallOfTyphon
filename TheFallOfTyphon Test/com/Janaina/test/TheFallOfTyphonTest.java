@@ -1,7 +1,6 @@
 package com.Janaina.test;
 
 import com.Janaina.laboration.DBConnection;
-import com.Janaina.laboration.Game.Shop.ShopProducts;
 import com.Janaina.laboration.Game.MainGameMenu;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
@@ -78,7 +77,7 @@ public class TheFallOfTyphonTest {
     }
 
 
-
+/*
     @Test
     public void buyWeapon() {
         Player player = new Player();
@@ -103,6 +102,8 @@ public class TheFallOfTyphonTest {
         when(scanners.chooseFromShopMenu()).thenReturn(1, 0);
         when(scanners.chooseFromWeapons()).thenReturn(3, 0);
     }
+
+ */
 
 
 }

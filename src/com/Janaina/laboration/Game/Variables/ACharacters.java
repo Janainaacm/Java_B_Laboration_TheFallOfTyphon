@@ -19,6 +19,7 @@ public abstract class ACharacters implements Combat {
     private int level;
     private String defaultAttack;
     private final int defaultHealth;
+    private int id;
 
 
 
@@ -34,6 +35,14 @@ public abstract class ACharacters implements Combat {
         this.level = level;
         this.defaultAttack = defaultAttack;
         this.defaultHealth = defaultHealth;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDefaultAttack() {
