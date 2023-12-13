@@ -13,6 +13,8 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelOne {
 
+    private static final int LEVEL_TWO = 3;
+
     public void playLevelOne(Player player, Inventory inventory, Scanners sc) {
         Fury fury = new Fury();
 
@@ -87,7 +89,7 @@ public class LevelOne {
             sc.pressEnter();
 
 
-            player.setAvailableLevels(2);
+            player.setAvailableLevels(LEVEL_TWO);
             break;
 
         }

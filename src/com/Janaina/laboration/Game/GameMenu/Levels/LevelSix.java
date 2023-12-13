@@ -17,7 +17,8 @@ public class LevelSix {
     public void playLevelSix(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         int originalAgility = player.getAgility();
         int originalStrength = player.getStrength();
-        int weaponOriginalStrength = player.equippedWeapon.getStrength();
+        int weaponOriginalStrength = db.getEquippedWeaponStrength(player);
+
 
         Typhon typhon = new Typhon();
         Fury fury = new Fury();
@@ -129,7 +130,7 @@ public class LevelSix {
 
         player.setAgility(player.getAgility() / 2);
         player.setStrength(player.getStrength() / 2);
-        player.equippedWeapon.setStrength(player.equippedWeapon.getStrength() / 2);
+        db.setEquippedWeaponStrength(player, (weaponOriginalStrength/2));
 
         chillForASecond(1000);
         furySpeaking("\nNot so tough now are we?");
@@ -156,6 +157,7 @@ public class LevelSix {
         player.actTyphon(typhon, inventory, sc);
         player.setStrength(originalStrength);
         player.setAgility(originalAgility);
+        db.setEquippedWeaponStrength(player, weaponOriginalStrength);
 
 
         suspensefulDots(".");
@@ -182,8 +184,8 @@ public class LevelSix {
         sleepThread(PINK + player.getName() + "YES! YES OF COURSE I WILL!" + RESET);
 
 
-        player.setAvailableLevels(7);
         db.unlockGlock(player);
+        db.addSpecialAttack(player, typhon.getName());
         sleepThread(GRAY + ITALIC + "You have completed level six");
         suspensefulDots(".");
         chillForASecond(1000);

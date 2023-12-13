@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Cerberus;
@@ -14,13 +15,14 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 
 public class LevelFive {
+    private static final int LEVEL_SIX = 6;
 
     private final String[] CORRECT_SEQUENCE = {"zeus", "hestia", "poseidon", "hera", "demeter"};
 
     private final String[] SYMBOL_MEANINGS = {"God of Thunder", "Goddess of the Earth", "God of the Sea", "God of Women and Family", "Goddess of Harvest"};
 
 
-    public void playLevelFive(Player player, Inventory inventory, Scanners sc) {
+    public void playLevelFive(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         Cerberus cerberus = new Cerberus();
 
         while (true) {
@@ -78,10 +80,8 @@ public class LevelFive {
 
             }
 
-            chillForASecond(1500);
-            sleepThread(PURPLE_ISH + "You have unlocked a new special attack." + RESET);
-            player.specialAttackCerberus();
-            chillForASecond(1500);
+            db.addSpecialAttack(player, cerberus.getName());
+
 
             suspensefulDots(GRAY + "." + RESET);
 
@@ -102,7 +102,7 @@ public class LevelFive {
 
             suspensefulDots(GRAY + ".");
             sleepThread("You have completed level five." + RESET);
-            player.setAvailableLevels(6);
+            player.setAvailableLevels(LEVEL_SIX);
             sc.pressEnter();
             break;
         }

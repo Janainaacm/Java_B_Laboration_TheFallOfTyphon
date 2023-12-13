@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Medusa;
@@ -13,7 +14,10 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelThree {
 
-    public void playLevelThree(Player player, Inventory inventory, Scanners sc) {
+    private static final int LEVEL_FOUR = 4;
+
+
+    public void playLevelThree(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         Medusa medusa = new Medusa();
         Random random = new Random();
         
@@ -157,7 +161,7 @@ public class LevelThree {
 
                                         suspensefulDots(GRAY + "." + RESET);
                                         sleepThread(GRAY + "Level three complete." + RESET);
-                                        player.setAvailableLevels(4);
+                                        player.setAvailableLevels(LEVEL_FOUR);
                                         chillForASecond(1000);
                                         sc.pressEnter();
                                         insideConservatory = false;
@@ -236,9 +240,7 @@ public class LevelThree {
                             System.out.println(PURPLE_LIGHT + "You have the key." + RESET);
                             chillForASecond(1500);
 
-                            sleepThread(PURPLE_ISH + "You have unlocked a new special attack." + RESET);
-                            player.specialAttackMedusa();
-                            chillForASecond(1500);
+                            db.addSpecialAttack(player, medusa.getName());
 
                             keyFound = true;
 

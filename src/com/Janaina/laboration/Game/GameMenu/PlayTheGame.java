@@ -26,7 +26,7 @@ public class PlayTheGame {
 
             switch (sc.chooseFromGameMenu()) {
                 case 1 -> LevelMenu.levelMenu(player, Inventory, sc, db);
-                case 2 -> PlayerStats.currentStats(player, sc);
+                case 2 -> PlayerStats.currentStats(player, sc, db);
                 case 3 -> GetPlayerAchievements.playerAchievements(player, sc, db);
                 case 4 -> Inventory.playerInventory(player, sc, db);
                 case 0 -> isChoosingFromGameMenu = false;

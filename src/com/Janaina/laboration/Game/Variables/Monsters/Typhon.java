@@ -17,11 +17,7 @@ public class Typhon extends ACharacters {
     }
 
     //Final boss
-    DBConnection db = new DBConnection();
 
-    public void addMonsterToDb(){
-
-    }
 
     @Override
     public void attack(ACharacters target,  Scanners sc) {

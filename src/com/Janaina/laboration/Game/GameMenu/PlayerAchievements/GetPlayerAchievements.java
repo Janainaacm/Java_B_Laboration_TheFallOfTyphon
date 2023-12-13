@@ -36,7 +36,10 @@ public class GetPlayerAchievements {
     }
 
     private void fightLog(Player player, Scanners sc, DBConnection db){
-
+        db.showFightLog(player);
+        chillForASecond(1000);
+        sleepThread("Press enter to go back");
+        sc.pressEnterNoText();
     }
 
     private void killLog(Player player, Scanners sc) {

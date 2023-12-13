@@ -16,15 +16,14 @@ public class Start {
 
     public void startGame() {
         Inventory inventory = new Inventory();
+        Player player = new Player();
         MainGameMenu mainGameMenu = new MainGameMenu();
         Introduction intro = new Introduction();
         Scanners sc = new Scanners();
         DBConnection db = new DBConnection();
         db.openConnection();
-        Player player = db.choosePlayer(sc);
-        db.createTables(player);
 
-
+        db.createTables();
 
         println(BLACK_BACKGROUND + "                             " + RESET
                 + "\n" + BLACK_BACKGROUND + "     " + PURPLE_LIGHT + BOLD + UNDERLINED + "THE FALL OF TYPHON" + RESET + BLACK_BACKGROUND + "      " + RESET
@@ -33,6 +32,9 @@ public class Start {
         sleepThread(PURPLE_ISH + "(This game is inspired by and based on greek mythology, for every creature you encounter you will get the chance to learn more about them)");
         suspensefulDots(".");
         sc.pressEnter();
+
+        db.choosePlayer(sc, player);
+        db.addItemsToTables(player);
 
         intro.introduction(player, sc);
         mainGameMenu.mainGameMenu(player, sc, inventory, db);

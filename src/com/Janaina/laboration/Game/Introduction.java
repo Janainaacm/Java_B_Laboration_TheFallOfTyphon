@@ -1,6 +1,5 @@
 package com.Janaina.laboration.Game;
 
-import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 

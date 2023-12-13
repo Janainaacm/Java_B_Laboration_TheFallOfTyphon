@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Siren;
@@ -12,8 +13,9 @@ import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelTwo {
+    private static final int LEVEL_THREE = 3;
 
-    public void playLevelTwo(Player player, Inventory inventory, Scanners sc) {
+    public void playLevelTwo(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         Siren siren = new Siren();
 
         while (true){
@@ -99,10 +101,7 @@ public class LevelTwo {
                 break;
             }
 
-            chillForASecond(1500);
-            sleepThread(PURPLE_ISH + "You have unlocked a new special attack." + RESET);
-            player.specialAttackSirens();
-            chillForASecond(1500);
+            db.addSpecialAttack(player, siren.getName());
 
             sc.pressEnter();
             sleepThread(YELLOW + """
@@ -114,7 +113,7 @@ public class LevelTwo {
             chillForASecond(1000);
             sc.pressEnter();
 
-            player.setAvailableLevels(3);
+            player.setAvailableLevels(LEVEL_THREE);
             break;
 
         }

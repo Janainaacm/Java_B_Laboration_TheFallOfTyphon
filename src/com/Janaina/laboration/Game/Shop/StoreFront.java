@@ -3,11 +3,8 @@ package com.Janaina.laboration.Game.Shop;
 import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Shop.ShopCategories.Potions;
 import com.Janaina.laboration.Game.Shop.ShopCategories.Weapons;
-import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
-
-import java.util.List;
 
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.printRed;

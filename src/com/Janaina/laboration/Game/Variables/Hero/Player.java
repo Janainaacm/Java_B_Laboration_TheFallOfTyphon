@@ -13,7 +13,6 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class Player extends ACharacters {
 
-    public List<Attacks> specialAttackList;
     private int availableLevels;
     private int furiesSlayed = 0;
     private int sirensSlayed = 0;
@@ -31,14 +30,22 @@ public class Player extends ACharacters {
 
     public Player() {
         super("name", 1, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
-        specialAttackList = new ArrayList<>();
     }
 
     public int getWeaponsInventoryId() {
-        return db.getIntFromDb("id", "weaponsInventory", "playerId", getId(), this);
+        return weaponsInventoryId;
     }
+
+    public void setWeaponsInventoryId(int weaponsInventoryId) {
+        this.weaponsInventoryId = weaponsInventoryId;
+    }
+
     public int getPotionsInventoryId() {
-        return db.getIntFromDb("id", "potionsInventory", "playerId", getId(), this);
+        return potionsInventoryId;
+    }
+
+    public void setPotionsInventoryId(int potionsInventoryId) {
+        this.potionsInventoryId = potionsInventoryId;
     }
 
     public String equippedWeaponName(){
@@ -112,24 +119,6 @@ public class Player extends ACharacters {
     }
 
 
-    private void addSpecialAttack(Attacks attack) {
-        specialAttackList.add(attack);
-    }
-
-    public void specialAttackSirens(){
-        addSpecialAttack(new Attacks("Sirens Song", 20));
-
-    }
-
-    public void specialAttackMedusa(){
-        addSpecialAttack(new Attacks("Medusa's head", 30));
-
-    }
-    public void specialAttackCerberus(){
-        addSpecialAttack(new Attacks("Poisonous Fang", 30));
-    }
-
-
     public void act(ACharacters monster, Inventory inventory, Scanners sc) {
         DBConnection db = new DBConnection();
 
@@ -146,6 +135,7 @@ public class Player extends ACharacters {
                     if (flee(monster)) {
                         sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
                         suspensefulDots(PURPLE_LIGHT + "." + RESET);
+                        db.insertFightLog(this, "Fled", monster);
                         monsterEncounter = false;
                     } else {
                         continue;
@@ -167,7 +157,8 @@ public class Player extends ACharacters {
             if (!isAlive()) {
                 sleepThread(RED + ITALIC + "You were killed by " + monster.getName() + RESET);
                 suspensefulDots(RED + "." + RESET);
-                System.out.println(RED + BOLD + "Game Over." + RESET);
+                sleepThread(RED + BOLD + "Game Over." + RESET);
+                db.updateGameProgress(this);
                 System.exit(0);
                 monsterEncounter = false;
             }
@@ -270,9 +261,11 @@ public class Player extends ACharacters {
                 case "Typhon" -> typhonSlayed++;
             }
 
+            db.insertFightLog(this, "Victory", monster);
             return true;
 
         } else {
+            db.insertFightLog(this, "Defeat", monster);
             return false;
         }
 
@@ -281,16 +274,16 @@ public class Player extends ACharacters {
 
     @Override
     public void attack(ACharacters monster, Scanners sc) {
-
+        boolean glock = false;
         int attack;
-        if (!specialAttackList.isEmpty()) {
-            attack = chosenAttack(sc);
+        if (db.getCount("id", "specialAttacks", this) >= 1) {
+            attack = db.getAttackDamage(sc, this);
         } else {
             attack = attackWeapon(sc);
+            glock = db.usedGlock(this);
         }
 
-        if (Objects.equals(equippedWeaponName(), "Glock-19")){
-            playerSpeaking(ITALIC + BOLD + "INGEN rör Strängnäs. Strängnäs är MITT område!" + RESET, this);
+        if (glock){
             monster.receiveDamage(this, attack);
         } else if (monster.dodge(this)) {
             System.out.println(RED + monster.getName() + " dodged your attack!");
@@ -316,38 +309,10 @@ public class Player extends ACharacters {
         Random random = new Random();
 
         if (Objects.equals(equippedWeaponName(), "Glock-19")){
+            playerSpeaking(ITALIC + BOLD + "INGEN rör Strängnäs. Strängnäs är MITT område!" + RESET, this);
             return getStrength() + equippedWeaponStrength() * 10;
         } else {
             return random.nextInt(getBaseDamage(), (getStrength() + equippedWeaponStrength()) * 10);
-        }
-
-    }
-
-
-    private int chosenAttack(Scanners sc) {
-        System.out.println(YELLOW + ITALIC + "0. Use " + equippedWeaponName() + RESET);
-        System.out.println(ORANGE + BOLD + "Special Attacks:" + RESET);
-        for (int i = 0; i < specialAttackList.size(); i++) {
-            System.out.println(ORANGE + ITALIC + (i + 1) + ". " + specialAttackList.get(i).getName() + GRAY + ITALIC + "\nDamage: " + RED + specialAttackList.get(i).getDamage() + RESET);
-
-        }
-        int choice = sc.scannerNumber();
-
-        if (choice == 0) {
-            return attackWeapon(sc);
-        }
-
-        if (choice < 1 || choice > specialAttackList.size()) {
-            System.out.println(BLACK + "Invalid choice, please try again" + RESET);
-            return chosenAttack(sc);
-
-        } else {
-
-            Attacks selectedAttack = specialAttackList.get(choice - 1);
-            System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + selectedAttack.getName() + "!" + RESET);
-            sc.pressEnterNoText();
-            sleepThread(YELLOW + "⋆｡୭⋆⁺.⋆｡˙⊹༺⋆｡˙⊹⋆\n" + RESET);
-            return selectedAttack.getDamage();
         }
 
     }

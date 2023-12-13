@@ -10,8 +10,6 @@ import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Resources.Scanners;
 
-import java.util.List;
-
 import static com.Janaina.laboration.Resources.Colors.*;
 import static com.Janaina.laboration.Resources.PrintHandler.*;
 import static com.Janaina.laboration.Resources.Storyteller.readGameLore;
@@ -46,6 +44,7 @@ public class MainGameMenu {
                 case 0 -> {
                     pythiaSpeaking("Goodbye " + player.getName() + ", may we meet again");
                     suspensefulDots(PURPLE + "." + RESET);
+                    db.updateGameProgress(player);
                     mainGameMenuSwitch = false;
                 }
                 default -> printRed("Invalid input, please chose from the presented options");
@@ -53,8 +52,5 @@ public class MainGameMenu {
             }
         }while (mainGameMenuSwitch);
     }
-
-
-
 
 }

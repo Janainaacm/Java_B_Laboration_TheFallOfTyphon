@@ -17,6 +17,9 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 public class LevelFour {
     private boolean foughtMinotaur = false;
 
+    private static final int LEVEL_FIVE = 5;
+
+
     public void playLevelFour(Player player, Inventory inventory, Scanners sc, DBConnection db) {
 
         sleepThread(GRAY + "Level Four." + RESET);
@@ -139,7 +142,7 @@ public class LevelFour {
                     suspensefulDots(GRAY + "." + RESET);
                     chillForASecond(1000);
                     sleepThread(GRAY + "Level four complete." + RESET);
-                    player.setAvailableLevels(5);
+                    player.setAvailableLevels(LEVEL_FIVE);
                     chillForASecond(1000);
                     sc.pressEnter();
 
