@@ -22,8 +22,6 @@ public class Player extends ACharacters {
     private int typhonSlayed = 0;
     private int roundsFightingTyphon = 0;
     private int id;
-    private int weaponsInventoryId;
-    private int potionsInventoryId;
 
     DBConnection db = new DBConnection();
 
@@ -32,21 +30,6 @@ public class Player extends ACharacters {
         super("name", 1, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
     }
 
-    public int getWeaponsInventoryId() {
-        return weaponsInventoryId;
-    }
-
-    public void setWeaponsInventoryId(int weaponsInventoryId) {
-        this.weaponsInventoryId = weaponsInventoryId;
-    }
-
-    public int getPotionsInventoryId() {
-        return potionsInventoryId;
-    }
-
-    public void setPotionsInventoryId(int potionsInventoryId) {
-        this.potionsInventoryId = potionsInventoryId;
-    }
 
     public String equippedWeaponName(){
         return db.getEquippedWeaponString("name", this);
