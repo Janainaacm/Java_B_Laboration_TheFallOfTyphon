@@ -23,24 +23,22 @@ public class Player extends ACharacters {
     private int roundsFightingTyphon = 0;
     private int id;
 
-    DBConnection db = new DBConnection();
-
 
     public Player() {
         super("name", 1, 100, 10, 20, 20, 0, 0, 1, "Knife slash", 100);
     }
 
 
-    public String equippedWeaponName(){
+    public String equippedWeaponName(DBConnection db){
         return db.getEquippedWeaponString("name", this);
     }
-    public String equippedWeaponAttackName(){
+    public String equippedWeaponAttackName(DBConnection db){
         return db.getEquippedWeaponString("attackName", this);
     }
-    public String equippedWeaponAnimation(){
+    public String equippedWeaponAnimation(DBConnection db){
         return db.getEquippedWeaponString("animation", this);
     }
-    public int equippedWeaponStrength(){
+    public int equippedWeaponStrength(DBConnection db){
         return db.getEquippedWeaponStrength(this);
     }
 
@@ -102,18 +100,17 @@ public class Player extends ACharacters {
     }
 
 
-    public void act(ACharacters monster, Inventory inventory, Scanners sc) {
-        DBConnection db = new DBConnection();
+    public void act(ACharacters monster, Inventory inventory, Scanners sc, DBConnection db) {
 
         boolean monsterEncounter = true;
 
         do {
-            System.out.println(monster.getStats());
+            System.out.println(monster.getStats(db));
             System.out.println(WHITE_BOLD_BRIGHT + "1. Attack\n2. Flee\n3. Get Stats\n4. inventory" + RESET);
 
             switch (sc.scannerNumber()) {
 
-                case 1 -> attack(monster, sc);
+                case 1 -> attack(monster, sc, db);
                 case 2 -> {
                     if (flee(monster)) {
                         sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
@@ -125,7 +122,7 @@ public class Player extends ACharacters {
                     }
                 }
                 case 3 -> {
-                    System.out.println(getStats());
+                    System.out.println(getStats(db));
                     sc.pressEnter();
                 }
                 case 4 -> inventory.playerInventory(this, sc, db);
@@ -133,7 +130,7 @@ public class Player extends ACharacters {
 
             }
 
-            if (playerWins(monster)) {
+            if (playerWins(monster, db)) {
                 monsterEncounter = false;
             }
 
@@ -150,8 +147,7 @@ public class Player extends ACharacters {
 
     }
 
-    public void actTyphon(ACharacters monster, Inventory inventory, Scanners sc) {
-        DBConnection db = new DBConnection();
+    public void actTyphon(ACharacters monster, Inventory inventory, Scanners sc, DBConnection db) {
 
         boolean monsterEncounter = true;
         if (Objects.equals(monster.getName(), "Typhon")) {
@@ -161,21 +157,21 @@ public class Player extends ACharacters {
         }
 
         do {
-            System.out.println(monster.getStats());
+            System.out.println(monster.getStats(db));
             System.out.println(WHITE + BOLD + "1. Attack\n" +
                     GRAY + "2. Flee\n" +
                     WHITE + BOLD + "3. Get Stats\n4. inventory" + RESET);
 
             switch (sc.scannerNumber()) {
 
-                case 1 -> attack(monster, sc);
+                case 1 -> attack(monster, sc, db);
                 case 2 -> {
                     System.out.println(WHITE + "Sike" + RESET);
                     sleepThread(GRAY + ITALIC + "Such a pussy" + RESET);
                     chillForASecond(1000);
                 }
                 case 3 -> {
-                    System.out.println(getStats());
+                    System.out.println(getStats(db));
                     sc.pressEnter();
                 }
                 case 4 -> inventory.playerInventory(this, sc, db);
@@ -204,7 +200,7 @@ public class Player extends ACharacters {
             }
 
 
-            if (playerWins(monster)) {
+            if (playerWins(monster, db)) {
                 if (Objects.equals(monster.getName(), "Typhon")) {
                     roundsFightingTyphon = 0;
                 }
@@ -224,7 +220,7 @@ public class Player extends ACharacters {
 
     }
 
-    public boolean playerWins(ACharacters monster) {
+    public boolean playerWins(ACharacters monster, DBConnection db) {
         if (!monster.isAlive()) {
             System.out.println(PURPLE_BOLD_BRIGHT + "You managed to slay " + monster.getName() + "!" + RESET);
             chillForASecond(1000);
@@ -256,13 +252,13 @@ public class Player extends ACharacters {
 
 
     @Override
-    public void attack(ACharacters monster, Scanners sc) {
+    public void attack(ACharacters monster, Scanners sc, DBConnection db) {
         boolean glock = false;
         int attack;
         if (db.getCount("id", "specialAttacks", this) >= 1) {
-            attack = db.getAttackDamage(sc, this);
+            attack = db.getAttackDamage(sc, this, db);
         } else {
-            attack = attackWeapon(sc);
+            attack = attackWeapon(sc, db);
             glock = db.usedGlock(this);
         }
 
@@ -276,7 +272,7 @@ public class Player extends ACharacters {
         }
 
         if (monster.isAlive()) {
-            monster.attack(this, sc);
+            monster.attack(this, sc, db);
             if (!dodge(monster)) {
                 receiveDamage(monster, 0);
             }
@@ -285,17 +281,17 @@ public class Player extends ACharacters {
 
     }
 
-    private int attackWeapon(Scanners sc) {
-        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeaponAttackName() + "!" + RESET);
+    private int attackWeapon(Scanners sc, DBConnection db) {
+        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeaponAttackName(db) + "!" + RESET);
         sc.pressEnterNoText();
-        sleepThread(YELLOW + equippedWeaponAnimation() + RESET);
+        sleepThread(YELLOW + equippedWeaponAnimation(db) + RESET);
         Random random = new Random();
 
-        if (Objects.equals(equippedWeaponName(), "Glock-19")){
+        if (Objects.equals(equippedWeaponName(db), "Glock-19")){
             playerSpeaking(ITALIC + BOLD + "INGEN rör Strängnäs. Strängnäs är MITT område!" + RESET, this);
-            return getStrength() + equippedWeaponStrength() * 10;
+            return getStrength() + equippedWeaponStrength(db) * 10;
         } else {
-            return random.nextInt(getBaseDamage(), (getStrength() + equippedWeaponStrength()) * 10);
+            return random.nextInt(getBaseDamage(), (getStrength() + equippedWeaponStrength(db)) * 10);
         }
 
     }
@@ -329,13 +325,13 @@ public class Player extends ACharacters {
 
 
     @Override
-    public String getStats() {
+    public String getStats(DBConnection db) {
 
         return LILAC + BOLD + UNDERLINED + getName().toUpperCase() + RESET +
                 LILAC + ITALIC + "\n✧ Health: " + GREEN_LIGHT + getHealth() + LILAC + ITALIC +
-                "\n✧ Equipped Weapon: " + ORANGE + equippedWeaponName() + LILAC + ITALIC +
+                "\n✧ Equipped Weapon: " + ORANGE + equippedWeaponName(db) + LILAC + ITALIC +
                 "\n✧ Min Damage: " + RED + getBaseDamage() + LILAC + ITALIC +
-                "\n✧ Max Damage: " + RED + getBaseDamage() * (getStrength() + equippedWeaponStrength()) + RESET;
+                "\n✧ Max Damage: " + RED + getBaseDamage() * (getStrength() + equippedWeaponStrength(db)) + RESET;
 
     }
 
@@ -350,6 +346,8 @@ public class Player extends ACharacters {
 
         return dodgeAttack(timeLimit, String.valueOf(toDodge));
     }
+
+
 
     public static boolean dodgeAttack(int timeLimit, String toDodge) {
         Scanner scanner = new Scanner(System.in);

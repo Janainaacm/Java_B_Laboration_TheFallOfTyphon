@@ -20,7 +20,7 @@ public class Typhon extends ACharacters {
 
 
     @Override
-    public void attack(ACharacters target,  Scanners sc) {
+    public void attack(ACharacters target,  Scanners sc, DBConnection db) {
         System.out.println(RED_BOLD_BRIGHT + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(RED + "・・*:・:・゜:==≡≡Σ=͟͟͞͞(✡)`Д´\uD80C\uDCF5" + "\n" + RESET );
         chillForASecond(200);
@@ -43,7 +43,7 @@ public class Typhon extends ACharacters {
     }
 
     @Override
-    public String getStats() {
+    public String getStats(DBConnection db) {
         return RED_BACKGROUND + "            " + BLACK + BOLD + UNDERLINED + RED_BACKGROUND + "TYPHON" + RESET + RED_BACKGROUND + "            " + RESET + "\n" + RED + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
 
     }

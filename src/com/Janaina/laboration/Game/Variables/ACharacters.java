@@ -1,5 +1,7 @@
 package com.Janaina.laboration.Game.Variables;
 
+import com.Janaina.laboration.DBConnection;
+
 public abstract class ACharacters implements Combat {
 
     private String name;

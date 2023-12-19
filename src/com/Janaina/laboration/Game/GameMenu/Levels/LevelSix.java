@@ -60,7 +60,7 @@ public class LevelSix {
                     }
                 }
                 case 2 -> {
-                    rowingBoat(player, inventory, sc);
+                    rowingBoat(player, inventory, sc, db);
                     isChoosing = false;
                 }
 
@@ -73,9 +73,9 @@ public class LevelSix {
                 but a haunting landscape littered with skeletal remains, silent witnesses to the underworld's eternal suffering.\s
                 """);
 
-        castleGates(player, inventory, sc);
+        castleGates(player, inventory, sc, db);
 
-        player.actTyphon(typhon, inventory, sc);
+        player.actTyphon(typhon, inventory, sc, db);
         sleepThread(WHITE + ITALIC + "What is going on?" + RESET);
         System.out.println(ORANGE + "Typhon fled to the castle with Althea!" + RESET);
         chillForASecond(1000);
@@ -101,7 +101,7 @@ public class LevelSix {
                 """);
         chillForASecond(500);
         playerSpeaking("Come face me then!", player);
-        player.actTyphon(typhon, inventory, sc);
+        player.actTyphon(typhon, inventory, sc, db);
 
         sleepThread(YELLOW + "Typhon has once again fled the fight! The hero seizes the opportunity to rush to Althea's side and free her\nfrom the chains that bound her to the altar.\n");
         chillForASecond(500);
@@ -135,26 +135,26 @@ public class LevelSix {
         chillForASecond(1000);
         furySpeaking("\nNot so tough now are we?");
 
-        player.actTyphon(fury, inventory, sc);
+        player.actTyphon(fury, inventory, sc, db);
 
         chillForASecond(1000);
         furySpeaking("This is not over!");
         chillForASecond(1000);
 
-        player.actTyphon(fury, inventory, sc);
+        player.actTyphon(fury, inventory, sc, db);
 
         chillForASecond(1000);
         furySpeaking("You are not done with us yet!");
         chillForASecond(1000);
 
-        player.actTyphon(fury, inventory, sc);
+        player.actTyphon(fury, inventory, sc, db);
 
         suspensefulDots(RED + ".");
         chillForASecond(500);
         typhonSpeaking("Fine, I'll do it myself");
         chillForASecond(1000);
 
-        player.actTyphon(typhon, inventory, sc);
+        player.actTyphon(typhon, inventory, sc, db);
         player.setStrength(originalStrength);
         player.setAgility(originalAgility);
         db.setEquippedWeaponStrength(player, weaponOriginalStrength);
@@ -184,7 +184,7 @@ public class LevelSix {
         sleepThread(PINK + player.getName() + "YES! YES OF COURSE I WILL!" + RESET);
 
 
-        db.unlockGlock(player);
+        db.updateGlock(player, 0);
         db.addSpecialAttack(player, typhon.getName());
         sleepThread(GRAY + ITALIC + "You have completed level six");
         suspensefulDots(".");
@@ -245,7 +245,7 @@ public class LevelSix {
 
     }
 
-    private void rowingBoat(Player player, Inventory inventory, Scanners sc) {
+    private void rowingBoat(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         Siren siren = new Siren();
         sleepThread(YELLOW + """
                 Refusing the boatman's offer, the hero finds a small rowboat by the shore. Determined, he starts rowing across the \s
@@ -266,15 +266,15 @@ public class LevelSix {
         System.out.println(GRAY + "Thud");
         suspensefulDots(".");
 
-        player.actTyphon(siren, inventory, sc);
-        player.actTyphon(siren, inventory, sc);
-        player.actTyphon(siren, inventory, sc);
+        player.actTyphon(siren, inventory, sc, db);
+        player.actTyphon(siren, inventory, sc, db);
+        player.actTyphon(siren, inventory, sc, db);
 
         suspensefulDots(".");
 
     }
 
-    private void castleGates(Player player, Inventory inventory, Scanners sc) {
+    private void castleGates(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         Fury fury = new Fury();
 
         sleepThread(YELLOW + """
@@ -289,9 +289,9 @@ public class LevelSix {
         playerSpeaking("I mustn't keep you waiting then", player);
         chillForASecond(500);
 
-        player.actTyphon(fury, inventory, sc);
-        player.actTyphon(fury, inventory, sc);
-        player.actTyphon(fury, inventory, sc);
+        player.actTyphon(fury, inventory, sc, db);
+        player.actTyphon(fury, inventory, sc, db);
+        player.actTyphon(fury, inventory, sc, db);
 
 
         sleepThread(YELLOW + """

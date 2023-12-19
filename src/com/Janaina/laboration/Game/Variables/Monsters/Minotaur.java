@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Resources.Scanners;
 
@@ -28,7 +29,7 @@ public class Minotaur extends ACharacters {
     }
 
     @Override
-    public void attack(ACharacters target,  Scanners sc) {
+    public void attack(ACharacters target,  Scanners sc, DBConnection db) {
         System.out.println(BLUE + BOLD + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(BLUE + "炎炎炎炎炎炎" + "\n" + RESET);
         chillForASecond(200);
@@ -50,7 +51,7 @@ public class Minotaur extends ACharacters {
     }
 
     @Override
-    public String getStats() {
+    public String getStats(DBConnection db) {
         return BLACK_BACKGROUND + "           " + ORANGE + BOLD + UNDERLINED + "Minotaur" + RESET + BLACK_BACKGROUND + "           " + RESET + "\n" + ORANGE + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
 
     }

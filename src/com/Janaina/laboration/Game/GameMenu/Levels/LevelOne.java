@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.GameMenu.Levels;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
 import com.Janaina.laboration.Game.Variables.Monsters.Fury;
@@ -15,7 +16,7 @@ public class LevelOne {
 
     private static final int LEVEL_TWO = 3;
 
-    public void playLevelOne(Player player, Inventory inventory, Scanners sc) {
+    public void playLevelOne(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         Fury fury = new Fury();
 
 
@@ -41,7 +42,7 @@ public class LevelOne {
             while (fightFuries < 3){
                 fightFuries ++;
                 System.out.println(GRAY + ITALIC + "Fury " + fightFuries + "/3" + RESET);
-                player.act(fury, inventory, sc);
+                player.act(fury, inventory, sc, db);
                 if (fury.isAlive()) {
                     break;
                 }

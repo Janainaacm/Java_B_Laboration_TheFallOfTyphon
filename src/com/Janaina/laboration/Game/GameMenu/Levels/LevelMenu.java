@@ -59,7 +59,7 @@ public class LevelMenu {
 
 
             switch (sc.chooseFromLevelMenu()) {
-                case 1 -> LevelOne.playLevelOne(player, Inventory, sc);
+                case 1 -> LevelOne.playLevelOne(player, Inventory, sc, db);
                 case 2 -> {
                     if (player.getAvailableLevels() > 1) {
                         LevelTwo.playLevelTwo(player, Inventory, sc, db);

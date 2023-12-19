@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Resources.Scanners;
 
@@ -25,8 +26,10 @@ public class Medusa extends ACharacters {
         this.id = id;
     }
 
+
+
     @Override
-    public void attack(ACharacters target,  Scanners sc) {
+    public void attack(ACharacters target,  Scanners sc, DBConnection db) {
         System.out.println(GREEN_LIGHT + BOLD + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(GREEN_LIGHT + "\uD80C\uDD9A\uD80C\uDD97\uD80C\uDD9A\uD80C\uDD97\uD80C\uDD9A\uD80C\uDD97" + "\n" + RESET);
         chillForASecond(200);
@@ -48,7 +51,7 @@ public class Medusa extends ACharacters {
     }
 
     @Override
-    public String getStats() {
+    public String getStats(DBConnection db) {
 
         return BLACK_BACKGROUND + "            " + GREEN_DARK + BOLD + UNDERLINED + "Medusa" + RESET + BLACK_BACKGROUND + "            " + RESET + "\n" + GREEN_LIGHT + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
 

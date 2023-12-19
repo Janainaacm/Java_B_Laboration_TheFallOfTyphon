@@ -72,7 +72,7 @@ public class LevelFive {
             cerberusSpeaking("I will enjoy ripping you apart, and devouring you piece by piece");
             chillForASecond(1000);
 
-            player.act(cerberus, inventory, sc);
+            player.act(cerberus, inventory, sc, db);
             if (cerberus.isAlive()) {
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
                 suspensefulDots(PURPLE_LIGHT + "." + RESET);

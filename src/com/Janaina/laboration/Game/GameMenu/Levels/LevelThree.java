@@ -69,7 +69,7 @@ public class LevelThree {
 
 
 
-            player.act(medusa, inventory, sc);
+            player.act(medusa, inventory, sc, db);
             if (medusa.isAlive()) {
                 sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
                 suspensefulDots(PURPLE_LIGHT + "." + RESET);

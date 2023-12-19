@@ -33,7 +33,7 @@ public class Potions {
                 player.setGold(player.getGold() - potionPrice);
                 System.out.println(RED_DARK + BOLD + "Gold: -" + potionPrice);
                 System.out.println(WHITE + potionName + " has been added to your inventory." + RESET);
-                db.addToPotionsInventory(id, player);
+                db.addToPotionsInventory(potionName, player);
                 sc.pressEnter();
             } else {
                 System.out.println(RED + "Insufficient funds to buy " + potionName + RESET);

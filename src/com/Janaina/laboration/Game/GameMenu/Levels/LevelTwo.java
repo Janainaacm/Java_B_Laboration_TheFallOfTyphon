@@ -84,19 +84,19 @@ public class LevelTwo {
         playerSpeaking("So be it! If it's a battle you want, it's a battle you'll get! Prepare to face my wrath, sirens!", player);
 
 
-            player.act(siren, inventory, sc);
+            player.act(siren, inventory, sc, db);
             if (siren.isAlive()) {
                 break;
             }
             siren.revive();
 
-            player.act(siren, inventory, sc);
+            player.act(siren, inventory, sc, db);
             if (siren.isAlive()) {
                 break;
             }
             siren.revive();
 
-            player.act(siren, inventory, sc);
+            player.act(siren, inventory, sc, db);
             if (siren.isAlive()) {
                 break;
             }

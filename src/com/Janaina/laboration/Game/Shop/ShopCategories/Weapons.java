@@ -32,7 +32,7 @@ public class Weapons {
                 player.setGold(player.getGold() - weaponPrice);
                 System.out.println(RED_DARK + BOLD + "Gold: -" + weaponPrice);
                 System.out.println(WHITE + weaponName + " has been added to your inventory." + RESET);
-                db.addToWeaponsInventory(id, player);
+                db.addToWeaponsInventory(weaponName, player);
                 sc.pressEnter();
             } else {
                 System.out.println(RED + "Insufficient funds to buy " + weaponName + RESET);

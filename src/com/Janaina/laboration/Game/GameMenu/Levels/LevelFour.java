@@ -73,7 +73,7 @@ public class LevelFour {
                     chillForASecond(1500);
 
                     if (treasuresFound <= 5) {
-                        boolean didFind = findTreasureChest(player, inventory, sc, db);
+                        boolean didFind = findTreasureChest(player, sc, db);
                         if (didFind) {
                             treasuresFound++;
                         }
@@ -96,7 +96,7 @@ public class LevelFour {
                 }
 
                 case 3 -> {
-                    boolean didDefeatMonster = battleMonster(player, inventory, sc);
+                    boolean didDefeatMonster = battleMonster(player, inventory, sc, db);
 
                     if (!didDefeatMonster && player.isAlive()){
                         sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
@@ -159,7 +159,7 @@ public class LevelFour {
     }
 
 
-    private boolean battleMonster(Player player, Inventory Inventory, Scanners sc) {
+    private boolean battleMonster(Player player, Inventory Inventory, Scanners sc, DBConnection db) {
         Random random = new Random();
         int randomValue = random.nextInt(1, 10);
 
@@ -174,7 +174,7 @@ public class LevelFour {
 
             if (secondRandomValue <= 3 && !foughtMinotaur) {
                 Minotaur minotaur = new Minotaur();
-                player.act(minotaur, Inventory, sc);
+                player.act(minotaur, Inventory, sc, db);
                 if (minotaur.isAlive()) {
                     return false;
                 } else {
@@ -185,7 +185,7 @@ public class LevelFour {
 
             } else {
                 Fury fury = new Fury();
-                player.act(fury, Inventory, sc);
+                player.act(fury, Inventory, sc, db);
                 return !fury.isAlive();
 
             }
@@ -200,7 +200,7 @@ public class LevelFour {
     }
 
 
-    private boolean findTreasureChest(Player player, Inventory Inventory, Scanners sc, DBConnection db) {
+    private boolean findTreasureChest(Player player, Scanners sc, DBConnection db) {
         Random random = new Random();
         int randomValue = random.nextInt(1, 10);
 
@@ -215,7 +215,7 @@ public class LevelFour {
 
                 System.out.println(WHITE + "You found a " + potionName + " inside the chest!");
                 sleepThread(GRAY + potionName + " has been added to your inventory." + RESET);
-                db.addToPotionsInventory(potionId, player);
+                db.addToPotionsInventory(potionName, player);
 
                 return true;
             }

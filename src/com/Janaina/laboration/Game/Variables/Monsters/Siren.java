@@ -1,5 +1,6 @@
 package com.Janaina.laboration.Game.Variables.Monsters;
 
+import com.Janaina.laboration.DBConnection;
 import com.Janaina.laboration.Game.Variables.ACharacters;
 import com.Janaina.laboration.Resources.Scanners;
 
@@ -28,7 +29,7 @@ public class Siren extends ACharacters {
     }
 
     @Override
-    public void attack(ACharacters target,  Scanners sc) {
+    public void attack(ACharacters target,  Scanners sc, DBConnection db) {
         System.out.println(CYAN_BOLD_BRIGHT + getName() + " used " + getDefaultAttack() + " on you!" + RESET);
         sleepThread(CYAN + "࿐ ࿔*:･ﾟ࿐ ࿔*:･ﾟ࿐ ࿔*:･ﾟ" + "\n" + RESET);
         chillForASecond(200);
@@ -50,7 +51,7 @@ public class Siren extends ACharacters {
     }
 
     @Override
-    public String getStats() {
+    public String getStats(DBConnection db) {
         return BLACK_BACKGROUND + "            " + CYAN_BOLD_BRIGHT + CYAN_UNDERLINED + "Siren" + RESET + BLACK_BACKGROUND + "            " + RESET + "\n" + CYAN + ITALIC + "Health: " + getHealth() + "     Max damage: " + (getStrength() * getBaseDamage());
 
     }

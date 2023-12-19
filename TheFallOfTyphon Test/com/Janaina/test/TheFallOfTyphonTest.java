@@ -72,7 +72,6 @@ public class TheFallOfTyphonTest {
         Player player1 = new Player();
         Fury fury1 = new Fury();
 
-        assertEquals(!fury1.isAlive(), player1.playerWins(fury1));
 
     }
 

@@ -18,7 +18,6 @@ public class Start {
         Inventory inventory = new Inventory();
         Player player = new Player();
         MainGameMenu mainGameMenu = new MainGameMenu();
-        Introduction intro = new Introduction();
         Scanners sc = new Scanners();
         DBConnection db = new DBConnection();
         db.openConnection();
@@ -37,7 +36,6 @@ public class Start {
         db.choosePlayer(sc, player);
         db.addItemsToTables(player);
 
-        intro.introduction(player, sc);
         mainGameMenu.mainGameMenu(player, sc, inventory, db);
 
         db.closeConnection();
