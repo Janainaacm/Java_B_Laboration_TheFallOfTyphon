@@ -14,6 +14,8 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 
 public class LevelSix {
 
+    private static final int LEVEL_SIX = 7;
+
     public void playLevelSix(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         int originalAgility = player.getAgility();
         int originalStrength = player.getStrength();
@@ -184,7 +186,8 @@ public class LevelSix {
         sleepThread(PINK + player.getName() + "YES! YES OF COURSE I WILL!" + RESET);
 
 
-        db.updateGlock(player, 0);
+        db.updateGlock(player);
+        player.setAvailableLevels(LEVEL_SIX);
         db.addSpecialAttack(player, typhon.getName());
         sleepThread(GRAY + ITALIC + "You have completed level six");
         suspensefulDots(".");

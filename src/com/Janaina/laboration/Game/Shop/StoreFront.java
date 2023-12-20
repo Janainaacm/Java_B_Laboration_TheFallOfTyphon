@@ -25,8 +25,8 @@ public class StoreFront {
             System.out.println(WHITE + "0. Go back" + RESET);
 
             switch (sc.chooseFromShopMenu()) {
-                case 1 -> Weapons.shopWeapons(player, sc, db);
-                case 2 -> Potions.shopPotions(player, sc, db);
+                case 1 -> Weapons.weaponsShop(player, sc, db);
+                case 2 -> Potions.potionsShop(player, sc, db);
                 case 0 -> isShopping = false;
                 default -> printRed("Invalid input, please chose from the presented options");
 

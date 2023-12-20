@@ -36,6 +36,8 @@ public class Start {
         db.choosePlayer(sc, player);
         db.addItemsToTables(player);
 
+        player.setGold(3000);
+
         mainGameMenu.mainGameMenu(player, sc, inventory, db);
 
         db.closeConnection();

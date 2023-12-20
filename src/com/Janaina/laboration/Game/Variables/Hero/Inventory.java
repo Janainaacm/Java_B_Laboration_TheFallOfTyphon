@@ -28,15 +28,11 @@ public class Inventory {
 
     public void displayItemsInWeaponsInventory(Player player, Scanners sc, DBConnection db) {
         db.weaponsInventory(player, sc);
-        sc.pressEnter();
-
     }
 
 
     public void displayItemsInPotionsInventory(Player player, Scanners sc, DBConnection db) {
         db.potionsInventory(sc, player);
-        sc.pressEnter();
-
     }
 
 

@@ -27,7 +27,7 @@ public class GetPlayerStats {
             db.specialAttackList(player);
         }
 
-        chillForASecond(2000);
+        chillForASecond(500);
         sleepThread(GRAY + "\nPress enter to go back" + RESET);
         sc.pressEnterNoText();
 

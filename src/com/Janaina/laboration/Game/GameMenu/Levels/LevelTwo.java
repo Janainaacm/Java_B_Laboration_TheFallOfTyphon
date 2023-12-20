@@ -71,7 +71,7 @@ public class LevelTwo {
         suspensefulDots(BLUE + "." + RESET);
         sleepThread(YELLOW + """
                 As the hero sets sail across the Sea of Serene Whispers, all seems calm and promising. The sun casts a warm, golden glow, and hope fills the air.\s
-                 But suddenly, the serene sea turns turbulent. Dark clouds gather, the wind howls, and waves surge.\s
+                But suddenly, the serene sea turns turbulent. Dark clouds gather, the wind howls, and waves surge.\s
                 Amid the tempest, the haunting songs of sirens fill the air, enchanting yet perilous. Their melodies beckon the hero towards treacherous rocks. \s
                 Alone at the helm, the hero battles the storm, struggling to stay on course. The sirens' songs become a cacophony of danger.\s
                 """ + RESET);
@@ -145,7 +145,7 @@ public class LevelTwo {
             if (choice < 1 || choice > sandPiles.size()) {
                 System.out.println(GRAY + "Invalid choice, please try again" + RESET);
             } else {
-                int chosenPile = sandPiles.get(choice - 1); // Adjust the index
+                int chosenPile = sandPiles.get(choice - 1);
 
                 System.out.print(GRAY + "Press enter to dig: " + RESET);
                 digging(20, sc);

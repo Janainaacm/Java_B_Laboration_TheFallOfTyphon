@@ -14,13 +14,13 @@ import static com.Janaina.laboration.Resources.TextDelay.*;
 public class Player extends ACharacters {
 
     private int availableLevels;
-    private int furiesSlayed = 0;
-    private int sirensSlayed = 0;
-    private int medusasSlayed = 0;
-    private int minotaursSlayed = 0;
-    private int cerberusSlayed = 0;
-    private int typhonSlayed = 0;
-    private int roundsFightingTyphon = 0;
+    private int furiesSlayed;
+    private int sirensSlayed;
+    private int medusasSlayed;
+    private int minotaursSlayed;
+    private int cerberusSlayed;
+    private int typhonSlayed;
+    private int roundsFightingTyphon;
     private int id;
 
 
@@ -106,7 +106,7 @@ public class Player extends ACharacters {
 
         do {
             System.out.println(monster.getStats(db));
-            System.out.println(WHITE_BOLD_BRIGHT + "1. Attack\n2. Flee\n3. Get Stats\n4. inventory" + RESET);
+            System.out.println(WHITE_BOLD_BRIGHT + "1. Attack\n2. Flee\n3. Get Stats\n4. Inventory" + RESET);
 
             switch (sc.scannerNumber()) {
 
@@ -131,6 +131,7 @@ public class Player extends ACharacters {
             }
 
             if (playerWins(monster, db)) {
+                db.insertFightLog(this, "Victory", monster);
                 monsterEncounter = false;
             }
 
@@ -138,7 +139,9 @@ public class Player extends ACharacters {
                 sleepThread(RED + ITALIC + "You were killed by " + monster.getName() + RESET);
                 suspensefulDots(RED + "." + RESET);
                 sleepThread(RED + BOLD + "Game Over." + RESET);
+                db.insertFightLog(this, "Defeat", monster);
                 db.updateGameProgress(this);
+                db.closeConnection();
                 System.exit(0);
                 monsterEncounter = false;
             }
@@ -160,7 +163,7 @@ public class Player extends ACharacters {
             System.out.println(monster.getStats(db));
             System.out.println(WHITE + BOLD + "1. Attack\n" +
                     GRAY + "2. Flee\n" +
-                    WHITE + BOLD + "3. Get Stats\n4. inventory" + RESET);
+                    WHITE + BOLD + "3. Get Stats\n4. Inventory" + RESET);
 
             switch (sc.scannerNumber()) {
 
@@ -201,6 +204,7 @@ public class Player extends ACharacters {
 
 
             if (playerWins(monster, db)) {
+                db.insertFightLog(this, "Victory", monster);
                 if (Objects.equals(monster.getName(), "Typhon")) {
                     roundsFightingTyphon = 0;
                 }
@@ -212,6 +216,9 @@ public class Player extends ACharacters {
                 sleepThread(RED + ITALIC + "You were killed by " + monster.getName() + RESET);
                 suspensefulDots(RED + "." + RESET);
                 System.out.println(RED + BOLD + "Game Over." + RESET);
+                db.insertFightLog(this, "Defeat", monster);
+                db.updateGameProgress(this);
+                db.closeConnection();
                 System.exit(0);
                 monsterEncounter = false;
             }
@@ -240,11 +247,9 @@ public class Player extends ACharacters {
                 case "Typhon" -> typhonSlayed++;
             }
 
-            db.insertFightLog(this, "Victory", monster);
             return true;
 
         } else {
-            db.insertFightLog(this, "Defeat", monster);
             return false;
         }
 
@@ -295,6 +300,22 @@ public class Player extends ACharacters {
         }
 
     }
+
+    private int useSpecialAttack(Scanners sc, DBConnection db) {
+        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeaponAttackName(db) + "!" + RESET);
+        sc.pressEnterNoText();
+        sleepThread(YELLOW + equippedWeaponAnimation(db) + RESET);
+        Random random = new Random();
+
+        if (Objects.equals(equippedWeaponName(db), "Glock-19")){
+            playerSpeaking(ITALIC + BOLD + "INGEN rör Strängnäs. Strängnäs är MITT område!" + RESET, this);
+            return getStrength() + equippedWeaponStrength(db) * 10;
+        } else {
+            return random.nextInt(getBaseDamage(), (getStrength() + equippedWeaponStrength(db)) * 10);
+        }
+
+    }
+
 
     @Override
     public boolean flee(ACharacters monster) {
