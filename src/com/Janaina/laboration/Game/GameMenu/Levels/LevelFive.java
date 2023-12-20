@@ -49,10 +49,10 @@ public class LevelFive {
             sc.pressEnter();
 
 
-
             if (!challenge(sc)) {
                 break;
             }
+
 
 
             guardianSpeaking("You have displayed wisdom, and the scales now rest in perfect balance. Proceed, brave one, to the \nrealm below. May your journey be guided by the equilibrium you have mastered.");

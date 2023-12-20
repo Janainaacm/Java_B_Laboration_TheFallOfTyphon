@@ -183,7 +183,7 @@ public class LevelSix {
         sleepThread(GREEN_DARK + "My love, through the shadows and trials, you've returned. Will you make me the happiest man alive? \nWill you marry me?" + RESET);
         chillForASecond(500);
         System.out.println(PINK + BOLD + UNDERLINED + "Althea:" + RESET);
-        sleepThread(PINK + player.getName() + "YES! YES OF COURSE I WILL!" + RESET);
+        sleepThread(PINK + "YES! YES OF COURSE I WILL!" + RESET);
 
 
         db.updateGlock(player);

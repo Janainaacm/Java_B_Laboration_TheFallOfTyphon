@@ -43,6 +43,7 @@ public class LevelFour {
                 """ + RESET);
 
         suspensefulDots(".");
+
         sc.pressEnter();
 
         int rightPathsChosen = 0;
@@ -92,7 +93,9 @@ public class LevelFour {
                     sleepThread(GRAY + "Walking...\n\uD83D\uDC63\n\uD83D\uDC63\n" + RESET);
                     chillForASecond(1500);
                     rightPathsChosen++;
-                    System.out.println(PURPLE_ISH + "You're faced with another choice...");
+                    if (rightPathsChosen < 5) {
+                        System.out.println(PURPLE_ISH + "You're faced with another choice...");
+                    }
                 }
 
                 case 3 -> {
@@ -204,44 +207,32 @@ public class LevelFour {
         Random random = new Random();
         int randomValue = random.nextInt(1, 10);
 
+        System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
+        chillForASecond(1000);
+        System.out.println(GRAY + "Press enter to open." + RESET);
+        sc.pressEnterNoText();
+
         switch (randomValue) {
             case 1, 2 -> {
-                System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
-                chillForASecond(1000);
-                System.out.println(GRAY + "Press enter to open." + RESET);
-                sc.pressEnterNoText();
-                int potionId = random.nextInt(0, db.getCount("name", "potions", player));
-                String potionName = db.getStringFromDb("name", "potions", "id", potionId, player);
-
-                System.out.println(WHITE + "You found a " + potionName + " inside the chest!");
-                sleepThread(GRAY + potionName + " has been added to your inventory." + RESET);
-                db.addToPotionsInventory(potionName, player);
+                db.getRandomPotion(player);
 
                 return true;
             }
-            case 3, 4, 5, 6 -> {
-                System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
-                chillForASecond(1000);
-                System.out.println(GRAY + "Press enter to open." + RESET);
-                sc.pressEnterNoText();
+            case 3, 4, 5 -> {
                 int amount = random.nextInt(10, 20);
                 System.out.println(WHITE + "You found " + amount + " gold coins inside the chest!\n" + YELLOW + BOLD + "+ " + amount + " Gold");
                 player.setGold(player.getGold() + amount);
                 return true;
 
             }
-            case 7, 8 -> {
-                System.out.println(BLUE_LIGHT + "You found a chest!" + RESET);
-                chillForASecond(1000);
-                System.out.println(GRAY + "Press enter to open." + RESET);
-                sc.pressEnterNoText();
+            case 6, 7, 8 -> {
                 int amount = random.nextInt(20, 30);
                 System.out.println("You found " + amount + " gold coins!\n" + YELLOW + BOLD + "+ " + amount + " Gold");
                 player.setGold(player.getGold() + amount);
                 return true;
 
             }
-            case 9, 10 -> sleepThread(PURPLE_ISH + "Dead end..." + RESET);
+            case  9, 10 -> sleepThread(PURPLE_ISH + "Dead end..." + RESET);
 
         }
         return false;

@@ -20,7 +20,6 @@ public class LevelThree {
     public void playLevelThree(Player player, Inventory inventory, Scanners sc, DBConnection db) {
         Medusa medusa = new Medusa();
         Random random = new Random();
-        
 
         sleepThread(YELLOW + """
                 The garden exuded an eerie aura, its moonlit stone statues seemingly coming to life, their watchful eyes unsettling but alluring. The hero marveled at the artistry\s
@@ -28,9 +27,6 @@ public class LevelThree {
                 sentinels, held ancient secrets. Yet, he pressed on, driven by the hope of finding the map to rescue his sister.\s
                 """ + RESET);
         suspensefulDots(GRAY + "." + RESET);
-
-
-
 
 
         while (true) {
@@ -64,8 +60,6 @@ public class LevelThree {
 
             medusaSpeaking("Well, no matter. Your pretty face will make a lovely addition");
             suspensefulDots(GRAY + "." + RESET);
-
-
 
 
 

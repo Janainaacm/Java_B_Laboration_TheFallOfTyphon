@@ -130,7 +130,7 @@ public class Player extends ACharacters {
 
             }
 
-            if (playerWins(monster, db)) {
+            if (playerWins(monster)) {
                 db.insertFightLog(this, "Victory", monster);
                 monsterEncounter = false;
             }
@@ -156,7 +156,6 @@ public class Player extends ACharacters {
         if (Objects.equals(monster.getName(), "Typhon")) {
 
             roundsFightingTyphon++;
-            System.out.println("plus");
         }
 
         do {
@@ -187,7 +186,6 @@ public class Player extends ACharacters {
 
                 if (roundsFightingTyphon == 1){
                     if (monster.getHealth() <= 150){
-                        System.out.println("1");
                         monster.revive();
                         monsterEncounter = false;
                     }
@@ -195,7 +193,6 @@ public class Player extends ACharacters {
 
                 if (roundsFightingTyphon == 2){
                     if (monster.getHealth() <= 100){
-                        System.out.println("2");
                         monster.revive();
                         monsterEncounter = false;
                     }
@@ -203,7 +200,7 @@ public class Player extends ACharacters {
             }
 
 
-            if (playerWins(monster, db)) {
+            if (playerWins(monster)) {
                 db.insertFightLog(this, "Victory", monster);
                 if (Objects.equals(monster.getName(), "Typhon")) {
                     roundsFightingTyphon = 0;
@@ -227,7 +224,7 @@ public class Player extends ACharacters {
 
     }
 
-    public boolean playerWins(ACharacters monster, DBConnection db) {
+    public boolean playerWins(ACharacters monster) {
         if (!monster.isAlive()) {
             System.out.println(PURPLE_BOLD_BRIGHT + "You managed to slay " + monster.getName() + "!" + RESET);
             chillForASecond(1000);
@@ -286,7 +283,7 @@ public class Player extends ACharacters {
 
     }
 
-    private int attackWeapon(Scanners sc, DBConnection db) {
+    public int attackWeapon(Scanners sc, DBConnection db) {
         System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeaponAttackName(db) + "!" + RESET);
         sc.pressEnterNoText();
         sleepThread(YELLOW + equippedWeaponAnimation(db) + RESET);
@@ -301,19 +298,15 @@ public class Player extends ACharacters {
 
     }
 
-    private int useSpecialAttack(Scanners sc, DBConnection db) {
-        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + equippedWeaponAttackName(db) + "!" + RESET);
+    public int useSpecialAttack(Scanners sc, DBConnection db, String attackName) {
+        String animation = db.getSpecialAttackAnimation(attackName, this);
+        int strength = db.getSpecialAttackStrength(attackName, this);
+
+        System.out.println(YELLOW_BOLD_BRIGHT + getName() + ", press enter to use " + attackName + "!" + RESET);
         sc.pressEnterNoText();
-        sleepThread(YELLOW + equippedWeaponAnimation(db) + RESET);
-        Random random = new Random();
+        sleepThread(YELLOW + animation + RESET);
 
-        if (Objects.equals(equippedWeaponName(db), "Glock-19")){
-            playerSpeaking(ITALIC + BOLD + "INGEN rör Strängnäs. Strängnäs är MITT område!" + RESET, this);
-            return getStrength() + equippedWeaponStrength(db) * 10;
-        } else {
-            return random.nextInt(getBaseDamage(), (getStrength() + equippedWeaponStrength(db)) * 10);
-        }
-
+        return strength;
     }
 
 

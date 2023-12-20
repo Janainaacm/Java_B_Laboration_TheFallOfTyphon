@@ -1,6 +1,5 @@
 package com.Janaina.laboration;
 
-import com.Janaina.laboration.Game.Introduction;
 import com.Janaina.laboration.Game.MainGameMenu;
 import com.Janaina.laboration.Game.Variables.Hero.Inventory;
 import com.Janaina.laboration.Game.Variables.Hero.Player;
@@ -35,8 +34,6 @@ public class Start {
 
         db.choosePlayer(sc, player);
         db.addItemsToTables(player);
-
-        player.setGold(3000);
 
         mainGameMenu.mainGameMenu(player, sc, inventory, db);
 

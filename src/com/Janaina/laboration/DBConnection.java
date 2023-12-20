@@ -434,28 +434,30 @@ public class DBConnection {
         return number;
     }
 
-    public String getStringFromDb(String columnName, String tableName, String conditionColumn, int conditionValue, Player player) {
-        String query = "SELECT ? FROM ? WHERE ? = ? AND playerId = ?";
-        String text = null;
 
+
+    public void getRandomPotion(Player player) {
+        Random random = new Random();
+        String query = "SELECT name FROM potions WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, columnName);
-            preparedStatement.setString(2, tableName);
-            preparedStatement.setString(3, conditionColumn);
-            preparedStatement.setInt(4, conditionValue);
-            preparedStatement.setInt(5, player.getId());
+            int max = getCount("id", "potionsShop", player);
+            int randomNumber = random.nextInt(1,max);
+            preparedStatement.setInt(1, randomNumber);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                text = resultSet.getString(columnName);
+                String potionName = resultSet.getString("name");
+                System.out.println(WHITE + "You found a " + potionName + " inside the chest!");
+                sleepThread(GRAY + potionName + " has been added to your inventory." + RESET);
+                addToPotionsInventory(potionName, player);
             }
+
         } catch (SQLException e) {
             handleSQLException(e);
         }
 
-        return text;
     }
 
     public void addToWeaponsInventory(String weaponName, Player player) {
@@ -694,14 +696,14 @@ public class DBConnection {
             String queryCheck = "SELECT * FROM weaponsShop WHERE id = ? AND playerId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(queryCheck);
             preparedStatement.setInt(1, id);
-            preparedStatement.setInt(1, player.getId());
+            preparedStatement.setInt(2, player.getId());
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String query = "UPDATE weaponsShop SET hidden = 0 WHERE id = ? AND playerId = ?";
                     PreparedStatement updateStatement = connection.prepareStatement(query);
                     updateStatement.setInt(1, id);
-                    updateStatement.setInt(1, player.getId());
+                    updateStatement.setInt(2, player.getId());
 
                     updateStatement.executeUpdate();
                 }
@@ -1438,16 +1440,15 @@ public class DBConnection {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                System.out.println(RESET + PINK_LIGHT + BOLD  + "  \uD80C\uDFF2 " + resultSet.getString("name") + RESET + PINK_PASTEL + ITALIC + "\n      Damage: " + RED + resultSet.getInt("strength") + RESET);
+                System.out.println(RESET + PINK_LIGHT + BOLD + "  \uD80C\uDFF2 " + resultSet.getString("name") + RESET + PINK_PASTEL + ITALIC + "\n      Damage: " + RED + resultSet.getInt("strength") + RESET);
             }
         } catch (SQLException e) {
             handleSQLException(e);
         }
     }
 
-    private int showSpecialAttacks(Scanners sc, Player player) {
-        int id = 0;
-
+    private String showSpecialAttacks(Scanners sc, Player player) {
+        String attackName = "";
         while (true) {
             int counter = 1;
 
@@ -1460,15 +1461,15 @@ public class DBConnection {
 
                 System.out.println(ORANGE + BOLD + "Special Attacks:" + RESET);
                 while (resultSet.next()) {
-                    System.out.println(YELLOW + BOLD + counter + ". " + resultSet.getString("name") + YELLOW_DARK + ITALIC + "\nDamage: " + resultSet.getInt("strength") + RESET);
+                    System.out.println(YELLOW_DARK + BOLD + counter + ". " + resultSet.getString("name") + RESET + YELLOW + ITALIC + "\n    -Damage: " + resultSet.getInt("strength") + RESET);
                     counter++;
                 }
-                System.out.println(YELLOW + BOLD + "0. Use " + player.equippedWeaponName(this) + RESET);
+                System.out.println(YELLOW_DARK + BOLD + "0. Use " + player.equippedWeaponName(this) + RESET);
 
                 int choice = sc.scannerNumber();
 
                 if (choice == 0) {
-                    return 0;
+                    return "weapon";
                 } else if (choice > counter || choice < 0) {
                     System.out.println(BLACK + "Invalid choice, please try again" + RESET);
                     continue;
@@ -1478,8 +1479,7 @@ public class DBConnection {
 
                     while (resultSet.next()) {
                         if (counter == choice) {
-                            id = resultSet.getInt("id");
-                            break;
+                            attackName = resultSet.getString("name");
                         }
                         counter++;
                     }
@@ -1488,7 +1488,7 @@ public class DBConnection {
                 System.out.println(e.getMessage());
             }
 
-            return id;
+            return attackName;
         }
     }
 
@@ -1555,28 +1555,53 @@ public class DBConnection {
         }
     }
 
-    public int getAttackDamage(Scanners sc, Player player, DBConnection db) {
-        Random random = new Random();
-        int id = showSpecialAttacks(sc, player);
+    public int getSpecialAttackStrength(String name, Player player) {
+        int returnInt = 0;
+        try {
+            String query = "SELECT strength FROM specialAttacks WHERE name = ? AND playerId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, player.getId());
 
-        if (id == 0) {
-            return random.nextInt(player.getBaseDamage(), (player.getStrength() + player.equippedWeaponStrength(db)) * 10);
-        } else {
-            try (PreparedStatement updateStatement = connection.prepareStatement("SELECT strength, animation FROM specialAttacks WHERE id = ? AND playerId = ?;")) {
-                updateStatement.setInt(1, id);
-                updateStatement.setInt(2, player.getId());
-
-                try (ResultSet resultSet = updateStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        return resultSet.getInt("strength");
-                    }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    returnInt = resultSet.getInt("strength");
                 }
-
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
             }
 
-            return 0;
+        } catch (SQLException e) {
+            handleSQLException(e);
+        }
+        return returnInt;
+    }
+
+    public String getSpecialAttackAnimation(String name, Player player) {
+        String returnString = null;
+        try {
+            String query = "SELECT animation FROM specialAttacks WHERE name = ? AND playerId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, player.getId());
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    returnString = resultSet.getString("animation");
+                }
+            }
+
+        } catch (SQLException e) {
+            handleSQLException(e);
+        }
+        return returnString;
+    }
+
+    public int getAttackDamage(Scanners sc, Player player, DBConnection db) {
+        String attackName = showSpecialAttacks(sc, player);
+
+        if (Objects.equals(attackName, "weapon")) {
+            return player.attackWeapon(sc, db);
+        } else {
+            return player.useSpecialAttack(sc, this, attackName);
         }
     }
 
