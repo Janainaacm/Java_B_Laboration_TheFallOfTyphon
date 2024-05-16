@@ -352,7 +352,7 @@ public class DBConnection {
         String queryUpdateWeaponsShopDelete = """
                 DELETE FROM weaponsShop
                 WHERE name = 'knife'
-                AND playerId = 1
+                AND playerId = ?
                 ;
                 """;
 
@@ -400,7 +400,10 @@ public class DBConnection {
 
             PreparedStatement preparedStatement4 = connection.prepareStatement(queryUpdateWeaponsShopHidden);
             preparedStatement4.setInt(1, player.getId());
-            preparedStatement4.executeUpdate();
+            if (player.getAvailableLevels() <= 6){
+
+                preparedStatement4.executeUpdate();
+            }
 
             PreparedStatement preparedStatement5 = connection.prepareStatement(queryUpdateWeaponsShopDelete);
             preparedStatement5.setInt(1, player.getId());
@@ -691,19 +694,16 @@ public class DBConnection {
 
     public void updateGlock(Player player) {
         try {
-            int id = getIdFromWeaponsShop("Glock-19", player);
 
-            String queryCheck = "SELECT * FROM weaponsShop WHERE id = ? AND playerId = ?";
+            String queryCheck = "SELECT * FROM weaponsShop WHERE name = 'Glock-19' AND bought = 0 AND playerId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(queryCheck);
-            preparedStatement.setInt(1, id);
-            preparedStatement.setInt(2, player.getId());
+            preparedStatement.setInt(1, player.getId());
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    String query = "UPDATE weaponsShop SET hidden = 0 WHERE id = ? AND playerId = ?";
+                    String query = "UPDATE weaponsShop SET hidden = 0 WHERE name = 'Glock-19' AND playerId = ?";
                     PreparedStatement updateStatement = connection.prepareStatement(query);
-                    updateStatement.setInt(1, id);
-                    updateStatement.setInt(2, player.getId());
+                    updateStatement.setInt(1, player.getId());
 
                     updateStatement.executeUpdate();
                 }

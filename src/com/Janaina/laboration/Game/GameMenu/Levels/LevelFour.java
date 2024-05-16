@@ -67,98 +67,99 @@ public class LevelFour {
                        1         2          3
                     """ + RESET);
 
+            int userInput = sc.scannerNumber();
 
-            switch (randomizePaths.get(sc.scannerNumber() - 1)) {
-                case 1 -> {
-                    sleepThread(GRAY + "Walking...\n\uD83D\uDC63\n\uD83D\uDC63\n" + RESET);
-                    chillForASecond(1500);
+            if (userInput >= 1 && userInput <= randomizePaths.size()) {
+                switch (userInput) {
+                    case 1 -> {
+                        sleepThread(GRAY + "Walking...\n\uD83D\uDC63\n\uD83D\uDC63\n" + RESET);
+                        chillForASecond(1500);
 
-                    if (treasuresFound <= 5) {
-                        boolean didFind = findTreasureChest(player, sc, db);
-                        if (didFind) {
-                            treasuresFound++;
+                        if (treasuresFound <= 5) {
+                            boolean didFind = findTreasureChest(player, sc, db);
+                            if (didFind) {
+                                treasuresFound++;
+                            }
+
+                        } else {
+
+                            System.out.println(PURPLE_ISH + "Dead end...");
+                            sleepThread(GRAY + "Press enter to go back." + RESET);
+                            sc.pressEnterNoText();
+
                         }
 
+                    }
+
+                    case 2 -> {
+                        sleepThread(GRAY + "Walking...\n\uD83D\uDC63\n\uD83D\uDC63\n" + RESET);
+                        chillForASecond(1500);
+                        rightPathsChosen++;
+                        if (rightPathsChosen < 5) {
+                            System.out.println(PURPLE_ISH + "You're faced with another choice...");
+                        }
+                    }
+
+                    case 3 -> {
+                        boolean didDefeatMonster = battleMonster(player, inventory, sc, db);
+
+                        if (!didDefeatMonster && player.isAlive()) {
+                            sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
+                            suspensefulDots(PURPLE_LIGHT + "." + RESET);
+                            isPlaying = false;
+                        }
+
+                    }
+                }
+
+                if (rightPathsChosen == 5) {
+                    sleepThread(YELLOW + """
+                            As the hero triumphantly emerged from Daedalus's Labyrinth, the air was thick with anticipation. At the maze's exit, a majestic \s
+                            figure awaited. The body and tail of a lion, the face of a woman, and the wings of a bird, The Sphinx. With a wise and enigmatic \s
+                            gaze, the mythical creature acknowledged the hero's accomplishment, prepared to unveil a riddle that would determine the next \s
+                            steps of the epic quest.
+                            """ + RESET);
+                    chillForASecond(1000);
+
+                    if (sphinxMeeting(player, sc)) {
+                        sphinxSpeaking("Impressive, indeed. You have proven your intellect and wit, worthy of the journey ahead.");
+                        chillForASecond(500);
+                        playerSpeaking("Thank you, Sphinx. Now I need not waste time, I must ensure my sister's freedom", player);
+                        chillForASecond(500);
+                        sphinxSpeaking("""
+                                Certainly. Did you know, the young Persephone liked to gather flowers on the lower slopes of Etna and to dance with the nymphs \s
+                                on the plain of Enna. However, when Hades abducted her, he tore open a crevice in Mount Etna, establishing an entrance to the \s
+                                Underworld where both living and dead can pass.
+                                It is your only chance""");
+                        chillForASecond(500);
+                        playerSpeaking("How will I know where to find it", player);
+                        sphinxSpeaking("Search for the signs, and the gods will show you the way, " + player.getName() +
+                                "\nAs a token of your victory, I present you with this Nymphic Dust. Cast it upon yourself while envisioning your desired \n" +
+                                "destination, and it shall ensure your safe passage.");
+                        chillForASecond(500);
+                        playerSpeaking("I am forever grateful to you, Sphinx.", player);
+                        chillForASecond(500);
+                        sphinxSpeaking("May fortune favor your quest, and may you find what your heart seeks most. Now, go forth and confront the \n" +
+                                "shadows that dwell within the gates of the underworld.");
+                        chillForASecond(500);
+                        suspensefulDots(GRAY + "." + RESET);
+                        chillForASecond(1000);
+                        sleepThread(GRAY + "Level four complete." + RESET);
+                        player.setAvailableLevels(LEVEL_FIVE);
+                        chillForASecond(1000);
+                        sc.pressEnter();
+
                     } else {
-
-                        System.out.println(PURPLE_ISH + "Dead end...");
-                        sleepThread(GRAY + "Press enter to go back." + RESET);
-                        sc.pressEnterNoText();
-
-                    }
-
-                }
-
-                case 2 -> {
-                    sleepThread(GRAY + "Walking...\n\uD83D\uDC63\n\uD83D\uDC63\n" + RESET);
-                    chillForASecond(1500);
-                    rightPathsChosen++;
-                    if (rightPathsChosen < 5) {
-                        System.out.println(PURPLE_ISH + "You're faced with another choice...");
-                    }
-                }
-
-                case 3 -> {
-                    boolean didDefeatMonster = battleMonster(player, inventory, sc, db);
-
-                    if (!didDefeatMonster && player.isAlive()){
                         sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
                         suspensefulDots(PURPLE_LIGHT + "." + RESET);
-                        isPlaying = false;
                     }
 
+                    isPlaying = false;
+
+
                 }
-
-                default -> System.out.println(RED + "Invalid input, try again" + RESET);
             }
-
-            if (rightPathsChosen == 5) {
-                sleepThread(YELLOW + """
-                        As the hero triumphantly emerged from Daedalus's Labyrinth, the air was thick with anticipation. At the maze's exit, a majestic \s
-                        figure awaited. The body and tail of a lion, the face of a woman, and the wings of a bird, The Sphinx. With a wise and enigmatic \s
-                        gaze, the mythical creature acknowledged the hero's accomplishment, prepared to unveil a riddle that would determine the next \s
-                        steps of the epic quest.
-                        """ + RESET);
-                chillForASecond(1000);
-
-                if (sphinxMeeting(player, sc)) {
-                    sphinxSpeaking("Impressive, indeed. You have proven your intellect and wit, worthy of the journey ahead.");
-                    chillForASecond(500);
-                    playerSpeaking("Thank you, Sphinx. Now I need not waste time, I must ensure my sister's freedom", player);
-                    chillForASecond(500);
-                    sphinxSpeaking("""
-                            Certainly. Did you know, the young Persephone liked to gather flowers on the lower slopes of Etna and to dance with the nymphs \s
-                            on the plain of Enna. However, when Hades abducted her, he tore open a crevice in Mount Etna, establishing an entrance to the \s
-                            Underworld where both living and dead can pass.
-                            It is your only chance""");
-                    chillForASecond(500);
-                    playerSpeaking("How will I know where to find it", player);
-                    sphinxSpeaking("Search for the signs, and the gods will show you the way, " + player.getName() +
-                            "\nAs a token of your victory, I present you with this Nymphic Dust. Cast it upon yourself while envisioning your desired \n" +
-                            "destination, and it shall ensure your safe passage.");
-                    chillForASecond(500);
-                    playerSpeaking("I am forever grateful to you, Sphinx.", player);
-                    chillForASecond(500);
-                    sphinxSpeaking("May fortune favor your quest, and may you find what your heart seeks most. Now, go forth and confront the \n" +
-                            "shadows that dwell within the gates of the underworld.");
-                    chillForASecond(500);
-                    suspensefulDots(GRAY + "." + RESET);
-                    chillForASecond(1000);
-                    sleepThread(GRAY + "Level four complete." + RESET);
-                    player.setAvailableLevels(LEVEL_FIVE);
-                    chillForASecond(1000);
-                    sc.pressEnter();
-
-                } else {
-                    sleepThread(PURPLE_LIGHT + "Better luck next time" + RESET);
-                    suspensefulDots(PURPLE_LIGHT + "." + RESET);
-                }
-                isPlaying = false;
-            }
-
         }
-
-
     }
 
 
@@ -232,7 +233,7 @@ public class LevelFour {
                 return true;
 
             }
-            case  9, 10 -> sleepThread(PURPLE_ISH + "Dead end..." + RESET);
+            case 9, 10 -> sleepThread(PURPLE_ISH + "Dead end..." + RESET);
 
         }
         return false;

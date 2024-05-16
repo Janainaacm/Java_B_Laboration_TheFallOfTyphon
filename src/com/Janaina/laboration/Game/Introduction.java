@@ -76,7 +76,7 @@ public class Introduction {
 
                 println(PURPLE_DARK + BOLD + "1. Levels\n" + RESET + "2. Player stats\n3. Achievements\n4. Inventory\n0. Back" + RESET);
 
-                pythiaSpeaking("There are six levels to this game, some are harder than others, each with it's own monster.\nYou will not be able to play a level if you have not completed the level previous.");
+                pythiaSpeaking("There are six levels to this game, some are harder than others, each with it's own monster.\nYou will not be able to play a level if you have not completed the previous level.");
                 sc.pressEnter();
 
                 println("1. Levels\n" + PURPLE_DARK + BOLD + "2. Player stats\n" + RESET + "3. Achievements\n4. Inventory\n0. Back" + RESET);

@@ -28,10 +28,10 @@
         <jarDirectory url="file://$MODULE_DIR$/jar_files 2" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/mariadb-java-client-3.3.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/mariadb-java-client-3.3.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
